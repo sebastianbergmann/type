@@ -1,6 +1,6 @@
 # sebastian/type
 
-TODO
+Collection of value objects that represent the types of the PHP type system.
 
 ## Installation
 

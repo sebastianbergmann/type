@@ -1,6 +1,6 @@
 {
     "name": "sebastian/type",
-    "description": "TODO",
+    "description": "Collection of value objects that represent the types of the PHP type system",
     "type": "library",
     "homepage": "https://github.com/sebastianbergmann/type",
     "license": "BSD-3-Clause",
