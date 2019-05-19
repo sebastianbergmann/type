@@ -31,7 +31,7 @@ final class SimpleTypeTest extends TestCase
             'notNullable to nullable'    => [new SimpleType('int', true), new SimpleType('int', false)],
             'nullable to nullable'       => [new SimpleType('int', true), new SimpleType('int', true)],
             'notNullable to notNullable' => [new SimpleType('int', false), new SimpleType('int', false)],
-            'null to notNullable'        => [new SimpleType('int', true), new NullType()],
+            'null to notNullable'        => [new SimpleType('int', true), new NullType],
         ];
     }
 
@@ -49,8 +49,8 @@ final class SimpleTypeTest extends TestCase
             'null to notNullable' => [new SimpleType('int', false), new NullType()],
             'int to boolean'      => [new SimpleType('boolean', false), new SimpleType('int', false)],
             'object'              => [new SimpleType('boolean', false), new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
-            'unknown type'        => [new SimpleType('boolean', false), new UnknownType()],
-            'void'                => [new SimpleType('boolean', false), new VoidType()],
+            'unknown type'        => [new SimpleType('boolean', false), new UnknownType],
+            'void'                => [new SimpleType('boolean', false), new VoidType],
         ];
     }
 

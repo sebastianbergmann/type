@@ -17,12 +17,21 @@ use PHPUnit\Framework\TestCase;
 final class NullTypeTest extends TestCase
 {
     /**
+     * @var NullType
+     */
+    private $type;
+
+    protected function setUp(): void
+    {
+        $this->type = new NullType;
+    }
+
+    /**
      * @dataProvider assignableTypes
      */
     public function testIsAssignable(Type $assignableType): void
     {
-        $type = new NullType();
-        $this->assertTrue($type->isAssignable($assignableType));
+        $this->assertTrue($this->type->isAssignable($assignableType));
     }
 
     public function assignableTypes(): array
@@ -32,7 +41,7 @@ final class NullTypeTest extends TestCase
             [new SimpleType('int', true)],
             [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
             [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
-            [new UnknownType()],
+            [new UnknownType],
         ];
     }
 
@@ -41,26 +50,23 @@ final class NullTypeTest extends TestCase
      */
     public function testIsNotAssignable(Type $assignedType): void
     {
-        $type = new NullType();
-        $this->assertFalse($type->isAssignable($assignedType));
+        $this->assertFalse($this->type->isAssignable($assignedType));
     }
 
     public function notAssignable(): array
     {
         return [
-            'void' => [new VoidType()],
+            'void' => [new VoidType],
         ];
     }
 
     public function testAllowsNull(): void
     {
-        $type = new NullType();
-        $this->assertTrue($type->allowsNull());
+        $this->assertTrue($this->type->allowsNull());
     }
 
     public function testReturnTypeDeclaration(): void
     {
-        $type = new NullType();
-        $this->assertEquals('', $type->getReturnTypeDeclaration());
+        $this->assertEquals('', $this->type->getReturnTypeDeclaration());
     }
 }

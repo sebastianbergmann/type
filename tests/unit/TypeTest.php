@@ -31,14 +31,14 @@ final class TypeTest extends TestCase
     public function valuesToNullableType(): array
     {
         return [
-            '?null'    => [null, true, new NullType()],
-            'null'     => [null, false, new NullType()],
+            '?null'    => [null, true, new NullType],
+            'null'     => [null, false, new NullType],
             '?integer' => [1, true, new SimpleType('int', true)],
             'integer'  => [1, false, new SimpleType('int', false)],
             '?boolean' => [true, true, new SimpleType('bool', true)],
             'boolean'  => [true, false, new SimpleType('bool', false)],
-            '?object'  => [new \stdClass(), true, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
-            'object'   => [new \stdClass(), false, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), false)],
+            '?object'  => [new \stdClass, true, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
+            'object'   => [new \stdClass, false, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), false)],
         ];
     }
 
@@ -53,10 +53,10 @@ final class TypeTest extends TestCase
     public function namesToTypes(): array
     {
         return [
-            '?void'             => ['void', true, new VoidType()],
-            'void'              => ['void', false, new VoidType()],
-            '?null'             => ['null', true, new NullType()],
-            'null'              => ['null', true, new NullType()],
+            '?void'             => ['void', true, new VoidType],
+            'void'              => ['void', false, new VoidType],
+            '?null'             => ['null', true, new NullType],
+            'null'              => ['null', true, new NullType],
             '?int'              => ['int', true, new SimpleType('int', true)],
             '?integer'          => ['integer', true, new SimpleType('int', true)],
             'int'               => ['int', false, new SimpleType('int', false)],
@@ -70,7 +70,7 @@ final class TypeTest extends TestCase
             'array'             => ['array', false, new SimpleType('array', false)],
             'resource'          => ['resource', false, new SimpleType('resource', false)],
             'resource (closed)' => ['resource (closed)', false, new SimpleType('resource (closed)', false)],
-            'unknown type'      => ['unknown type', false, new UnknownType()],
+            'unknown type'      => ['unknown type', false, new UnknownType],
             '?object'           => [\stdClass::class, true, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
             'classname'         => [\stdClass::class, false, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), false)],
         ];

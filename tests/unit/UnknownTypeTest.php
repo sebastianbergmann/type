@@ -17,12 +17,21 @@ use PHPUnit\Framework\TestCase;
 final class UnknownTypeTest extends TestCase
 {
     /**
+     * @var UnknownType
+     */
+    private $type;
+
+    protected function setUp(): void
+    {
+        $this->type = new UnknownType;
+    }
+
+    /**
      * @dataProvider assignableTypes
      */
     public function testIsAssignable(Type $assignableType): void
     {
-        $unknownType = new UnknownType();
-        $this->assertTrue($unknownType->isAssignable($assignableType));
+        $this->assertTrue($this->type->isAssignable($assignableType));
     }
 
     public function assignableTypes(): array
@@ -30,22 +39,20 @@ final class UnknownTypeTest extends TestCase
         return [
             [new SimpleType('int', false)],
             [new SimpleType('int', true)],
-            [new VoidType()],
+            [new VoidType],
             [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
             [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
-            [new UnknownType()],
+            [new UnknownType],
         ];
     }
 
     public function testAllowsNull(): void
     {
-        $type = new UnknownType();
-        $this->assertTrue($type->allowsNull());
+        $this->assertTrue($this->type->allowsNull());
     }
 
     public function testReturnTypeDeclaration(): void
     {
-        $type = new UnknownType();
-        $this->assertEquals('', $type->getReturnTypeDeclaration());
+        $this->assertEquals('', $this->type->getReturnTypeDeclaration());
     }
 }
