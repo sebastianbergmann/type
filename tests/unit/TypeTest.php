@@ -13,6 +13,10 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \SebastianBergmann\Type\Type
+ *
+ * @uses \SebastianBergmann\Type\SimpleType
+ * @uses \SebastianBergmann\Type\ObjectType
+ * @uses \SebastianBergmann\Type\TypeName
  */
 final class TypeTest extends TestCase
 {
