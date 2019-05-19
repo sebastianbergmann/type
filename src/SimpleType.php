@@ -57,13 +57,17 @@ final class SimpleType extends Type
         switch ($name) {
             case 'boolean':
                 return 'bool';
+
             case 'real':
             case 'double':
                 return 'float';
+
             case 'integer':
                 return 'int';
+
             case '[]':
                 return 'array';
+
             default:
                 return $name;
         }
