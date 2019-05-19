@@ -52,7 +52,7 @@ final class SimpleType extends Type
 
     private function normalize(string $name): string
     {
-        $name = \mb_strtolower($name);
+        $name = \strtolower($name);
 
         switch ($name) {
             case 'boolean':
