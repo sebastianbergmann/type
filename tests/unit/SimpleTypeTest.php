@@ -27,11 +27,11 @@ final class SimpleTypeTest extends TestCase
     public function assignablePairs(): array
     {
         return [
-            'nullable to notNullable'    => [new SimpleType('int', false), new SimpleType('int', true)],
-            'notNullable to nullable'    => [new SimpleType('int', true), new SimpleType('int', false)],
-            'nullable to nullable'       => [new SimpleType('int', true), new SimpleType('int', true)],
-            'notNullable to notNullable' => [new SimpleType('int', false), new SimpleType('int', false)],
-            'null to notNullable'        => [new SimpleType('int', true), new NullType],
+            'nullable to not nullable'     => [new SimpleType('int', false), new SimpleType('int', true)],
+            'not nullable to nullable'     => [new SimpleType('int', true), new SimpleType('int', false)],
+            'nullable to nullable'         => [new SimpleType('int', true), new SimpleType('int', true)],
+            'not nullable to not nullable' => [new SimpleType('int', false), new SimpleType('int', false)],
+            'null to not nullable'         => [new SimpleType('int', true), new NullType],
         ];
     }
 
@@ -46,11 +46,11 @@ final class SimpleTypeTest extends TestCase
     public function notAssignablePairs(): array
     {
         return [
-            'null to notNullable' => [new SimpleType('int', false), new NullType()],
-            'int to boolean'      => [new SimpleType('boolean', false), new SimpleType('int', false)],
-            'object'              => [new SimpleType('boolean', false), new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
-            'unknown type'        => [new SimpleType('boolean', false), new UnknownType],
-            'void'                => [new SimpleType('boolean', false), new VoidType],
+            'null to not nullable' => [new SimpleType('int', false), new NullType()],
+            'int to boolean'       => [new SimpleType('boolean', false), new SimpleType('int', false)],
+            'object'               => [new SimpleType('boolean', false), new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
+            'unknown type'         => [new SimpleType('boolean', false), new UnknownType],
+            'void'                 => [new SimpleType('boolean', false), new VoidType],
         ];
     }
 
