@@ -119,4 +119,26 @@ final class ObjectTypeTest extends TestCase
 
         $this->assertTrue($someClass->allowsNull());
     }
+
+    public function testObjectTypeIsAssignableToObjects(): void
+    {
+        $objectType = new ObjectType(
+            TypeName::fromQualifiedName('object'),
+            true
+        );
+        $someObject = new class() {
+            // Empty
+        };
+        $this->assertTrue(Type::fromValue($someObject, false)->isAssignable($objectType));
+    }
+
+    public function testObjectTypeIsNotAssignableToNonObjects(): void
+    {
+        $objectType = new ObjectType(
+            TypeName::fromQualifiedName('object'),
+            true
+        );
+        $someNonObject = 123;
+        $this->assertFalse(Type::fromValue($someNonObject, false)->isAssignable($objectType));
+    }
 }
