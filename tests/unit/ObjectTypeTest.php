@@ -144,4 +144,24 @@ final class ObjectTypeTest extends TestCase
 
         $this->assertFalse(Type::fromValue($someNonObject, false)->isAssignable($objectType));
     }
+
+    public function testReturnTypeDeclarationIsGeneratedCorrectly(): void
+    {
+        $objectType = new ObjectType(
+            TypeName::fromQualifiedName('object'),
+            false
+        );
+
+        $this->assertSame(': object', $objectType->getReturnTypeDeclaration());
+    }
+
+    public function testNullableReturnTypeDeclarationIsGeneratedCorrectly(): void
+    {
+        $objectType = new ObjectType(
+            TypeName::fromQualifiedName('object'),
+            true
+        );
+
+        $this->assertSame(': ?object', $objectType->getReturnTypeDeclaration());
+    }
 }
