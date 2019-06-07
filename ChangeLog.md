@@ -7,6 +7,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 ### Added
 
 * Added support for `callable` type
+* Added support for `iterable` type
 
 ## [1.0.0] - 2019-06-06
 

@@ -34,6 +34,9 @@ abstract class Type
             case 'callable':
                 return new CallableType($allowsNull);
 
+            case 'iterable':
+                return new IterableType($allowsNull);
+
             case 'null':
                 return new NullType;
 
