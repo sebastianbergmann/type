@@ -13,6 +13,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \SebastianBergmann\Type\SimpleType
+ *
+ * @uses \SebastianBergmann\Type\Type
  */
 final class SimpleTypeTest extends TestCase
 {
@@ -151,5 +153,10 @@ final class SimpleTypeTest extends TestCase
             'double'  => [new SimpleType('double', false), ': float'],
             'integer' => [new SimpleType('integer', false), ': int'],
         ];
+    }
+
+    public function testCanHaveValue(): void
+    {
+        $this->assertSame('string', Type::fromValue('string', false)->value());
     }
 }

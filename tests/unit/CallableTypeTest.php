@@ -128,4 +128,23 @@ final class CallableTypeTest extends TestCase
             )
         );
     }
+
+    public function testSomethingThatIsNotCallableCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue(null, false)
+            )
+        );
+    }
+
+    public function testObjectWithoutInvokeMethodCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue(new class {
+                }, false)
+            )
+        );
+    }
 }

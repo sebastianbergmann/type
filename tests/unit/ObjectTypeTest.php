@@ -164,4 +164,14 @@ final class ObjectTypeTest extends TestCase
 
         $this->assertSame(': ?object', $objectType->getReturnTypeDeclaration());
     }
+
+    public function testHasClassName(): void
+    {
+        $someClass = new ObjectType(
+            TypeName::fromQualifiedName(ParentClass::class),
+            false
+        );
+
+        $this->assertSame(ParentClass::class, $someClass->className()->getQualifiedName());
+    }
 }

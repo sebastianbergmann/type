@@ -17,6 +17,8 @@ use PHPUnit\Framework\TestCase;
  * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\TypeName
+ * @uses \SebastianBergmann\Type\CallableType
+ * @uses \SebastianBergmann\Type\IterableType
  */
 final class TypeTest extends TestCase
 {
@@ -73,6 +75,10 @@ final class TypeTest extends TestCase
             'unknown type'      => ['unknown type', false, new UnknownType],
             '?object'           => [\stdClass::class, true, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
             'classname'         => [\stdClass::class, false, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), false)],
+            'callable'          => ['callable', false, new CallableType(false)],
+            '?callable'         => ['callable', true, new CallableType(true)],
+            'iterable'          => ['iterable', false, new IterableType(false)],
+            '?iterable'         => ['iterable', true, new IterableType(true)],
         ];
     }
 }

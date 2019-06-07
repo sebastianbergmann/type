@@ -85,4 +85,13 @@ final class IterableTypeTest extends TestCase
             )
         );
     }
+
+    public function testSomethingThatIsNotIterableCannotBeAssignedToIterable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue(null, false)
+            )
+        );
+    }
 }
