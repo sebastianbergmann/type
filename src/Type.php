@@ -34,18 +34,18 @@ abstract class Type
             case 'void':
                 return new VoidType;
 
-            case 'object':
-            case 'boolean':
+            case 'array':
             case 'bool':
-            case 'integer':
-            case 'int':
-            case 'real':
+            case 'boolean':
             case 'double':
             case 'float':
-            case 'string':
-            case 'array':
+            case 'int':
+            case 'integer':
+            case 'real':
             case 'resource':
             case 'resource (closed)':
+            case 'string':
+            case 'object':
                 return new SimpleType($typeName, $allowsNull);
 
             default:
