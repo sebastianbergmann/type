@@ -21,10 +21,16 @@ final class SimpleType extends Type
      */
     private $allowsNull;
 
-    public function __construct(string $name, bool $nullable)
+    /**
+     * @var mixed
+     */
+    private $value;
+
+    public function __construct(string $name, bool $nullable, $value = null)
     {
         $this->name       = $this->normalize($name);
         $this->allowsNull = $nullable;
+        $this->value      = $value;
     }
 
     public function isAssignable(Type $other): bool
@@ -48,6 +54,11 @@ final class SimpleType extends Type
     public function allowsNull(): bool
     {
         return $this->allowsNull;
+    }
+
+    public function value()
+    {
+        return $this->value;
     }
 
     private function normalize(string $name): string

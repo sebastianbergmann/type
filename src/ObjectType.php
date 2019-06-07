@@ -59,4 +59,9 @@ final class ObjectType extends Type
     {
         return $this->allowsNull;
     }
+
+    public function className(): TypeName
+    {
+        return $this->className;
+    }
 }

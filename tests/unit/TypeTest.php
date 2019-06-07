@@ -33,10 +33,10 @@ final class TypeTest extends TestCase
         return [
             '?null'    => [null, true, new NullType],
             'null'     => [null, false, new NullType],
-            '?integer' => [1, true, new SimpleType('int', true)],
-            'integer'  => [1, false, new SimpleType('int', false)],
-            '?boolean' => [true, true, new SimpleType('bool', true)],
-            'boolean'  => [true, false, new SimpleType('bool', false)],
+            '?integer' => [1, true, new SimpleType('int', true, 1)],
+            'integer'  => [1, false, new SimpleType('int', false, 1)],
+            '?boolean' => [true, true, new SimpleType('bool', true, true)],
+            'boolean'  => [true, false, new SimpleType('bool', false, true)],
             '?object'  => [new \stdClass, true, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
             'object'   => [new \stdClass, false, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), false)],
         ];
