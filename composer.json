@@ -31,14 +31,14 @@
     "autoload": {
         "classmap": [
             "src/"
-        ],
-        "files": [
-            "tests/_fixture/callback_function.php"
         ]
     },
     "autoload-dev": {
         "classmap": [
             "tests/_fixture"
+        ],
+        "files": [
+            "tests/_fixture/callback_function.php"
         ]
     },
     "extra": {
