@@ -1,2 +1,24 @@
-/tools export-ignore
-
+/tools             export-ignore
+/tests             export-ignore
+/.github           export-ignore
+.editorconfig      export-ignore
+.gitattributes     export-ignore
+.gitmodules        export-ignore
+.dockerignore      export-ignore
+.gitignore         export-ignore
+.scrutinizer.yml   export-ignore
+.travis.yml        export-ignore
+.styleci.yml       export-ignore
+.multi-tester.yml  export-ignore
+docker-compose.yml export-ignore
+docker-compose-debug.yml export-ignore
+phpcs.xml          export-ignore
+phpstan.neon       export-ignore
+psalm.xml          export-ignore
+phpunit.xml        export-ignore
+ChangeLog.md       export-ignore
+README.md          export-ignore
+composer.lock      export-ignore
+build.xml          export-ignore
+phive.xml          export-ignore
+.php_cs.dist       export-ignore
