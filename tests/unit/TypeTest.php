@@ -15,6 +15,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \SebastianBergmann\Type\Type
  *
  * @uses \SebastianBergmann\Type\SimpleType
+ * @uses \SebastianBergmann\Type\GenericObjectType
  * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\TypeName
  * @uses \SebastianBergmann\Type\CallableType
@@ -64,7 +65,7 @@ final class TypeTest extends TestCase
             'int'               => ['int', false, new SimpleType('int', false)],
             'bool'              => ['bool', false, new SimpleType('bool', false)],
             'boolean'           => ['boolean', false, new SimpleType('bool', false)],
-            'object'            => ['object', false, new SimpleType('object', false)],
+            'object'            => ['object', false, new GenericObjectType(false)],
             'real'              => ['real', false, new SimpleType('float', false)],
             'double'            => ['double', false, new SimpleType('float', false)],
             'float'             => ['float', false, new SimpleType('float', false)],

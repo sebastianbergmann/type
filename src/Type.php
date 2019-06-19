@@ -40,6 +40,9 @@ abstract class Type
             case 'null':
                 return new NullType;
 
+            case 'object':
+                return new GenericObjectType($allowsNull);
+
             case 'unknown type':
                 return new UnknownType;
 
@@ -57,7 +60,6 @@ abstract class Type
             case 'resource':
             case 'resource (closed)':
             case 'string':
-            case 'object':
                 return new SimpleType($typeName, $allowsNull);
 
             default:
