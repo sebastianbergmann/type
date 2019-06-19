@@ -10,8 +10,6 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\Type\TestFixture\ClassWithCallbackMethods;
-use SebastianBergmann\Type\TestFixture\ClassWithInvokeMethod;
 
 /**
  * @covers \SebastianBergmann\Type\GenericObjectType
