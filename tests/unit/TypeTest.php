@@ -73,7 +73,7 @@ final class TypeTest extends TestCase
             'resource'          => ['resource', false, new SimpleType('resource', false)],
             'resource (closed)' => ['resource (closed)', false, new SimpleType('resource (closed)', false)],
             'unknown type'      => ['unknown type', false, new UnknownType],
-            '?object'           => [\stdClass::class, true, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
+            '?classname'        => [\stdClass::class, true, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
             'classname'         => [\stdClass::class, false, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), false)],
             'callable'          => ['callable', false, new CallableType(false)],
             '?callable'         => ['callable', true, new CallableType(true)],
