@@ -126,7 +126,7 @@ final class SimpleTypeTest extends TestCase
     public function notAssignablePairs(): array
     {
         return [
-            'null to not nullable' => [new SimpleType('int', false), new NullType()],
+            'null to not nullable' => [new SimpleType('int', false), new NullType],
             'int to boolean'       => [new SimpleType('boolean', false), new SimpleType('int', false)],
             'object'               => [new SimpleType('boolean', false), new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
             'unknown type'         => [new SimpleType('boolean', false), new UnknownType],

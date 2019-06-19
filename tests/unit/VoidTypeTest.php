@@ -21,14 +21,15 @@ final class VoidTypeTest extends TestCase
      */
     public function testIsAssignable(Type $assignableType): void
     {
-        $void = new VoidType();
-        $this->assertTrue($void->isAssignable($assignableType));
+        $type = new VoidType;
+
+        $this->assertTrue($type->isAssignable($assignableType));
     }
 
     public function assignableTypes(): array
     {
         return [
-            [new VoidType()],
+            [new VoidType],
         ];
     }
 
@@ -37,8 +38,9 @@ final class VoidTypeTest extends TestCase
      */
     public function testIsNotAssignable(Type $assignableType): void
     {
-        $void = new VoidType();
-        $this->assertFalse($void->isAssignable($assignableType));
+        $type = new VoidType;
+
+        $this->assertFalse($type->isAssignable($assignableType));
     }
 
     public function notAssignableTypes(): array
@@ -48,19 +50,21 @@ final class VoidTypeTest extends TestCase
             [new SimpleType('int', true)],
             [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
             [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
-            [new UnknownType()],
+            [new UnknownType],
         ];
     }
 
     public function testNotAllowNull(): void
     {
-        $type = new VoidType();
+        $type = new VoidType;
+
         $this->assertFalse($type->allowsNull());
     }
 
     public function testCanGenerateReturnTypeDeclaration(): void
     {
-        $type = new VoidType();
+        $type = new VoidType;
+
         $this->assertEquals(': void', $type->getReturnTypeDeclaration());
     }
 }

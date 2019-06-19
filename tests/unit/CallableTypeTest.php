@@ -124,7 +124,7 @@ final class CallableTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                Type::fromValue([new ClassWithCallbackMethods(), 'nonStaticCallback'], false)
+                Type::fromValue([new ClassWithCallbackMethods, 'nonStaticCallback'], false)
             )
         );
     }

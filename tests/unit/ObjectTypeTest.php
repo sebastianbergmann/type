@@ -34,8 +34,6 @@ final class ObjectTypeTest extends TestCase
 
     protected function setUp(): void
     {
-        parent::setUp();
-
         $this->childClass = new ObjectType(
             TypeName::fromQualifiedName(ChildClass::class),
             false
