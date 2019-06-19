@@ -41,10 +41,6 @@ final class ObjectType extends Type
             if (\is_subclass_of($other->className->getQualifiedName(), $this->className->getQualifiedName(), true)) {
                 return true;
             }
-
-            if ($other->className->getQualifiedName() === 'object') {
-                return true;
-            }
         }
 
         return false;
