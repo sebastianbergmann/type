@@ -82,10 +82,10 @@ final class ObjectTypeTest extends TestCase
     public function testClassIsAssignableToSelfCaseInsensitively(): void
     {
         $classLowercased = new ObjectType(
-            TypeName::fromQualifiedName(strtolower(ParentClass::class)),
+            TypeName::fromQualifiedName(\strtolower(ParentClass::class)),
             false
         );
-        
+
         $this->assertTrue($this->parentClass->isAssignable($classLowercased));
     }
 
