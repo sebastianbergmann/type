@@ -79,6 +79,16 @@ final class ObjectTypeTest extends TestCase
         $this->assertFalse($classFromNamespaceA->isAssignable($classFromNamespaceB));
     }
 
+    public function testClassIsAssignableToSelfCaseInsensitively(): void
+    {
+        $classLowercased = new ObjectType(
+            TypeName::fromQualifiedName(strtolower(ParentClass::class)),
+            false
+        );
+        
+        $this->assertTrue($this->parentClass->isAssignable($classLowercased));
+    }
+
     public function testNullIsAssignableToNullableType(): void
     {
         $someClass = new ObjectType(
