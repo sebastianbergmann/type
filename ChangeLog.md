@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.1.3] - 2019-MM-DD
+
+### Fixed
+
+* Fixed class name comparison in `ObjectType` to be case insensitive
+
 ## [1.1.2] - 2019-06-19
 
 ### Fixed
@@ -25,6 +31,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[1.1.3]: https://github.com/sebastianbergmann/type/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/sebastianbergmann/type/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/sebastianbergmann/type/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/sebastianbergmann/type/compare/1.0.0...1.1.0
