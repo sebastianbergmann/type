@@ -15,15 +15,16 @@
         "issues": "https://github.com/sebastianbergmann/type/issues"
     },
     "prefer-stable": true,
+    "minimum-stability": "dev",
     "require": {
-        "php": "^7.2"
+        "php": "^7.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.2"
+        "phpunit/phpunit": "^9.0"
     },
     "config": {
         "platform": {
-            "php": "7.2.0"
+            "php": "7.3.0"
         },
         "optimize-autoloader": true,
         "sort-packages": true
@@ -43,7 +44,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.1-dev"
+            "dev-master": "2.0-dev"
         }
     }
 }
