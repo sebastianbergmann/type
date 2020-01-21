@@ -28,11 +28,17 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v2"
 
+      - name: "Install PHP with extensions"
+        uses: "shivammathur/setup-php@v1"
+        with:
+          php-version: "7.3"
+          coverage: "none"
+
       - name: "Update dependencies with composer"
-        run: "php7.3 ./tools/composer update --no-ansi --no-interaction --no-progress --no-suggest"
+        run: "./tools/composer update --no-ansi --no-interaction --no-progress --no-suggest"
 
       - name: "Run vimeo/psalm"
-        run: "php7.3 ./tools/psalm --config=psalm.xml --no-progress --shepherd --show-info=false --stats"
+        run: "./tools/psalm --config=psalm.xml --no-progress --shepherd --show-info=false --stats"
 
   tests:
     name: "Tests"
