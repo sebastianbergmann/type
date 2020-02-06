@@ -39,8 +39,11 @@ final class IterableType extends Type
         }
 
         if ($other instanceof ObjectType) {
+            $className = $other->className()->getQualifiedName();
+            \assert(\class_exists($className));
+
             try {
-                return (new \ReflectionClass($other->className()->getQualifiedName()))->isIterable();
+                return (new \ReflectionClass($className))->isIterable();
                 // @codeCoverageIgnoreStart
             } catch (\ReflectionException $e) {
                 throw new RuntimeException(
