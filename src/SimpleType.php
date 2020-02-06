@@ -11,6 +11,7 @@ namespace SebastianBergmann\Type;
 
 final class SimpleType extends Type
 {
+
     /**
      * @var string
      */
