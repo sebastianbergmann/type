@@ -32,6 +32,7 @@ final class ReflectionMapper
             if ($returnType->getName() === 'parent') {
                 $parentClass = $method->getDeclaringClass()->getParentClass();
 
+                // @codeCoverageIgnoreStart
                 if ($parentClass === false) {
                     throw new RuntimeException(
                         \sprintf(
@@ -42,6 +43,7 @@ final class ReflectionMapper
                         )
                     );
                 }
+                // @codeCoverageIgnoreEnd
 
                 return ObjectType::fromName(
                     $parentClass->getName(),
