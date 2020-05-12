@@ -34,7 +34,7 @@ final class GenericObjectType extends Type
         return true;
     }
 
-    public function asString(): string
+    public function name(): string
     {
         return 'object';
     }

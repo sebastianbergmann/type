@@ -16,7 +16,7 @@ final class VoidType extends Type
         return $other instanceof self;
     }
 
-    public function asString(): string
+    public function name(): string
     {
         return 'void';
     }

@@ -33,7 +33,7 @@ final class ReflectionMapperTest extends TestCase
      */
     public function testMapsFromMethodReturnType(string $expected, \ReflectionMethod $method): void
     {
-        $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->asString());
+        $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->name());
     }
 
     /**
@@ -41,7 +41,7 @@ final class ReflectionMapperTest extends TestCase
      */
     public function testMapsFromMethodUnionReturnType(): void
     {
-        $this->assertSame('bool|int', (new ReflectionMapper)->fromMethodReturnType(new \ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'boolOrInt'))->asString());
+        $this->assertSame('bool|int', (new ReflectionMapper)->fromMethodReturnType(new \ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'boolOrInt'))->name());
     }
 
     /**
@@ -59,7 +59,7 @@ final class ReflectionMapperTest extends TestCase
     {
         return [
             [
-                '', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'noReturnType'),
+                'unknown type', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'noReturnType'),
             ],
             [
                 'void', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'voidReturnType'),

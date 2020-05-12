@@ -46,7 +46,7 @@ final class ObjectType extends Type
         return false;
     }
 
-    public function asString(): string
+    public function name(): string
     {
         return $this->className->qualifiedName();
     }

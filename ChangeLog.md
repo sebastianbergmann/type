@@ -8,11 +8,12 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Added `UnionType` object for representing PHP 8's Union Types
 * Added `ReflectionMapper::fromMethodReturnType()` for mapping `\ReflectionMethod::getReturnType()` to a `Type` object
+* Added `Type::name()` for retrieving the name of a type
 * Added `Type::asString()` for retrieving a textual representation of a type
 
 ### Changed
 
-* Deprecated `Type::getReturnTypeDeclaration()` (use `Type::asReturnTypeDeclaration()` instead)
+* Deprecated `Type::getReturnTypeDeclaration()` (use `Type::asString()` instead and prefix its result with `': '`)
 * Deprecated `TypeName::getNamespaceName()` (use `TypeName::namespaceName()` instead)
 * Deprecated `TypeName::getSimpleName()` (use `TypeName::simpleName()` instead)
 * Deprecated `TypeName::getQualifiedName()` (use `TypeName::qualifiedName()` instead)

@@ -67,6 +67,6 @@ final class VoidTypeTest extends TestCase
     {
         $type = new VoidType;
 
-        $this->assertEquals(': void', $type->asReturnTypeDeclaration());
+        $this->assertEquals(': void', $type->getReturnTypeDeclaration());
     }
 }

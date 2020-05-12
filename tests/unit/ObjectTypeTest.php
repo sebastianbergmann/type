@@ -130,7 +130,7 @@ final class ObjectTypeTest extends TestCase
 
     public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
     {
-        $this->assertEquals(': SebastianBergmann\Type\TestFixture\ParentClass', $this->parentClass->asReturnTypeDeclaration());
+        $this->assertEquals(': SebastianBergmann\Type\TestFixture\ParentClass', $this->parentClass->getReturnTypeDeclaration());
     }
 
     public function testHasClassName(): void

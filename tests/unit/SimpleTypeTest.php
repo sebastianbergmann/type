@@ -22,63 +22,63 @@ final class SimpleTypeTest extends TestCase
     {
         $type = new SimpleType('bool', false);
 
-        $this->assertSame(': bool', $type->asReturnTypeDeclaration());
+        $this->assertSame(': bool', $type->getReturnTypeDeclaration());
     }
 
     public function testCanBeBoolean(): void
     {
         $type = new SimpleType('boolean', false);
 
-        $this->assertSame(': bool', $type->asReturnTypeDeclaration());
+        $this->assertSame(': bool', $type->getReturnTypeDeclaration());
     }
 
     public function testCanBeDouble(): void
     {
         $type = new SimpleType('double', false);
 
-        $this->assertSame(': float', $type->asReturnTypeDeclaration());
+        $this->assertSame(': float', $type->getReturnTypeDeclaration());
     }
 
     public function testCanBeFloat(): void
     {
         $type = new SimpleType('float', false);
 
-        $this->assertSame(': float', $type->asReturnTypeDeclaration());
+        $this->assertSame(': float', $type->getReturnTypeDeclaration());
     }
 
     public function testCanBeReal(): void
     {
         $type = new SimpleType('real', false);
 
-        $this->assertSame(': float', $type->asReturnTypeDeclaration());
+        $this->assertSame(': float', $type->getReturnTypeDeclaration());
     }
 
     public function testCanBeInt(): void
     {
         $type = new SimpleType('int', false);
 
-        $this->assertSame(': int', $type->asReturnTypeDeclaration());
+        $this->assertSame(': int', $type->getReturnTypeDeclaration());
     }
 
     public function testCanBeInteger(): void
     {
         $type = new SimpleType('integer', false);
 
-        $this->assertSame(': int', $type->asReturnTypeDeclaration());
+        $this->assertSame(': int', $type->getReturnTypeDeclaration());
     }
 
     public function testCanBeArray(): void
     {
         $type = new SimpleType('array', false);
 
-        $this->assertSame(': array', $type->asReturnTypeDeclaration());
+        $this->assertSame(': array', $type->getReturnTypeDeclaration());
     }
 
     public function testCanBeArray2(): void
     {
         $type = new SimpleType('[]', false);
 
-        $this->assertSame(': array', $type->asReturnTypeDeclaration());
+        $this->assertSame(': array', $type->getReturnTypeDeclaration());
     }
 
     public function testMayAllowNull(): void
@@ -86,7 +86,7 @@ final class SimpleTypeTest extends TestCase
         $type = new SimpleType('bool', true);
 
         $this->assertTrue($type->allowsNull());
-        $this->assertSame(': ?bool', $type->asReturnTypeDeclaration());
+        $this->assertSame(': ?bool', $type->getReturnTypeDeclaration());
     }
 
     public function testMayNotAllowNull(): void
@@ -139,7 +139,7 @@ final class SimpleTypeTest extends TestCase
      */
     public function testCanBeRepresentedAsStringForReturnTypeDeclaration(Type $type, string $returnType): void
     {
-        $this->assertEquals($type->asReturnTypeDeclaration(), $returnType);
+        $this->assertEquals($type->getReturnTypeDeclaration(), $returnType);
     }
 
     public function returnTypes(): array

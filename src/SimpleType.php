@@ -46,7 +46,7 @@ final class SimpleType extends Type
         return false;
     }
 
-    public function asString(): string
+    public function name(): string
     {
         return $this->name;
     }

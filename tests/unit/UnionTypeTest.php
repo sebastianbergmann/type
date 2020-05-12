@@ -27,7 +27,7 @@ final class UnionTypeTest extends TestCase
             Type::fromName('int', false)
         );
 
-        $this->assertSame('bool|int', $type->asString());
+        $this->assertSame('bool|int', $type->name());
     }
 
     public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
@@ -37,7 +37,7 @@ final class UnionTypeTest extends TestCase
             Type::fromName('int', false)
         );
 
-        $this->assertSame(': bool|int', $type->asReturnTypeDeclaration());
+        $this->assertSame(': bool|int', $type->getReturnTypeDeclaration());
     }
 
     public function testCanBeRepresentedAsStringForNullableReturnTypeDeclaration(): void
@@ -48,7 +48,7 @@ final class UnionTypeTest extends TestCase
             Type::fromName('null', true)
         );
 
-        $this->assertSame(': bool|int|null', $type->asReturnTypeDeclaration());
+        $this->assertSame(': bool|int|null', $type->getReturnTypeDeclaration());
     }
 
     public function testMayAllowNull(): void

@@ -16,24 +16,24 @@ final class NullType extends Type
         return !($other instanceof VoidType);
     }
 
+    public function name(): string
+    {
+        return 'null';
+    }
+
     public function asString(): string
     {
         return 'null';
     }
 
-    public function asReturnTypeDeclaration(): string
-    {
-        return '';
-    }
-
     /**
-     * @deprecated Use asReturnTypeDeclaration() instead
+     * @deprecated
      *
      * @codeCoverageIgnore
      */
     public function getReturnTypeDeclaration(): string
     {
-        return $this->asReturnTypeDeclaration();
+        return '';
     }
 
     public function allowsNull(): bool

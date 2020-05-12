@@ -38,17 +38,27 @@ final class UnionType extends Type
         return false;
     }
 
-    public function asReturnTypeDeclaration(): string
+    public function asString(): string
     {
-        return ': ' . $this->asString();
+        return $this->name();
     }
 
-    public function asString(): string
+    /**
+     * @deprecated
+     *
+     * @codeCoverageIgnore
+     */
+    public function getReturnTypeDeclaration(): string
+    {
+        return ': ' . $this->name();
+    }
+
+    public function name(): string
     {
         $types = [];
 
         foreach ($this->types as $type) {
-            $types[] = $type->asString();
+            $types[] = $type->name();
         }
 
         \sort($types);

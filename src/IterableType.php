@@ -58,7 +58,7 @@ final class IterableType extends Type
         return false;
     }
 
-    public function asString(): string
+    public function name(): string
     {
         return 'iterable';
     }

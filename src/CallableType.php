@@ -61,7 +61,7 @@ final class CallableType extends Type
         return false;
     }
 
-    public function asString(): string
+    public function name(): string
     {
         return 'callable';
     }
