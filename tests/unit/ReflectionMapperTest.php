@@ -37,13 +37,11 @@ final class ReflectionMapperTest extends TestCase
     }
 
     /**
-     * @dataProvider unionTypeProvider
-     *
      * @requires PHP >= 8.0
      */
-    public function testMapsFromMethodUnionReturnType(string $expected, \ReflectionMethod $method): void
+    public function testMapsFromMethodUnionReturnType(): void
     {
-        $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->asString());
+        $this->assertSame('bool|int', (new ReflectionMapper)->fromMethodReturnType(new \ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'boolOrInt'))->asString());
     }
 
     /**
@@ -92,18 +90,6 @@ final class ReflectionMapperTest extends TestCase
             ],
             [
                 'string', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'stringReturnType'),
-            ],
-        ];
-    }
-
-    public function unionTypeProvider(): array
-    {
-        return [
-            [
-                'bool|int', new \ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'boolOrInt'),
-            ],
-            [
-                'bool|int|null', new \ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'boolOrIntOrNull'),
             ],
         ];
     }
