@@ -11,6 +11,7 @@ namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ChildClass;
+use SebastianBergmann\Type\TestFixture\ChildClassWithoutParentClass;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
 
 /**
@@ -34,12 +35,15 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->getReturnTypeDeclaration());
     }
 
+    /**
+     * @requires PHP < 7.4
+     */
     public function testCannotMapFromMethodReturnTypeWhenParentIsUsedButNoParentClassExists(): void
     {
         $this->expectException(RuntimeException::class);
 
         /* @noinspection UnusedFunctionResultInspection */
-        (new ReflectionMapper)->fromMethodReturnType(new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'parentReturnType'))->getReturnTypeDeclaration();
+        (new ReflectionMapper)->fromMethodReturnType(new \ReflectionMethod(ChildClassWithoutParentClass::class, 'method'));
     }
 
     public function typeProvider(): array
