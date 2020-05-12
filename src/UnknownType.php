@@ -16,6 +16,11 @@ final class UnknownType extends Type
         return true;
     }
 
+    public function asString(): string
+    {
+        return '';
+    }
+
     public function getReturnTypeDeclaration(): string
     {
         return '';

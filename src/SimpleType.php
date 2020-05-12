@@ -46,9 +46,9 @@ final class SimpleType extends Type
         return false;
     }
 
-    public function getReturnTypeDeclaration(): string
+    public function asString(): string
     {
-        return ': ' . ($this->allowsNull ? '?' : '') . $this->name;
+        return $this->name;
     }
 
     public function allowsNull(): bool

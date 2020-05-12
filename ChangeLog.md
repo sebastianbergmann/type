@@ -7,6 +7,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 ### Added
 
 * Added `ReflectionMapper::fromMethodReturnType()` for mapping `\ReflectionMethod::getReturnType()` to a `Type` object
+* Added `Type::asString()` for retrieving a textual representation of a type
 
 ## [2.0.0] - 2020-02-07
 

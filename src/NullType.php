@@ -16,6 +16,11 @@ final class NullType extends Type
         return !($other instanceof VoidType);
     }
 
+    public function asString(): string
+    {
+        return 'null';
+    }
+
     public function getReturnTypeDeclaration(): string
     {
         return '';

@@ -46,9 +46,9 @@ final class ObjectType extends Type
         return false;
     }
 
-    public function getReturnTypeDeclaration(): string
+    public function asString(): string
     {
-        return ': ' . ($this->allowsNull ? '?' : '') . $this->className->getQualifiedName();
+        return $this->className->getQualifiedName();
     }
 
     public function allowsNull(): bool
