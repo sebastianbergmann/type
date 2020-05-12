@@ -128,9 +128,7 @@ final class CallableType extends Type
 
         [$object, $methodName] = $type->value();
 
-        $reflector = new \ReflectionObject($object);
-
-        return $reflector->hasMethod($methodName);
+        return (new \ReflectionObject($object))->hasMethod($methodName);
     }
 
     private function isClassCallback(SimpleType $type): bool
