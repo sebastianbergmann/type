@@ -34,6 +34,14 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->getReturnTypeDeclaration());
     }
 
+    public function testCannotMapFromMethodReturnTypeWhenParentIsUsedButNoParentClassExists(): void
+    {
+        $this->expectException(RuntimeException::class);
+
+        /* @noinspection UnusedFunctionResultInspection */
+        (new ReflectionMapper)->fromMethodReturnType(new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'parentReturnType'))->getReturnTypeDeclaration();
+    }
+
     public function typeProvider(): array
     {
         return [

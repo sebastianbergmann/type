@@ -30,8 +30,21 @@ final class ReflectionMapper
             }
 
             if ($returnType->getName() === 'parent') {
+                $parentClass = $method->getDeclaringClass()->getParentClass();
+
+                if ($parentClass === false) {
+                    throw new RuntimeException(
+                        \sprintf(
+                            '%s::%s() has a "parent" return type declaration but %s does not have a parent class',
+                            $method->getDeclaringClass()->getName(),
+                            $method->getName(),
+                            $method->getDeclaringClass()->getName()
+                        )
+                    );
+                }
+
                 return ObjectType::fromName(
-                    $method->getDeclaringClass()->getParentClass()->getName(),
+                    $parentClass->getName(),
                     $returnType->allowsNull()
                 );
             }

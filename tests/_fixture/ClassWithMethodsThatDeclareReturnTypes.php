@@ -24,6 +24,10 @@ class ClassWithMethodsThatDeclareReturnTypes
     {
     }
 
+    public function parentReturnType(): parent
+    {
+    }
+
     public function classReturnType(): \stdClass
     {
     }
