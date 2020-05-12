@@ -11,7 +11,8 @@ namespace SebastianBergmann\Type\TestFixture;
 
 class ClassWithMethodsThatDeclareReturnTypes
 {
-    public function noReturnType(): void
+    /* @noinspection ReturnTypeCanBeDeclaredInspection */
+    public function noReturnType()
     {
     }
 
