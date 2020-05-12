@@ -39,7 +39,7 @@ final class IterableType extends Type
         }
 
         if ($other instanceof ObjectType) {
-            $className = $other->className()->getQualifiedName();
+            $className = $other->className()->qualifiedName();
             \assert(\class_exists($className));
 
             try {

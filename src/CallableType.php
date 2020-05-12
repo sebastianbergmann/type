@@ -73,7 +73,7 @@ final class CallableType extends Type
 
     private function isClosure(ObjectType $type): bool
     {
-        return !$type->className()->isNamespaced() && $type->className()->getSimpleName() === \Closure::class;
+        return !$type->className()->isNamespaced() && $type->className()->simpleName() === \Closure::class;
     }
 
     /**
@@ -81,7 +81,7 @@ final class CallableType extends Type
      */
     private function hasInvokeMethod(ObjectType $type): bool
     {
-        $className = $type->className()->getQualifiedName();
+        $className = $type->className()->qualifiedName();
         \assert(\class_exists($className));
 
         try {
