@@ -6,6 +6,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Added
 
+* Added `UnionType` object for representing PHP 8's Union Types
 * Added `ReflectionMapper::fromMethodReturnType()` for mapping `\ReflectionMethod::getReturnType()` to a `Type` object
 * Added `Type::asString()` for retrieving a textual representation of a type
 

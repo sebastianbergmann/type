@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ChildClassWithoutParentClass;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareUnionReturnTypes;
 
 /**
  * @covers \SebastianBergmann\Type\ReflectionMapper
@@ -31,6 +32,16 @@ final class ReflectionMapperTest extends TestCase
      * @dataProvider typeProvider
      */
     public function testMapsFromMethodReturnType(string $expected, \ReflectionMethod $method): void
+    {
+        $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->asString());
+    }
+
+    /**
+     * @dataProvider unionTypeProvider
+     *
+     * @requires PHP >= 8.0
+     */
+    public function testMapsFromMethodUnionReturnType(string $expected, \ReflectionMethod $method): void
     {
         $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->asString());
     }
@@ -81,6 +92,18 @@ final class ReflectionMapperTest extends TestCase
             ],
             [
                 'string', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'stringReturnType'),
+            ],
+        ];
+    }
+
+    public function unionTypeProvider(): array
+    {
+        return [
+            [
+                'bool|int', new \ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'boolOrInt'),
+            ],
+            [
+                'bool|int|null', new \ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'boolOrIntOrNull'),
             ],
         ];
     }

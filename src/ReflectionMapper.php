@@ -19,7 +19,7 @@ final class ReflectionMapper
 
         $returnType = $method->getReturnType();
 
-        \assert($returnType instanceof \ReflectionType);
+        \assert($returnType instanceof \ReflectionNamedType || $returnType instanceof \ReflectionUnionType);
 
         if ($returnType instanceof \ReflectionNamedType) {
             if ($returnType->getName() === 'self') {
@@ -57,6 +57,19 @@ final class ReflectionMapper
             );
         }
 
-        throw new RuntimeException('Union Types are not yet supported');
+        $types = [];
+
+        foreach ($returnType->getTypes() as $type) {
+            if ($type->getName() === 'self') {
+                $types[] = ObjectType::fromName(
+                    $method->getDeclaringClass()->getName(),
+                    false
+                );
+            } else {
+                $types[] = Type::fromName($type->getName(), false);
+            }
+        }
+
+        return new UnionType(...$types);
     }
 }
