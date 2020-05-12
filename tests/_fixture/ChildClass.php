@@ -11,4 +11,7 @@ namespace SebastianBergmann\Type\TestFixture;
 
 class ChildClass extends ParentClass
 {
+    public function bar(): parent
+    {
+    }
 }
