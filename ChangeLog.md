@@ -12,7 +12,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Fixed
 
-* Fixed class name comparison in `ObjectType` to be case insensitive
+* Fixed class name comparison in `ObjectType` to be case-insensitive
 
 ## [1.1.2] - 2019-06-19
 
