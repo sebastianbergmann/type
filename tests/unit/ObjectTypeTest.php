@@ -128,13 +128,13 @@ final class ObjectTypeTest extends TestCase
         $this->assertTrue($someClass->allowsNull());
     }
 
-    public function testCanGenerateReturnTypeDeclaration(): void
+    public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
     {
-        $this->assertEquals(': SebastianBergmann\Type\TestFixture\ParentClass', $this->parentClass->getReturnTypeDeclaration());
+        $this->assertEquals(': SebastianBergmann\Type\TestFixture\ParentClass', $this->parentClass->asReturnTypeDeclaration());
     }
 
     public function testHasClassName(): void
     {
-        $this->assertEquals('SebastianBergmann\Type\TestFixture\ParentClass', $this->parentClass->className()->getQualifiedName());
+        $this->assertEquals('SebastianBergmann\Type\TestFixture\ParentClass', $this->parentClass->className()->qualifiedName());
     }
 }

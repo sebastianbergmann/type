@@ -51,8 +51,8 @@ final class UnknownTypeTest extends TestCase
         $this->assertTrue($this->type->allowsNull());
     }
 
-    public function testReturnTypeDeclaration(): void
+    public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
     {
-        $this->assertEquals('', $this->type->getReturnTypeDeclaration());
+        $this->assertEquals('', $this->type->asReturnTypeDeclaration());
     }
 }

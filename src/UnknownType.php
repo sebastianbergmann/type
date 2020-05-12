@@ -21,9 +21,19 @@ final class UnknownType extends Type
         return '';
     }
 
+    public function asReturnTypeDeclaration(): string
+    {
+        return $this->asString();
+    }
+
+    /**
+     * @deprecated Use asReturnTypeDeclaration() instead
+     *
+     * @codeCoverageIgnore
+     */
     public function getReturnTypeDeclaration(): string
     {
-        return '';
+        return $this->asReturnTypeDeclaration();
     }
 
     public function allowsNull(): bool

@@ -21,9 +21,19 @@ final class NullType extends Type
         return 'null';
     }
 
-    public function getReturnTypeDeclaration(): string
+    public function asReturnTypeDeclaration(): string
     {
         return '';
+    }
+
+    /**
+     * @deprecated Use asReturnTypeDeclaration() instead
+     *
+     * @codeCoverageIgnore
+     */
+    public function getReturnTypeDeclaration(): string
+    {
+        return $this->asReturnTypeDeclaration();
     }
 
     public function allowsNull(): bool

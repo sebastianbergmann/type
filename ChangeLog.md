@@ -9,6 +9,13 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Added `ReflectionMapper::fromMethodReturnType()` for mapping `\ReflectionMethod::getReturnType()` to a `Type` object
 * Added `Type::asString()` for retrieving a textual representation of a type
 
+### Changed
+
+* Deprecated `Type::getReturnTypeDeclaration()` (use `Type::asReturnTypeDeclaration()` instead)
+* Deprecated `TypeName::getNamespaceName()` (use `TypeName::namespaceName()` instead)
+* Deprecated `TypeName::getSimpleName()` (use `TypeName::simpleName()` instead)
+* Deprecated `TypeName::getQualifiedName()` (use `TypeName::qualifiedName()` instead)
+
 ## [2.0.0] - 2020-02-07
 
 ### Removed

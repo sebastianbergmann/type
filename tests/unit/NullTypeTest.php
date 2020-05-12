@@ -65,8 +65,13 @@ final class NullTypeTest extends TestCase
         $this->assertTrue($this->type->allowsNull());
     }
 
-    public function testCanGenerateReturnTypeDeclaration(): void
+    public function testCanBeRepresentedAsString(): void
     {
-        $this->assertEquals('', $this->type->getReturnTypeDeclaration());
+        $this->assertEquals('null', $this->type->asString());
+    }
+
+    public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
+    {
+        $this->assertEquals('', $this->type->asReturnTypeDeclaration());
     }
 }

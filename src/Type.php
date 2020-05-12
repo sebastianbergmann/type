@@ -67,9 +67,19 @@ abstract class Type
         }
     }
 
-    public function getReturnTypeDeclaration(): string
+    public function asReturnTypeDeclaration(): string
     {
         return ': ' . ($this->allowsNull() ? '?' : '') . $this->asString();
+    }
+
+    /**
+     * @deprecated Use asReturnTypeDeclaration() instead
+     *
+     * @codeCoverageIgnore
+     */
+    public function getReturnTypeDeclaration(): string
+    {
+        return $this->asReturnTypeDeclaration();
     }
 
     abstract public function isAssignable(Type $other): bool;

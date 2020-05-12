@@ -32,7 +32,7 @@ final class ReflectionMapperTest extends TestCase
      */
     public function testMapsFromMethodReturnType(string $expected, \ReflectionMethod $method): void
     {
-        $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->getReturnTypeDeclaration());
+        $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->asReturnTypeDeclaration());
     }
 
     /**

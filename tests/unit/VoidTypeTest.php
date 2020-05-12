@@ -13,6 +13,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \SebastianBergmann\Type\VoidType
+ *
+ * @uses \SebastianBergmann\Type\Type
  */
 final class VoidTypeTest extends TestCase
 {
@@ -61,10 +63,10 @@ final class VoidTypeTest extends TestCase
         $this->assertFalse($type->allowsNull());
     }
 
-    public function testCanGenerateReturnTypeDeclaration(): void
+    public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
     {
         $type = new VoidType;
 
-        $this->assertEquals(': void', $type->getReturnTypeDeclaration());
+        $this->assertEquals(': void', $type->asReturnTypeDeclaration());
     }
 }
