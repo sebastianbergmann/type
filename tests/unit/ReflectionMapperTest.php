@@ -22,6 +22,7 @@ use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
  * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\UnknownType
+ * @uses \SebastianBergmann\Type\VoidType
  */
 final class ReflectionMapperTest extends TestCase
 {
@@ -46,6 +47,9 @@ final class ReflectionMapperTest extends TestCase
         return [
             [
                 '', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'noReturnType'),
+            ],
+            [
+                ': void', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'voidReturnType'),
             ],
             [
                 ': SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'selfReturnType'),

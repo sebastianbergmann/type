@@ -16,6 +16,10 @@ class ClassWithMethodsThatDeclareReturnTypes
     {
     }
 
+    public function voidReturnType(): void
+    {
+    }
+
     public function selfReturnType(): self
     {
     }
