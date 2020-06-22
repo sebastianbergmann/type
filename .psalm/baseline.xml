@@ -27,7 +27,7 @@
   </file>
   <file src="src/ReflectionMapper.php">
     <MixedArgument occurrences="2">
-      <code>$returnType instanceof \ReflectionNamedType || $returnType instanceof \ReflectionUnionType</code>
+      <code>$returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType</code>
       <code>$type-&gt;getName()</code>
     </MixedArgument>
     <MixedAssignment occurrences="1">
@@ -38,10 +38,10 @@
       <code>getName</code>
     </MixedMethodCall>
     <TypeDoesNotContainType occurrences="1">
-      <code>\assert($returnType instanceof \ReflectionNamedType || $returnType instanceof \ReflectionUnionType)</code>
+      <code>assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType)</code>
     </TypeDoesNotContainType>
     <UndefinedClass occurrences="2">
-      <code>\ReflectionUnionType</code>
+      <code>ReflectionUnionType</code>
       <code>$returnType</code>
     </UndefinedClass>
   </file>
