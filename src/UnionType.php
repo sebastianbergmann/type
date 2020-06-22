@@ -9,6 +9,10 @@
  */
 namespace SebastianBergmann\Type;
 
+use function count;
+use function implode;
+use function sort;
+
 final class UnionType extends Type
 {
     /**
@@ -61,9 +65,9 @@ final class UnionType extends Type
             $types[] = $type->name();
         }
 
-        \sort($types);
+        sort($types);
 
-        return \implode('|', $types);
+        return implode('|', $types);
     }
 
     public function allowsNull(): bool
@@ -82,7 +86,7 @@ final class UnionType extends Type
      */
     private function ensureMinimumOfTwoTypes(Type ...$types): void
     {
-        if (\count($types) < 2) {
+        if (count($types) < 2) {
             throw new RuntimeException(
                 'A union type must be composed of at least two types'
             );

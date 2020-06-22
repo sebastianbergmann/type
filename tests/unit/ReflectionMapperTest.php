@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionMethod;
 use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ChildClassWithoutParentClass;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
@@ -31,7 +32,7 @@ final class ReflectionMapperTest extends TestCase
     /**
      * @dataProvider typeProvider
      */
-    public function testMapsFromMethodReturnType(string $expected, \ReflectionMethod $method): void
+    public function testMapsFromMethodReturnType(string $expected, ReflectionMethod $method): void
     {
         $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->name());
     }
@@ -41,7 +42,7 @@ final class ReflectionMapperTest extends TestCase
      */
     public function testMapsFromMethodUnionReturnType(): void
     {
-        $this->assertSame('bool|int', (new ReflectionMapper)->fromMethodReturnType(new \ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'boolOrInt'))->name());
+        $this->assertSame('bool|int', (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'boolOrInt'))->name());
     }
 
     /**
@@ -52,44 +53,44 @@ final class ReflectionMapperTest extends TestCase
         $this->expectException(RuntimeException::class);
 
         /* @noinspection UnusedFunctionResultInspection */
-        (new ReflectionMapper)->fromMethodReturnType(new \ReflectionMethod(ChildClassWithoutParentClass::class, 'method'));
+        (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ChildClassWithoutParentClass::class, 'method'));
     }
 
     public function typeProvider(): array
     {
         return [
             [
-                'unknown type', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'noReturnType'),
+                'unknown type', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'noReturnType'),
             ],
             [
-                'void', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'voidReturnType'),
+                'void', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'voidReturnType'),
             ],
             [
-                'SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'selfReturnType'),
+                'SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'selfReturnType'),
             ],
             [
-                'SebastianBergmann\Type\TestFixture\ParentClass', new \ReflectionMethod(ChildClass::class, 'bar'),
+                'SebastianBergmann\Type\TestFixture\ParentClass', new ReflectionMethod(ChildClass::class, 'bar'),
             ],
             [
-                'stdClass', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'classReturnType'),
+                'stdClass', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'classReturnType'),
             ],
             [
-                'object', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'objectReturnType'),
+                'object', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'objectReturnType'),
             ],
             [
-                'array', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'arrayReturnType'),
+                'array', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'arrayReturnType'),
             ],
             [
-                'bool', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'boolReturnType'),
+                'bool', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'boolReturnType'),
             ],
             [
-                'float', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'floatReturnType'),
+                'float', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'floatReturnType'),
             ],
             [
-                'int', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'intReturnType'),
+                'int', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'intReturnType'),
             ],
             [
-                'string', new \ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'stringReturnType'),
+                'string', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'stringReturnType'),
             ],
         ];
     }

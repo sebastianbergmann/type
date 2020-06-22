@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Type;
 
+use Closure;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ClassWithCallbackMethods;
 use SebastianBergmann\Type\TestFixture\ClassWithInvokeMethod;
@@ -74,7 +75,7 @@ final class CallableTypeTest extends TestCase
         $this->assertTrue(
             $this->type->isAssignable(
                 new ObjectType(
-                    TypeName::fromQualifiedName(\Closure::class),
+                    TypeName::fromQualifiedName(Closure::class),
                     false
                 )
             )

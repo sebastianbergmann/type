@@ -9,6 +9,8 @@
  */
 namespace SebastianBergmann\Type;
 
+use function strtolower;
+
 final class SimpleType extends Type
 {
     /**
@@ -63,7 +65,7 @@ final class SimpleType extends Type
 
     private function normalize(string $name): string
     {
-        $name = \strtolower($name);
+        $name = strtolower($name);
 
         switch ($name) {
             case 'boolean':

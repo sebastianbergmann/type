@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @covers \SebastianBergmann\Type\GenericObjectType
@@ -59,7 +60,7 @@ final class GenericObjectTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                new ObjectType(TypeName::fromQualifiedName(\stdClass::class), false)
+                new ObjectType(TypeName::fromQualifiedName(stdClass::class), false)
             )
         );
     }

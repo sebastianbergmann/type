@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Type;
 
+use function strtolower;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ParentClass;
@@ -82,7 +83,7 @@ final class ObjectTypeTest extends TestCase
     public function testClassIsAssignableToSelfCaseInsensitively(): void
     {
         $classLowercased = new ObjectType(
-            TypeName::fromQualifiedName(\strtolower(ParentClass::class)),
+            TypeName::fromQualifiedName(strtolower(ParentClass::class)),
             false
         );
 

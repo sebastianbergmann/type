@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 
 /**
  * @covers \SebastianBergmann\Type\TypeName
@@ -18,7 +19,7 @@ final class TypeNameTest extends TestCase
 {
     public function testFromReflection(): void
     {
-        $class    = new \ReflectionClass(TypeName::class);
+        $class    = new ReflectionClass(TypeName::class);
         $typeName = TypeName::fromReflection($class);
 
         $this->assertTrue($typeName->isNamespaced());

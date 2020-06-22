@@ -9,6 +9,12 @@
  */
 namespace SebastianBergmann\Type;
 
+use function assert;
+use function class_exists;
+use function is_iterable;
+use ReflectionClass;
+use ReflectionException;
+
 final class IterableType extends Type
 {
     /**
@@ -35,17 +41,17 @@ final class IterableType extends Type
         }
 
         if ($other instanceof SimpleType) {
-            return \is_iterable($other->value());
+            return is_iterable($other->value());
         }
 
         if ($other instanceof ObjectType) {
             $className = $other->className()->qualifiedName();
-            \assert(\class_exists($className));
+            assert(class_exists($className));
 
             try {
-                return (new \ReflectionClass($className))->isIterable();
+                return (new ReflectionClass($className))->isIterable();
                 // @codeCoverageIgnoreStart
-            } catch (\ReflectionException $e) {
+            } catch (ReflectionException $e) {
                 throw new RuntimeException(
                     $e->getMessage(),
                     (int) $e->getCode(),

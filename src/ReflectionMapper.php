@@ -9,9 +9,15 @@
  */
 namespace SebastianBergmann\Type;
 
+use function assert;
+use function sprintf;
+use ReflectionMethod;
+use ReflectionNamedType;
+use ReflectionUnionType;
+
 final class ReflectionMapper
 {
-    public function fromMethodReturnType(\ReflectionMethod $method): Type
+    public function fromMethodReturnType(ReflectionMethod $method): Type
     {
         if (!$method->hasReturnType()) {
             return new UnknownType;
@@ -19,9 +25,9 @@ final class ReflectionMapper
 
         $returnType = $method->getReturnType();
 
-        \assert($returnType instanceof \ReflectionNamedType || $returnType instanceof \ReflectionUnionType);
+        assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType);
 
-        if ($returnType instanceof \ReflectionNamedType) {
+        if ($returnType instanceof ReflectionNamedType) {
             if ($returnType->getName() === 'self') {
                 return ObjectType::fromName(
                     $method->getDeclaringClass()->getName(),
@@ -35,7 +41,7 @@ final class ReflectionMapper
                 // @codeCoverageIgnoreStart
                 if ($parentClass === false) {
                     throw new RuntimeException(
-                        \sprintf(
+                        sprintf(
                             '%s::%s() has a "parent" return type declaration but %s does not have a parent class',
                             $method->getDeclaringClass()->getName(),
                             $method->getName(),

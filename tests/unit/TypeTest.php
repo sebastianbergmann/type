@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @covers \SebastianBergmann\Type\Type
@@ -40,8 +41,8 @@ final class TypeTest extends TestCase
             'integer'  => [1, false, new SimpleType('int', false, 1)],
             '?boolean' => [true, true, new SimpleType('bool', true, true)],
             'boolean'  => [true, false, new SimpleType('bool', false, true)],
-            '?object'  => [new \stdClass, true, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
-            'object'   => [new \stdClass, false, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), false)],
+            '?object'  => [new stdClass, true, new ObjectType(TypeName::fromQualifiedName(stdClass::class), true)],
+            'object'   => [new stdClass, false, new ObjectType(TypeName::fromQualifiedName(stdClass::class), false)],
         ];
     }
 
@@ -74,8 +75,8 @@ final class TypeTest extends TestCase
             'resource'          => ['resource', false, new SimpleType('resource', false)],
             'resource (closed)' => ['resource (closed)', false, new SimpleType('resource (closed)', false)],
             'unknown type'      => ['unknown type', false, new UnknownType],
-            '?classname'        => [\stdClass::class, true, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
-            'classname'         => [\stdClass::class, false, new ObjectType(TypeName::fromQualifiedName(\stdClass::class), false)],
+            '?classname'        => [stdClass::class, true, new ObjectType(TypeName::fromQualifiedName(stdClass::class), true)],
+            'classname'         => [stdClass::class, false, new ObjectType(TypeName::fromQualifiedName(stdClass::class), false)],
             'callable'          => ['callable', false, new CallableType(false)],
             '?callable'         => ['callable', true, new CallableType(true)],
             'iterable'          => ['iterable', false, new IterableType(false)],

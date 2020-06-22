@@ -9,6 +9,9 @@
  */
 namespace SebastianBergmann\Type;
 
+use function is_subclass_of;
+use function strcasecmp;
+
 final class ObjectType extends Type
 {
     /**
@@ -34,11 +37,11 @@ final class ObjectType extends Type
         }
 
         if ($other instanceof self) {
-            if (0 === \strcasecmp($this->className->qualifiedName(), $other->className->qualifiedName())) {
+            if (0 === strcasecmp($this->className->qualifiedName(), $other->className->qualifiedName())) {
                 return true;
             }
 
-            if (\is_subclass_of($other->className->qualifiedName(), $this->className->qualifiedName(), true)) {
+            if (is_subclass_of($other->className->qualifiedName(), $this->className->qualifiedName(), true)) {
                 return true;
             }
         }

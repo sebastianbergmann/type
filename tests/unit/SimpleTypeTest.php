@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @covers \SebastianBergmann\Type\SimpleType
@@ -128,7 +129,7 @@ final class SimpleTypeTest extends TestCase
         return [
             'null to not nullable' => [new SimpleType('int', false), new NullType],
             'int to boolean'       => [new SimpleType('boolean', false), new SimpleType('int', false)],
-            'object'               => [new SimpleType('boolean', false), new ObjectType(TypeName::fromQualifiedName(\stdClass::class), true)],
+            'object'               => [new SimpleType('boolean', false), new ObjectType(TypeName::fromQualifiedName(stdClass::class), true)],
             'unknown type'         => [new SimpleType('boolean', false), new UnknownType],
             'void'                 => [new SimpleType('boolean', false), new VoidType],
         ];
