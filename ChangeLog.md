@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.1.1] - 2020-06-26
+
+### Added
+
+* This component is now supported on PHP 8
+
 ## [2.1.0] - 2020-06-01
 
 ### Added
@@ -53,6 +59,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[2.1.1]: https://github.com/sebastianbergmann/type/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/sebastianbergmann/type/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/sebastianbergmann/type/compare/1.1.3...2.0.0
 [1.1.3]: https://github.com/sebastianbergmann/type/compare/1.1.2...1.1.3
