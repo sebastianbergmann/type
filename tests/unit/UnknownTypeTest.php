@@ -53,6 +53,6 @@ final class UnknownTypeTest extends TestCase
 
     public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
     {
-        $this->assertEquals('', $this->type->getReturnTypeDeclaration());
+        $this->assertSame('', $this->type->getReturnTypeDeclaration());
     }
 }

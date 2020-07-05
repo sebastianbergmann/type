@@ -39,7 +39,7 @@ final class IterableTypeTest extends TestCase
 
     public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
     {
-        $this->assertEquals(': iterable', $this->type->getReturnTypeDeclaration());
+        $this->assertSame(': iterable', $this->type->getReturnTypeDeclaration());
     }
 
     public function testMayAllowNull(): void
@@ -53,7 +53,7 @@ final class IterableTypeTest extends TestCase
     {
         $type = new IterableType(true);
 
-        $this->assertEquals(': ?iterable', $type->getReturnTypeDeclaration());
+        $this->assertSame(': ?iterable', $type->getReturnTypeDeclaration());
     }
 
     public function testNullCanBeAssignedToNullableIterable(): void

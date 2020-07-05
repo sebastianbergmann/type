@@ -67,11 +67,11 @@ final class NullTypeTest extends TestCase
 
     public function testCanBeRepresentedAsString(): void
     {
-        $this->assertEquals('null', $this->type->name());
+        $this->assertSame('null', $this->type->name());
     }
 
     public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
     {
-        $this->assertEquals('', $this->type->getReturnTypeDeclaration());
+        $this->assertSame('', $this->type->getReturnTypeDeclaration());
     }
 }

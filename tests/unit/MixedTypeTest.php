@@ -39,7 +39,7 @@ final class MixedTypeTest extends TestCase
     {
         $type = new MixedType;
 
-        $this->assertEquals(': mixed', $type->getReturnTypeDeclaration());
+        $this->assertSame(': mixed', $type->getReturnTypeDeclaration());
     }
 
     public function testAllowsNull(): void

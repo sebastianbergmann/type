@@ -140,7 +140,7 @@ final class SimpleTypeTest extends TestCase
      */
     public function testCanBeRepresentedAsStringForReturnTypeDeclaration(Type $type, string $returnType): void
     {
-        $this->assertEquals($type->getReturnTypeDeclaration(), $returnType);
+        $this->assertSame($returnType, $type->getReturnTypeDeclaration());
     }
 
     public function returnTypes(): array
