@@ -14,8 +14,4 @@ class ClassWithMethodsThatDeclareUnionReturnTypes
     public function boolOrInt(): bool|int
     {
     }
-
-    public function boolOrIntOrNull(): bool|int|null
-    {
-    }
 }
