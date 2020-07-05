@@ -47,6 +47,14 @@ final class ReflectionMapperTest extends TestCase
     }
 
     /**
+     * @requires PHP >= 8.0
+     */
+    public function testMapsFromMethodMixedReturnType(): void
+    {
+        $this->assertSame('mixed', (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsMixed'))->name());
+    }
+
+    /**
      * @requires PHP < 7.4
      */
     public function testCannotMapFromMethodReturnTypeWhenParentIsUsedButNoParentClassExists(): void
