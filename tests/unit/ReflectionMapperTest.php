@@ -43,7 +43,10 @@ final class ReflectionMapperTest extends TestCase
      */
     public function testMapsFromMethodUnionReturnType(): void
     {
-        $this->assertSame('bool|int', (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsBoolOrInt'))->name());
+        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsBoolOrInt'));
+
+        $this->assertInstanceOf(UnionType::class, $type);
+        $this->assertSame('bool|int', $type->name());
     }
 
     /**
@@ -51,7 +54,10 @@ final class ReflectionMapperTest extends TestCase
      */
     public function testMapsFromMethodMixedReturnType(): void
     {
-        $this->assertSame('mixed', (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsMixed'))->name());
+        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsMixed'));
+
+        $this->assertInstanceOf(MixedType::class, $type);
+        $this->assertSame('mixed', $type->name());
     }
 
     /**
