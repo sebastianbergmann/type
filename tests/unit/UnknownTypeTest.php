@@ -51,6 +51,16 @@ final class UnknownTypeTest extends TestCase
         $this->assertTrue($this->type->allowsNull());
     }
 
+    public function testHasName(): void
+    {
+        $this->assertSame('unknown type', $this->type->name());
+    }
+
+    public function testCanBeRepresentedAsString(): void
+    {
+        $this->assertSame('', $this->type->asString());
+    }
+
     public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
     {
         $this->assertSame('', $this->type->getReturnTypeDeclaration());

@@ -65,6 +65,11 @@ final class NullTypeTest extends TestCase
         $this->assertTrue($this->type->allowsNull());
     }
 
+    public function testHasName(): void
+    {
+        $this->assertSame('null', $this->type->name());
+    }
+
     public function testCanBeRepresentedAsString(): void
     {
         $this->assertSame('null', $this->type->asString());
