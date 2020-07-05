@@ -35,6 +35,10 @@ final class ReflectionMapper
                 );
             }
 
+            if ($returnType->getName() === 'mixed') {
+                return new MixedType;
+            }
+
             if ($returnType->getName() === 'parent') {
                 $parentClass = $method->getDeclaringClass()->getParentClass();
 
