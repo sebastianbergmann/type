@@ -15,6 +15,7 @@ use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ChildClassWithoutParentClass;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareUnionReturnTypes;
+use SebastianBergmann\Type\TestFixture\ParentClass;
 
 /**
  * @covers \SebastianBergmann\Type\ReflectionMapper
@@ -66,10 +67,10 @@ final class ReflectionMapperTest extends TestCase
                 'void', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'voidReturnType'),
             ],
             [
-                'SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'selfReturnType'),
+                ClassWithMethodsThatDeclareReturnTypes::class, new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'selfReturnType'),
             ],
             [
-                'SebastianBergmann\Type\TestFixture\ParentClass', new ReflectionMethod(ChildClass::class, 'bar'),
+                ParentClass::class, new ReflectionMethod(ChildClass::class, 'bar'),
             ],
             [
                 'stdClass', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'classReturnType'),
