@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.2.1] - 2020-07-05
+
+### Fixed
+
+* Fixed handling of `mixed` type in `ReflectionMapper::fromMethodReturnType()`
+
 ## [2.2.0] - 2020-07-05
 
 ### Added
@@ -65,6 +71,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[2.2.1]: https://github.com/sebastianbergmann/type/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/sebastianbergmann/type/compare/2.1.1...2.2.0
 [2.1.1]: https://github.com/sebastianbergmann/type/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/sebastianbergmann/type/compare/2.0.0...2.1.0
