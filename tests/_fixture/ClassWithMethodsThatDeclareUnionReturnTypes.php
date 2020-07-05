@@ -11,7 +11,7 @@ namespace SebastianBergmann\Type\TestFixture;
 
 class ClassWithMethodsThatDeclareUnionReturnTypes
 {
-    public function boolOrInt(): bool|int
+    public function returnsBoolOrInt(): bool|int
     {
     }
 }

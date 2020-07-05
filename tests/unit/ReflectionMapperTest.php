@@ -42,7 +42,7 @@ final class ReflectionMapperTest extends TestCase
      */
     public function testMapsFromMethodUnionReturnType(): void
     {
-        $this->assertSame('bool|int', (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'boolOrInt'))->name());
+        $this->assertSame('bool|int', (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsBoolOrInt'))->name());
     }
 
     /**
