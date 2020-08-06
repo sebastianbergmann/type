@@ -27,6 +27,8 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
  * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\UnknownType
  * @uses \SebastianBergmann\Type\VoidType
+ * @uses \SebastianBergmann\Type\UnionType
+ * @uses \SebastianBergmann\Type\MixedType
  */
 final class ReflectionMapperTest extends TestCase
 {
