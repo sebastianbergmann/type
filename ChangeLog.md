@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.2.2] - 2020-09-28
+
+### Changed
+
+* Changed PHP version constraint in `composer.json` from `^7.3 || ^8.0` to `>=7.3`
+
 ## [2.2.1] - 2020-07-05
 
 ### Fixed
@@ -71,6 +77,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[2.2.2]: https://github.com/sebastianbergmann/type/compare/2.2.1...2.2.2
 [2.2.1]: https://github.com/sebastianbergmann/type/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/sebastianbergmann/type/compare/2.1.1...2.2.0
 [2.1.1]: https://github.com/sebastianbergmann/type/compare/2.1.0...2.1.1
