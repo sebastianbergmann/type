@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.3.0] - 2020-MM-DD
+
+### Added
+
+* [#14](https://github.com/sebastianbergmann/type/issues/14): Support for `static` return type that is introduced in PHP 8
+
 ## [2.2.2] - 2020-09-28
 
 ### Changed
@@ -77,6 +83,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[2.3.0]: https://github.com/sebastianbergmann/type/compare/2.2.2...master
 [2.2.2]: https://github.com/sebastianbergmann/type/compare/2.2.1...2.2.2
 [2.2.1]: https://github.com/sebastianbergmann/type/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/sebastianbergmann/type/compare/2.1.1...2.2.0

@@ -15,6 +15,7 @@ use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ChildClassWithoutParentClass;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareUnionReturnTypes;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatHaveStaticReturnTypes;
 use SebastianBergmann\Type\TestFixture\ParentClass;
 
 /**
@@ -29,6 +30,7 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
  * @uses \SebastianBergmann\Type\VoidType
  * @uses \SebastianBergmann\Type\UnionType
  * @uses \SebastianBergmann\Type\MixedType
+ * @uses \SebastianBergmann\Type\StaticType
  */
 final class ReflectionMapperTest extends TestCase
 {
@@ -71,6 +73,41 @@ final class ReflectionMapperTest extends TestCase
 
         $this->assertInstanceOf(MixedType::class, $type);
         $this->assertSame('mixed', $type->name());
+    }
+
+    /**
+     * @requires PHP >= 8.0
+     */
+    public function testMapsFromMethodStaticReturnType(): void
+    {
+        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsStatic'));
+
+        $this->assertInstanceOf(StaticType::class, $type);
+        $this->assertSame('static', $type->asString());
+        $this->assertFalse($type->allowsNull());
+    }
+
+    /**
+     * @requires PHP >= 8.0
+     */
+    public function testMapsFromMethodNullableStaticReturnType(): void
+    {
+        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsNullableStatic'));
+
+        $this->assertInstanceOf(StaticType::class, $type);
+        $this->assertSame('?static', $type->asString());
+        $this->assertTrue($type->allowsNull());
+    }
+
+    /**
+     * @requires PHP >= 8.0
+     */
+    public function testMapsFromMethodUnionWithStaticReturnType(): void
+    {
+        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsUnionWithStatic'));
+
+        $this->assertInstanceOf(UnionType::class, $type);
+        $this->assertSame('static|stdClass', $type->name());
     }
 
     /**

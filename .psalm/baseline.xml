@@ -1,48 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.11.4@58e1d8e68e5098bf4fbfdfb420c38d563f882549">
-  <file src="src/CallableType.php">
-    <MixedArgument occurrences="7">
-      <code>$type-&gt;value()</code>
-      <code>$type-&gt;value()</code>
-      <code>$object</code>
-      <code>$methodName</code>
-      <code>$type-&gt;value()</code>
-      <code>$type-&gt;value()</code>
-      <code>$type-&gt;value()</code>
-    </MixedArgument>
-    <MixedArrayAccess occurrences="8">
-      <code>$type-&gt;value()[0]</code>
-      <code>$type-&gt;value()[1]</code>
-      <code>$object</code>
-      <code>$methodName</code>
-      <code>$type-&gt;value()[0]</code>
-      <code>$type-&gt;value()[1]</code>
-      <code>$className</code>
-      <code>$methodName</code>
-    </MixedArrayAccess>
-    <MixedAssignment occurrences="2">
-      <code>[$object, $methodName]</code>
-      <code>[$className, $methodName]</code>
-    </MixedAssignment>
-  </file>
+<files psalm-version="3.16@d03e5ef057d6adc656c0ff7e166c50b73b4f48f3">
   <file src="src/ReflectionMapper.php">
-    <MixedArgument occurrences="2">
-      <code>$returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType</code>
-      <code>$type-&gt;getName()</code>
+    <InvalidCast occurrences="1">
+      <code>$returnType</code>
+    </InvalidCast>
+    <MixedArgument occurrences="1">
+      <code>$returnType instanceof ReflectionUnionType</code>
     </MixedArgument>
     <MixedAssignment occurrences="1">
       <code>$type</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getName</code>
-      <code>getName</code>
-    </MixedMethodCall>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>assert($returnType instanceof ReflectionUnionType)</code>
+    </RedundantConditionGivenDocblockType>
     <TypeDoesNotContainType occurrences="1">
       <code>assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType)</code>
     </TypeDoesNotContainType>
-    <UndefinedClass occurrences="2">
-      <code>ReflectionUnionType</code>
+    <UndefinedClass occurrences="3">
       <code>$returnType</code>
+      <code>ReflectionUnionType</code>
+      <code>ReflectionUnionType</code>
     </UndefinedClass>
   </file>
   <file src="src/SimpleType.php">
