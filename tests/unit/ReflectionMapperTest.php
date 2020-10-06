@@ -54,6 +54,17 @@ final class ReflectionMapperTest extends TestCase
     /**
      * @requires PHP >= 8.0
      */
+    public function testMapsFromMethodUnionReturnTypeWithSelf(): void
+    {
+        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsSelfOrStdClass'));
+
+        $this->assertInstanceOf(UnionType::class, $type);
+        $this->assertSame(ClassWithMethodsThatDeclareUnionReturnTypes::class . '|stdClass', $type->name());
+    }
+
+    /**
+     * @requires PHP >= 8.0
+     */
     public function testMapsFromMethodMixedReturnType(): void
     {
         $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsMixed'));

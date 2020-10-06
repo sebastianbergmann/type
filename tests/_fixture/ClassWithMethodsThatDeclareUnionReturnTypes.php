@@ -18,4 +18,8 @@ class ClassWithMethodsThatDeclareUnionReturnTypes
     public function returnsMixed(): mixed
     {
     }
+
+    public function returnsSelfOrStdClass(): self|\stdClass
+    {
+    }
 }
