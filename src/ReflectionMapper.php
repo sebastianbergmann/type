@@ -78,16 +78,6 @@ final class ReflectionMapper
 
         $types = [];
 
-        /* @see Workaround for https://github.com/sebastianbergmann/type/issues/14 */
-        foreach (explode('|', (string) $returnType) as $type) {
-            if ($type === 'static') {
-                $types[] = new StaticType(
-                    TypeName::fromReflection($method->getDeclaringClass()),
-                    false
-                );
-            }
-        }
-
         foreach ($returnType->getTypes() as $type) {
             assert($type instanceof ReflectionNamedType);
 
