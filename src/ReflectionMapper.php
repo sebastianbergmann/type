@@ -67,9 +67,13 @@ final class ReflectionMapper
             );
         }
 
+        assert($returnType instanceof ReflectionUnionType);
+
         $types = [];
 
         foreach ($returnType->getTypes() as $type) {
+            assert($type instanceof ReflectionNamedType);
+
             if ($type->getName() === 'self') {
                 $types[] = ObjectType::fromName(
                     $method->getDeclaringClass()->getName(),
