@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="3.16@d03e5ef057d6adc656c0ff7e166c50b73b4f48f3">
+<files psalm-version="4.0.1@b1e2e30026936ef8d5bf6a354d1c3959b6231f44">
   <file src="src/ReflectionMapper.php">
-    <InvalidCast occurrences="1">
-      <code>$returnType</code>
-    </InvalidCast>
     <MixedArgument occurrences="1">
       <code>$returnType instanceof ReflectionUnionType</code>
     </MixedArgument>
-    <MixedAssignment occurrences="1">
-      <code>$type</code>
-    </MixedAssignment>
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>assert($returnType instanceof ReflectionUnionType)</code>
     </RedundantConditionGivenDocblockType>
