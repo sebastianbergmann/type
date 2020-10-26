@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.3.1] - 2020-10-26
+
+### Fixed
+
+* `SebastianBergmann\Type\Exception` now correctly extends `\Throwable`
+
 ## [2.3.0] - 2020-10-06
 
 ### Added
@@ -83,6 +89,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[2.3.1]: https://github.com/sebastianbergmann/type/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/sebastianbergmann/type/compare/2.2.2...2.3.0
 [2.2.2]: https://github.com/sebastianbergmann/type/compare/2.2.1...2.2.2
 [2.2.1]: https://github.com/sebastianbergmann/type/compare/2.2.0...2.2.1
