@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.0.1@b1e2e30026936ef8d5bf6a354d1c3959b6231f44">
+<files psalm-version="4.x-dev@">
   <file src="src/ReflectionMapper.php">
-    <MixedArgument occurrences="1">
-      <code>$returnType instanceof ReflectionUnionType</code>
-    </MixedArgument>
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>assert($returnType instanceof ReflectionUnionType)</code>
     </RedundantConditionGivenDocblockType>
-    <TypeDoesNotContainType occurrences="1">
-      <code>assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType)</code>
-    </TypeDoesNotContainType>
-    <UndefinedClass occurrences="3">
-      <code>$returnType</code>
-      <code>ReflectionUnionType</code>
-      <code>ReflectionUnionType</code>
-    </UndefinedClass>
   </file>
   <file src="src/SimpleType.php">
     <MissingParamType occurrences="1">
@@ -31,5 +20,10 @@
     <MixedArgument occurrences="1">
       <code>$value</code>
     </MixedArgument>
+  </file>
+  <file src="src/UnionType.php">
+    <MixedPropertyTypeCoercion occurrences="1">
+      <code>$types</code>
+    </MixedPropertyTypeCoercion>
   </file>
 </files>
