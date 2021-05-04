@@ -17,9 +17,9 @@ use stdClass;
 /**
  * @covers \SebastianBergmann\Type\StaticType
  *
- * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\Type
  * @uses \SebastianBergmann\Type\TypeName
+ * @uses \SebastianBergmann\Type\ObjectType
  */
 final class StaticTypeTest extends TestCase
 {

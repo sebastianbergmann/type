@@ -9,8 +9,6 @@
  */
 namespace SebastianBergmann\Type\TestFixture;
 
-use stdClass;
-
 class ClassWithMethodsThatDeclareReturnTypes
 {
     /* @noinspection ReturnTypeCanBeDeclaredInspection */
@@ -26,7 +24,7 @@ class ClassWithMethodsThatDeclareReturnTypes
     {
     }
 
-    public function classReturnType(): stdClass
+    public function classReturnType(): \stdClass
     {
     }
 

@@ -15,12 +15,12 @@ use stdClass;
 /**
  * @covers \SebastianBergmann\Type\Type
  *
- * @uses \SebastianBergmann\Type\CallableType
- * @uses \SebastianBergmann\Type\GenericObjectType
- * @uses \SebastianBergmann\Type\IterableType
- * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\SimpleType
+ * @uses \SebastianBergmann\Type\GenericObjectType
+ * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\TypeName
+ * @uses \SebastianBergmann\Type\CallableType
+ * @uses \SebastianBergmann\Type\IterableType
  */
 final class TypeTest extends TestCase
 {

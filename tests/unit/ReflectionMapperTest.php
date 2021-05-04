@@ -21,16 +21,16 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
 /**
  * @covers \SebastianBergmann\Type\ReflectionMapper
  *
- * @uses \SebastianBergmann\Type\GenericObjectType
- * @uses \SebastianBergmann\Type\MixedType
- * @uses \SebastianBergmann\Type\ObjectType
- * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\StaticType
  * @uses \SebastianBergmann\Type\Type
  * @uses \SebastianBergmann\Type\TypeName
- * @uses \SebastianBergmann\Type\UnionType
+ * @uses \SebastianBergmann\Type\GenericObjectType
+ * @uses \SebastianBergmann\Type\ObjectType
+ * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\UnknownType
  * @uses \SebastianBergmann\Type\VoidType
+ * @uses \SebastianBergmann\Type\UnionType
+ * @uses \SebastianBergmann\Type\MixedType
+ * @uses \SebastianBergmann\Type\StaticType
  */
 final class ReflectionMapperTest extends TestCase
 {

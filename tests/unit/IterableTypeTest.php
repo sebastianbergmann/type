@@ -15,10 +15,10 @@ use SebastianBergmann\Type\TestFixture\Iterator;
 /**
  * @covers \SebastianBergmann\Type\IterableType
  *
- * @uses \SebastianBergmann\Type\ObjectType
- * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\Type
  * @uses \SebastianBergmann\Type\TypeName
+ * @uses \SebastianBergmann\Type\ObjectType
+ * @uses \SebastianBergmann\Type\SimpleType
  */
 final class IterableTypeTest extends TestCase
 {

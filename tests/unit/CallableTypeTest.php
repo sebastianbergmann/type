@@ -17,9 +17,9 @@ use SebastianBergmann\Type\TestFixture\ClassWithInvokeMethod;
 /**
  * @covers \SebastianBergmann\Type\CallableType
  *
+ * @uses \SebastianBergmann\Type\Type
  * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\Type
  * @uses \SebastianBergmann\Type\TypeName
  */
 final class CallableTypeTest extends TestCase
