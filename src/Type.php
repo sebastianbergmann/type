@@ -86,7 +86,7 @@ abstract class Type
         return ': ' . $this->asString();
     }
 
-    abstract public function isAssignable(Type $other): bool;
+    abstract public function isAssignable(self $other): bool;
 
     abstract public function name(): string;
 
