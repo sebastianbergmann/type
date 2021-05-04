@@ -14,9 +14,9 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \SebastianBergmann\Type\UnionType
  *
- * @uses \SebastianBergmann\Type\Type
- * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\NullType
+ * @uses \SebastianBergmann\Type\SimpleType
+ * @uses \SebastianBergmann\Type\Type
  */
 final class UnionTypeTest extends TestCase
 {

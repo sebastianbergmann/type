@@ -19,7 +19,7 @@ class ClassWithMethodsThatHaveStaticReturnTypes
     {
     }
 
-    public function returnsUnionWithStatic(): static|\stdClass
+    public function returnsUnionWithStatic(): static | \stdClass
     {
     }
 }

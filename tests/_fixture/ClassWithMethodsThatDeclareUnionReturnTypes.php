@@ -9,9 +9,11 @@
  */
 namespace SebastianBergmann\Type\TestFixture;
 
+use stdClass;
+
 class ClassWithMethodsThatDeclareUnionReturnTypes
 {
-    public function returnsBoolOrInt(): bool|int
+    public function returnsBoolOrInt(): bool | int
     {
     }
 
@@ -19,7 +21,7 @@ class ClassWithMethodsThatDeclareUnionReturnTypes
     {
     }
 
-    public function returnsSelfOrStdClass(): self|\stdClass
+    public function returnsSelfOrStdClass(): self | stdClass
     {
     }
 }
