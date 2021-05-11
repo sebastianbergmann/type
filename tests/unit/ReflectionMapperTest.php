@@ -12,7 +12,6 @@ namespace SebastianBergmann\Type;
 use PHPUnit\Framework\TestCase;
 use ReflectionMethod;
 use SebastianBergmann\Type\TestFixture\ChildClass;
-use SebastianBergmann\Type\TestFixture\ChildClassWithoutParentClass;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareUnionReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatHaveStaticReturnTypes;
@@ -108,17 +107,6 @@ final class ReflectionMapperTest extends TestCase
 
         $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('static|stdClass', $type->name());
-    }
-
-    /**
-     * @requires PHP < 7.4
-     */
-    public function testCannotMapFromMethodReturnTypeWhenParentIsUsedButNoParentClassExists(): void
-    {
-        $this->expectException(RuntimeException::class);
-
-        /* @noinspection UnusedFunctionResultInspection */
-        (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ChildClassWithoutParentClass::class, 'method'));
     }
 
     public function typeProvider(): array

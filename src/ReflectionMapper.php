@@ -10,7 +10,6 @@
 namespace SebastianBergmann\Type;
 
 use function assert;
-use function sprintf;
 use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionUnionType;
@@ -47,23 +46,8 @@ final class ReflectionMapper
             }
 
             if ($returnType->getName() === 'parent') {
-                $parentClass = $method->getDeclaringClass()->getParentClass();
-
-                // @codeCoverageIgnoreStart
-                if ($parentClass === false) {
-                    throw new RuntimeException(
-                        sprintf(
-                            '%s::%s() has a "parent" return type declaration but %s does not have a parent class',
-                            $method->getDeclaringClass()->getName(),
-                            $method->getName(),
-                            $method->getDeclaringClass()->getName()
-                        )
-                    );
-                }
-                // @codeCoverageIgnoreEnd
-
                 return ObjectType::fromName(
-                    $parentClass->getName(),
+                    $method->getDeclaringClass()->getParentClass()->getName(),
                     $returnType->allowsNull()
                 );
             }
