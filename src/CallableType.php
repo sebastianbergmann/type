@@ -17,7 +17,7 @@ use function function_exists;
 use function is_array;
 use function is_object;
 use function is_string;
-use function strpos;
+use function str_contains;
 use Closure;
 use ReflectionClass;
 use ReflectionException;
@@ -152,7 +152,7 @@ final class CallableType extends Type
         }
 
         if (is_string($type->value())) {
-            if (strpos($type->value(), '::') === false) {
+            if (!str_contains($type->value(), '::')) {
                 return false;
             }
 
