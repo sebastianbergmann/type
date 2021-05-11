@@ -63,8 +63,6 @@ final class ReflectionMapper
         $types = [];
 
         foreach ($returnType->getTypes() as $type) {
-            assert($type instanceof ReflectionNamedType);
-
             if ($type->getName() === 'self') {
                 $types[] = ObjectType::fromName(
                     $method->getDeclaringClass()->getName(),
