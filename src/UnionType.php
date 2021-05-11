@@ -18,7 +18,7 @@ final class UnionType extends Type
     /**
      * @psalm-var list<Type>
      */
-    private $types;
+    private array $types;
 
     /**
      * @throws RuntimeException

@@ -11,15 +11,9 @@ namespace SebastianBergmann\Type;
 
 final class StaticType extends Type
 {
-    /**
-     * @var TypeName
-     */
-    private $className;
+    private TypeName $className;
 
-    /**
-     * @var bool
-     */
-    private $allowsNull;
+    private bool $allowsNull;
 
     public function __construct(TypeName $className, bool $allowsNull)
     {

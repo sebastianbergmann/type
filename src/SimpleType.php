@@ -13,20 +13,11 @@ use function strtolower;
 
 final class SimpleType extends Type
 {
-    /**
-     * @var string
-     */
-    private $name;
+    private string $name;
 
-    /**
-     * @var bool
-     */
-    private $allowsNull;
+    private bool $allowsNull;
 
-    /**
-     * @var mixed
-     */
-    private $value;
+    private mixed $value;
 
     public function __construct(string $name, bool $nullable, $value = null)
     {

@@ -17,10 +17,7 @@ use ReflectionException;
 
 final class IterableType extends Type
 {
-    /**
-     * @var bool
-     */
-    private $allowsNull;
+    private bool $allowsNull;
 
     public function __construct(bool $nullable)
     {
