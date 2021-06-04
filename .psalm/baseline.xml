@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.x-dev@">
   <file src="src/ReflectionMapper.php">
+    <MixedInferredReturnType occurrences="2">
+      <code>?ReflectionType</code>
+      <code>bool</code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement occurrences="2">
+      <code>$method-&gt;getTentativeReturnType()</code>
+      <code>$method-&gt;hasTentativeReturnType()</code>
+    </MixedReturnStatement>
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>assert($returnType instanceof ReflectionUnionType)</code>
     </RedundantConditionGivenDocblockType>
