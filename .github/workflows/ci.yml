@@ -17,7 +17,7 @@ jobs:
         uses: "actions/checkout@v2"
 
       - name: "Run friendsofphp/php-cs-fixer"
-        run: "php7.4 ./tools/php-cs-fixer fix --diff-format=udiff --dry-run --show-progress=dots --using-cache=no --verbose"
+        run: "./tools/php-cs-fixer fix --dry-run --show-progress=dots --using-cache=no --verbose"
 
   type-checker:
     name: "Type Checker"
@@ -29,34 +29,10 @@ jobs:
         uses: "actions/checkout@v2"
 
       - name: "Update dependencies with composer"
-        run: "php7.4 ./tools/composer update --no-ansi --no-interaction --no-progress"
+        run: "./tools/composer update --no-ansi --no-interaction --no-progress"
 
       - name: "Run vimeo/psalm"
-        run: "php7.4 ./tools/psalm --config=.psalm/config.xml --no-progress --shepherd --show-info=false --stats"
-
-  backward-compatibility:
-    name: Backward Compatibility
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Fetch tags
-        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-
-      - name: Install PHP with extensions
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-          coverage: none
-          extensions: intl
-
-      - name: Run roave/backward-compatibility-check
-        run: ./tools/roave-backward-compatibility-check --from=2.3.1
+        run: "./tools/psalm --config=.psalm/config.xml --no-progress --shepherd --show-info=false --stats"
 
   tests:
     name: "Tests"
