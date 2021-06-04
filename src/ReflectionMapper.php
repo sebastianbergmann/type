@@ -12,17 +12,18 @@ namespace SebastianBergmann\Type;
 use function assert;
 use ReflectionMethod;
 use ReflectionNamedType;
+use ReflectionType;
 use ReflectionUnionType;
 
 final class ReflectionMapper
 {
     public function fromMethodReturnType(ReflectionMethod $method): Type
     {
-        if (!$method->hasReturnType()) {
+        if (!$this->reflectionMethodHasReturnType($method)) {
             return new UnknownType;
         }
 
-        $returnType = $method->getReturnType();
+        $returnType = $this->reflectionMethodGetReturnType($method);
 
         assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType);
 
@@ -74,5 +75,31 @@ final class ReflectionMapper
         }
 
         return new UnionType(...$types);
+    }
+
+    private function reflectionMethodHasReturnType(ReflectionMethod $method): bool
+    {
+        if ($method->hasReturnType()) {
+            return true;
+        }
+
+        if (!method_exists($method, 'hasTentativeReturnType')) {
+            return false;
+        }
+
+        return $method->hasTentativeReturnType();
+    }
+
+    private function reflectionMethodGetReturnType(ReflectionMethod $method): ?ReflectionType
+    {
+        if ($method->hasReturnType()) {
+            return $method->getReturnType();
+        }
+
+        if (!method_exists($method, 'getTentativeReturnType')) {
+            return null;
+        }
+
+        return $method->getTentativeReturnType();
     }
 }
