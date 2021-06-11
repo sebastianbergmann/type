@@ -37,13 +37,6 @@ final class StaticTypeTest extends TestCase
         $this->assertSame('static', $type->asString());
     }
 
-    public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
-    {
-        $type = new StaticType(TypeName::fromQualifiedName('vendor\project\foo'), false);
-
-        $this->assertSame(': static', $type->getReturnTypeDeclaration());
-    }
-
     public function testMayDisallowNull(): void
     {
         $type = new StaticType(TypeName::fromQualifiedName('vendor\project\foo'), false);

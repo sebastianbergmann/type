@@ -26,16 +26,6 @@ final class NullType extends Type
         return 'null';
     }
 
-    /**
-     * @deprecated
-     *
-     * @codeCoverageIgnore
-     */
-    public function getReturnTypeDeclaration(): string
-    {
-        return '';
-    }
-
     public function allowsNull(): bool
     {
         return true;

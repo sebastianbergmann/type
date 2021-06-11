@@ -62,11 +62,4 @@ final class VoidTypeTest extends TestCase
 
         $this->assertFalse($type->allowsNull());
     }
-
-    public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
-    {
-        $type = new VoidType;
-
-        $this->assertSame(': void', $type->getReturnTypeDeclaration());
-    }
 }

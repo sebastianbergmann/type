@@ -60,9 +60,4 @@ final class UnknownTypeTest extends TestCase
     {
         $this->assertSame('', $this->type->asString());
     }
-
-    public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
-    {
-        $this->assertSame('', $this->type->getReturnTypeDeclaration());
-    }
 }

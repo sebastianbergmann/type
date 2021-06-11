@@ -35,13 +35,6 @@ final class MixedTypeTest extends TestCase
         $this->assertSame('mixed', $type->asString());
     }
 
-    public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
-    {
-        $type = new MixedType;
-
-        $this->assertSame(': mixed', $type->getReturnTypeDeclaration());
-    }
-
     public function testAllowsNull(): void
     {
         $type = new MixedType;

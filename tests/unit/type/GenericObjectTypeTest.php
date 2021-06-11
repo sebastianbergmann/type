@@ -37,23 +37,11 @@ final class GenericObjectTypeTest extends TestCase
         $this->assertFalse($this->type->allowsNull());
     }
 
-    public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
-    {
-        $this->assertSame(': object', $this->type->getReturnTypeDeclaration());
-    }
-
     public function testMayAllowNull(): void
     {
         $type = new GenericObjectType(true);
 
         $this->assertTrue($type->allowsNull());
-    }
-
-    public function testCanBeRepresentedAsStringForNullableReturnTypeDeclaration(): void
-    {
-        $type = new GenericObjectType(true);
-
-        $this->assertSame(': ?object', $type->getReturnTypeDeclaration());
     }
 
     public function testObjectCanBeAssignedToGenericObject(): void

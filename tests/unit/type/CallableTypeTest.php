@@ -39,23 +39,11 @@ final class CallableTypeTest extends TestCase
         $this->assertFalse($this->type->allowsNull());
     }
 
-    public function testCanBeRepresentedAsStringForReturnTypeDeclaration(): void
-    {
-        $this->assertSame(': callable', $this->type->getReturnTypeDeclaration());
-    }
-
     public function testMayAllowNull(): void
     {
         $type = new CallableType(true);
 
         $this->assertTrue($type->allowsNull());
-    }
-
-    public function testCanBeRepresentedAsStringForNullableReturnTypeDeclaration(): void
-    {
-        $type = new CallableType(true);
-
-        $this->assertSame(': ?callable', $type->getReturnTypeDeclaration());
     }
 
     public function testNullCanBeAssignedToNullableCallable(): void

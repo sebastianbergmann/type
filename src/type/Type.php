@@ -57,16 +57,6 @@ abstract class Type
         return ($this->allowsNull() ? '?' : '') . $this->name();
     }
 
-    /**
-     * @deprecated
-     *
-     * @codeCoverageIgnore
-     */
-    public function getReturnTypeDeclaration(): string
-    {
-        return ': ' . $this->asString();
-    }
-
     abstract public function isAssignable(self $other): bool;
 
     abstract public function name(): string;

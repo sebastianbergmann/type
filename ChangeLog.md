@@ -10,6 +10,10 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ### Removed
 
+* Removed `Type::getReturnTypeDeclaration()` (use `Type::asString()` instead and prefix its result with `': '`)
+* Removed `TypeName::getNamespaceName()` (use `TypeName::namespaceName()` instead)
+* Removed `TypeName::getSimpleName()` (use `TypeName::simpleName()` instead)
+* Removed `TypeName::getQualifiedName()` (use `TypeName::qualifiedName()` instead)
 * This component is no longer supported on PHP 7.3 and PHP 7.4
 
 ## [2.3.2] - 2021-06-04
