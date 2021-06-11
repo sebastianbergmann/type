@@ -23,6 +23,7 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
  *
  * @uses \SebastianBergmann\Type\GenericObjectType
  * @uses \SebastianBergmann\Type\MixedType
+ * @uses \SebastianBergmann\Type\NeverType
  * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\StaticType
