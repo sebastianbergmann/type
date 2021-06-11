@@ -41,9 +41,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->name());
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testMapsFromMethodUnionReturnType(): void
     {
         $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsBoolOrInt'));
@@ -52,9 +49,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('bool|int', $type->name());
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testMapsFromMethodUnionReturnTypeWithSelf(): void
     {
         $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsSelfOrStdClass'));
@@ -63,9 +57,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame(ClassWithMethodsThatDeclareUnionReturnTypes::class . '|stdClass', $type->name());
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testMapsFromMethodMixedReturnType(): void
     {
         $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsMixed'));
@@ -74,9 +65,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('mixed', $type->name());
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testMapsFromMethodStaticReturnType(): void
     {
         $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsStatic'));
@@ -86,9 +74,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertFalse($type->allowsNull());
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testMapsFromMethodNullableStaticReturnType(): void
     {
         $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsNullableStatic'));
@@ -98,9 +83,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertTrue($type->allowsNull());
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testMapsFromMethodUnionWithStaticReturnType(): void
     {
         $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsUnionWithStatic'));

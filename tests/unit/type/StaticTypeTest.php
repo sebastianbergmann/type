@@ -60,9 +60,6 @@ final class StaticTypeTest extends TestCase
         $this->assertSame('?static', $type->asString());
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testNullIsAssignableToNullableType(): void
     {
         $type = new StaticType(
@@ -73,9 +70,6 @@ final class StaticTypeTest extends TestCase
         $this->assertTrue($type->isAssignable(Type::fromValue(null, true)));
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testNullIsNotAssignableToNotNullableType(): void
     {
         $type = new StaticType(
@@ -86,9 +80,6 @@ final class StaticTypeTest extends TestCase
         $this->assertFalse($type->isAssignable(Type::fromValue(null, true)));
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testSameTypeIsAssignable(): void
     {
         $type = new StaticType(
@@ -108,9 +99,6 @@ final class StaticTypeTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testSubTypeIsAssignable(): void
     {
         $type = new StaticType(
@@ -130,9 +118,6 @@ final class StaticTypeTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testOtherTypeIsNotAssignable(): void
     {
         $type = new StaticType(
