@@ -13,7 +13,7 @@
       <code>assert($returnType instanceof ReflectionUnionType)</code>
     </RedundantConditionGivenDocblockType>
   </file>
-  <file src="src/SimpleType.php">
+  <file src="src/type/SimpleType.php">
     <MissingParamType occurrences="1">
       <code>$value</code>
     </MissingParamType>
@@ -21,7 +21,7 @@
       <code>value</code>
     </MissingReturnType>
   </file>
-  <file src="src/Type.php">
+  <file src="src/type/Type.php">
     <MissingParamType occurrences="1">
       <code>$value</code>
     </MissingParamType>
@@ -29,7 +29,7 @@
       <code>$value</code>
     </MixedArgument>
   </file>
-  <file src="src/UnionType.php">
+  <file src="src/type/UnionType.php">
     <MixedPropertyTypeCoercion occurrences="1">
       <code>$types</code>
     </MixedPropertyTypeCoercion>
