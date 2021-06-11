@@ -22,9 +22,6 @@
     </MissingReturnType>
   </file>
   <file src="src/type/Type.php">
-    <MissingParamType occurrences="1">
-      <code>$value</code>
-    </MissingParamType>
     <MixedArgument occurrences="1">
       <code>$value</code>
     </MixedArgument>

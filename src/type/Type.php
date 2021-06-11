@@ -17,7 +17,7 @@ use function strtolower;
 
 abstract class Type
 {
-    public static function fromValue($value, bool $allowsNull): self
+    public static function fromValue(mixed $value, bool $allowsNull): self
     {
         $typeName = gettype($value);
 
