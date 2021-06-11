@@ -4,6 +4,10 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ## [3.0.0] - 2021-MM-DD
 
+### Added
+
+* Support for the `never` return type introduced in PHP 8.1
+
 ### Removed
 
 * This component is no longer supported on PHP 7.3 and PHP 7.4

@@ -15,6 +15,7 @@ use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareUnionReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatHaveStaticReturnTypes;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresNeverReturnType;
 use SebastianBergmann\Type\TestFixture\ParentClass;
 
 /**
@@ -89,6 +90,28 @@ final class ReflectionMapperTest extends TestCase
 
         $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('static|stdClass', $type->name());
+    }
+
+    /**
+     * @requires PHP < 8.1
+     */
+    public function testMapsFromMethodClassNamedNeverReturnType(): void
+    {
+        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNeverReturnType::class, 'neverReturnType'));
+
+        $this->assertInstanceOf(ObjectType::class, $type);
+        $this->assertSame('SebastianBergmann\Type\TestFixture\never', $type->name());
+    }
+
+    /**
+     * @requires PHP >= 8.1
+     */
+    public function testMapsFromMethodNeverReturnType(): void
+    {
+        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNeverReturnType::class, 'neverReturnType'));
+
+        $this->assertInstanceOf(NeverType::class, $type);
+        $this->assertSame('never', $type->name());
     }
 
     public function typeProvider(): array

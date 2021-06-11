@@ -9,6 +9,8 @@
  */
 namespace SebastianBergmann\Type;
 
+use const PHP_MAJOR_VERSION;
+use const PHP_MINOR_VERSION;
 use function get_class;
 use function gettype;
 use function strtolower;
@@ -34,6 +36,10 @@ abstract class Type
 
     public static function fromName(string $typeName, bool $allowsNull): self
     {
+        if ((PHP_MAJOR_VERSION > 8 || PHP_MINOR_VERSION >= 1) && strtolower($typeName) === 'never') {
+            return new NeverType;
+        }
+
         return match (strtolower($typeName)) {
             'callable'     => new CallableType($allowsNull),
             'iterable'     => new IterableType($allowsNull),
