@@ -12,9 +12,8 @@ namespace SebastianBergmann\Type;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @covers \SebastianBergmann\Type\Type
  * @covers \SebastianBergmann\Type\VoidType
- *
- * @uses \SebastianBergmann\Type\Type
  */
 final class VoidTypeTest extends TestCase
 {

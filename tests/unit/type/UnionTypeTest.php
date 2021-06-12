@@ -12,11 +12,11 @@ namespace SebastianBergmann\Type;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @covers \SebastianBergmann\Type\Type
  * @covers \SebastianBergmann\Type\UnionType
  *
  * @uses \SebastianBergmann\Type\NullType
  * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\Type
  */
 final class UnionTypeTest extends TestCase
 {

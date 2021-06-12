@@ -14,8 +14,7 @@ use stdClass;
 
 /**
  * @covers \SebastianBergmann\Type\SimpleType
- *
- * @uses \SebastianBergmann\Type\Type
+ * @covers \SebastianBergmann\Type\Type
  */
 final class SimpleTypeTest extends TestCase
 {

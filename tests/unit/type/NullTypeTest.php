@@ -13,8 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \SebastianBergmann\Type\NullType
- *
- * @uses \SebastianBergmann\Type\Type
+ * @covers \SebastianBergmann\Type\Type
  */
 final class NullTypeTest extends TestCase
 {

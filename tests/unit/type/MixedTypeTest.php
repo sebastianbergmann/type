@@ -13,11 +13,11 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \SebastianBergmann\Type\MixedType
+ * @covers \SebastianBergmann\Type\Type
  *
  * @uses \SebastianBergmann\Type\CallableType
  * @uses \SebastianBergmann\Type\GenericObjectType
  * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\Type
  */
 final class MixedTypeTest extends TestCase
 {

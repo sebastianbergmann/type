@@ -16,9 +16,9 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
 
 /**
  * @covers \SebastianBergmann\Type\ObjectType
+ * @covers \SebastianBergmann\Type\Type
  *
  * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\Type
  * @uses \SebastianBergmann\Type\TypeName
  */
 final class ObjectTypeTest extends TestCase
