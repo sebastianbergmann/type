@@ -18,6 +18,7 @@ use stdClass;
  * @uses \SebastianBergmann\Type\CallableType
  * @uses \SebastianBergmann\Type\GenericObjectType
  * @uses \SebastianBergmann\Type\IterableType
+ * @uses \SebastianBergmann\Type\NeverType
  * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\TypeName
@@ -82,5 +83,21 @@ final class TypeTest extends TestCase
             'iterable'          => ['iterable', false, new IterableType(false)],
             '?iterable'         => ['iterable', true, new IterableType(true)],
         ];
+    }
+
+    /**
+     * @requires PHP < 8.1
+     */
+    public function testMapsFromClassNamedNever(): void
+    {
+        $this->assertTrue(Type::fromName('never', false)->isObject());
+    }
+
+    /**
+     * @requires PHP >= 8.1
+     */
+    public function testMapsFromNever(): void
+    {
+        $this->assertTrue(Type::fromName('never', false)->isNever());
     }
 }
