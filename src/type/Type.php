@@ -9,11 +9,11 @@
  */
 namespace SebastianBergmann\Type;
 
-use const PHP_MAJOR_VERSION;
-use const PHP_MINOR_VERSION;
+use const PHP_VERSION;
 use function get_class;
 use function gettype;
 use function strtolower;
+use function version_compare;
 
 abstract class Type
 {
@@ -36,7 +36,7 @@ abstract class Type
 
     public static function fromName(string $typeName, bool $allowsNull): self
     {
-        if ((PHP_MAJOR_VERSION > 8 || PHP_MINOR_VERSION >= 1) && strtolower($typeName) === 'never') {
+        if (version_compare(PHP_VERSION, '8.1.0-dev', '>=') && strtolower($typeName) === 'never') {
             return new NeverType;
         }
 
