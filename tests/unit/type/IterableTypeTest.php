@@ -29,6 +29,11 @@ final class IterableTypeTest extends TestCase
         $this->type = new IterableType(false);
     }
 
+    public function testHasName(): void
+    {
+        $this->assertSame('iterable', $this->type->name());
+    }
+
     public function testMayDisallowNull(): void
     {
         $this->assertFalse($this->type->allowsNull());
@@ -86,6 +91,7 @@ final class IterableTypeTest extends TestCase
         $this->assertFalse($this->type->isGenericObject());
         $this->assertTrue($this->type->isIterable());
         $this->assertFalse($this->type->isMixed());
+        $this->assertFalse($this->type->isNever());
         $this->assertFalse($this->type->isNull());
         $this->assertFalse($this->type->isObject());
         $this->assertFalse($this->type->isSimple());

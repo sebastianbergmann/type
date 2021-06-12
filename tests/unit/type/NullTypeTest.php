@@ -80,6 +80,7 @@ final class NullTypeTest extends TestCase
         $this->assertFalse($this->type->isGenericObject());
         $this->assertFalse($this->type->isIterable());
         $this->assertFalse($this->type->isMixed());
+        $this->assertFalse($this->type->isNever());
         $this->assertTrue($this->type->isNull());
         $this->assertFalse($this->type->isObject());
         $this->assertFalse($this->type->isSimple());

@@ -40,6 +40,11 @@ final class ObjectTypeTest extends TestCase
         );
     }
 
+    public function testHasName(): void
+    {
+        $this->assertSame(ChildClass::class, $this->childClass->name());
+    }
+
     public function testParentIsNotAssignableToChild(): void
     {
         $this->assertFalse($this->childClass->isAssignable($this->parentClass));
@@ -134,6 +139,7 @@ final class ObjectTypeTest extends TestCase
         $this->assertFalse($this->childClass->isGenericObject());
         $this->assertFalse($this->childClass->isIterable());
         $this->assertFalse($this->childClass->isMixed());
+        $this->assertFalse($this->childClass->isNever());
         $this->assertFalse($this->childClass->isNull());
         $this->assertTrue($this->childClass->isObject());
         $this->assertFalse($this->childClass->isSimple());

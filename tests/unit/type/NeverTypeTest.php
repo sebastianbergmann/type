@@ -12,15 +12,14 @@ namespace SebastianBergmann\Type;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \SebastianBergmann\Type\VoidType
- *
- * @uses \SebastianBergmann\Type\Type
+ * @covers \SebastianBergmann\Type\NeverType
+ * @covers \SebastianBergmann\Type\Type
  */
-final class VoidTypeTest extends TestCase
+final class NeverTypeTest extends TestCase
 {
     public function testHasName(): void
     {
-        $this->assertSame('void', (new VoidType)->name());
+        $this->assertSame('never', (new NeverType)->name());
     }
 
     /**
@@ -28,7 +27,7 @@ final class VoidTypeTest extends TestCase
      */
     public function testIsAssignable(Type $assignableType): void
     {
-        $type = new VoidType;
+        $type = new NeverType;
 
         $this->assertTrue($type->isAssignable($assignableType));
     }
@@ -36,7 +35,7 @@ final class VoidTypeTest extends TestCase
     public function assignableTypes(): array
     {
         return [
-            [new VoidType],
+            [new NeverType],
         ];
     }
 
@@ -45,7 +44,7 @@ final class VoidTypeTest extends TestCase
      */
     public function testIsNotAssignable(Type $assignableType): void
     {
-        $type = new VoidType;
+        $type = new NeverType;
 
         $this->assertFalse($type->isAssignable($assignableType));
     }
@@ -63,26 +62,26 @@ final class VoidTypeTest extends TestCase
 
     public function testNotAllowNull(): void
     {
-        $type = new VoidType;
+        $type = new NeverType;
 
         $this->assertFalse($type->allowsNull());
     }
 
     public function testCanBeQueriedForType(): void
     {
-        $type = new VoidType;
+        $type = new NeverType;
 
         $this->assertFalse($type->isCallable());
         $this->assertFalse($type->isGenericObject());
         $this->assertFalse($type->isIterable());
         $this->assertFalse($type->isMixed());
-        $this->assertFalse($type->isNever());
+        $this->assertTrue($type->isNever());
         $this->assertFalse($type->isNull());
         $this->assertFalse($type->isObject());
         $this->assertFalse($type->isSimple());
         $this->assertFalse($type->isStatic());
         $this->assertFalse($type->isUnion());
         $this->assertFalse($type->isUnknown());
-        $this->assertTrue($type->isVoid());
+        $this->assertFalse($type->isVoid());
     }
 }

@@ -66,6 +66,7 @@ final class UnknownTypeTest extends TestCase
         $this->assertFalse($this->type->isGenericObject());
         $this->assertFalse($this->type->isIterable());
         $this->assertFalse($this->type->isMixed());
+        $this->assertFalse($this->type->isNever());
         $this->assertFalse($this->type->isNull());
         $this->assertFalse($this->type->isObject());
         $this->assertFalse($this->type->isSimple());

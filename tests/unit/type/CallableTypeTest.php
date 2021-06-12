@@ -31,6 +31,11 @@ final class CallableTypeTest extends TestCase
         $this->type = new CallableType(false);
     }
 
+    public function testHasName(): void
+    {
+        $this->assertSame('callable', $this->type->name());
+    }
+
     public function testMayDisallowNull(): void
     {
         $this->assertFalse($this->type->allowsNull());
@@ -143,6 +148,7 @@ final class CallableTypeTest extends TestCase
         $this->assertFalse($this->type->isGenericObject());
         $this->assertFalse($this->type->isIterable());
         $this->assertFalse($this->type->isMixed());
+        $this->assertFalse($this->type->isNever());
         $this->assertFalse($this->type->isNull());
         $this->assertFalse($this->type->isObject());
         $this->assertFalse($this->type->isSimple());

@@ -138,6 +138,7 @@ final class StaticTypeTest extends TestCase
         $this->assertFalse($type->isGenericObject());
         $this->assertFalse($type->isIterable());
         $this->assertFalse($type->isMixed());
+        $this->assertFalse($type->isNever());
         $this->assertFalse($type->isNull());
         $this->assertFalse($type->isObject());
         $this->assertFalse($type->isSimple());

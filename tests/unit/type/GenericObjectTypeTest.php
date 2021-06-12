@@ -29,6 +29,11 @@ final class GenericObjectTypeTest extends TestCase
         $this->type = new GenericObjectType(false);
     }
 
+    public function testHasName(): void
+    {
+        $this->assertSame('object', $this->type->name());
+    }
+
     public function testMayDisallowNull(): void
     {
         $this->assertFalse($this->type->allowsNull());
@@ -76,6 +81,7 @@ final class GenericObjectTypeTest extends TestCase
         $this->assertTrue($this->type->isGenericObject());
         $this->assertFalse($this->type->isIterable());
         $this->assertFalse($this->type->isMixed());
+        $this->assertFalse($this->type->isNever());
         $this->assertFalse($this->type->isNull());
         $this->assertFalse($this->type->isObject());
         $this->assertFalse($this->type->isSimple());

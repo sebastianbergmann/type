@@ -27,7 +27,7 @@ final class UnionTypeTest extends TestCase
             Type::fromName('int', false)
         );
 
-        $this->assertSame('bool|int', $type->name());
+        $this->assertSame('bool|int', $type->asString());
     }
 
     public function testMayAllowNull(): void
@@ -126,6 +126,7 @@ final class UnionTypeTest extends TestCase
         $this->assertFalse($type->isGenericObject());
         $this->assertFalse($type->isIterable());
         $this->assertFalse($type->isMixed());
+        $this->assertFalse($type->isNever());
         $this->assertFalse($type->isNull());
         $this->assertFalse($type->isObject());
         $this->assertFalse($type->isSimple());
