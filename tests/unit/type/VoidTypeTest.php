@@ -62,4 +62,21 @@ final class VoidTypeTest extends TestCase
 
         $this->assertFalse($type->allowsNull());
     }
+
+    public function testCanBeQueriedForType(): void
+    {
+        $type = new VoidType;
+
+        $this->assertFalse($type->isCallable());
+        $this->assertFalse($type->isGenericObject());
+        $this->assertFalse($type->isIterable());
+        $this->assertFalse($type->isMixed());
+        $this->assertFalse($type->isNull());
+        $this->assertFalse($type->isObject());
+        $this->assertFalse($type->isSimple());
+        $this->assertFalse($type->isStatic());
+        $this->assertFalse($type->isUnion());
+        $this->assertFalse($type->isUnknown());
+        $this->assertTrue($type->isVoid());
+    }
 }

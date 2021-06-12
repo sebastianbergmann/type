@@ -30,4 +30,9 @@ final class NullType extends Type
     {
         return true;
     }
+
+    public function isNull(): bool
+    {
+        return true;
+    }
 }

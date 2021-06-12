@@ -82,6 +82,11 @@ final class CallableType extends Type
         return $this->allowsNull;
     }
 
+    public function isCallable(): bool
+    {
+        return true;
+    }
+
     private function isClosure(ObjectType $type): bool
     {
         return !$type->className()->isNamespaced() && $type->className()->simpleName() === Closure::class;

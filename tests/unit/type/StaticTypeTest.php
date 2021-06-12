@@ -129,4 +129,21 @@ final class StaticTypeTest extends TestCase
             )
         );
     }
+
+    public function testCanBeQueriedForType(): void
+    {
+        $type = new StaticType(TypeName::fromQualifiedName(stdClass::class), false);
+
+        $this->assertFalse($type->isCallable());
+        $this->assertFalse($type->isGenericObject());
+        $this->assertFalse($type->isIterable());
+        $this->assertFalse($type->isMixed());
+        $this->assertFalse($type->isNull());
+        $this->assertFalse($type->isObject());
+        $this->assertFalse($type->isSimple());
+        $this->assertTrue($type->isStatic());
+        $this->assertFalse($type->isUnion());
+        $this->assertFalse($type->isUnknown());
+        $this->assertFalse($type->isVoid());
+    }
 }

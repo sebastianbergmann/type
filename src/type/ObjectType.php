@@ -57,4 +57,9 @@ final class ObjectType extends Type
     {
         return $this->className;
     }
+
+    public function isObject(): bool
+    {
+        return true;
+    }
 }

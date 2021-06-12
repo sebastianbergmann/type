@@ -25,4 +25,9 @@ final class NeverType extends Type
     {
         return false;
     }
+
+    public function isNever(): bool
+    {
+        return true;
+    }
 }

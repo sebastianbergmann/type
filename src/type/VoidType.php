@@ -25,4 +25,9 @@ final class VoidType extends Type
     {
         return false;
     }
+
+    public function isVoid(): bool
+    {
+        return true;
+    }
 }

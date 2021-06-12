@@ -30,4 +30,9 @@ final class UnknownType extends Type
     {
         return true;
     }
+
+    public function isUnknown(): bool
+    {
+        return true;
+    }
 }

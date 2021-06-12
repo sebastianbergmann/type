@@ -30,4 +30,9 @@ final class MixedType extends Type
     {
         return true;
     }
+
+    public function isMixed(): bool
+    {
+        return true;
+    }
 }

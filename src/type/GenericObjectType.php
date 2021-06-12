@@ -40,4 +40,9 @@ final class GenericObjectType extends Type
     {
         return $this->allowsNull;
     }
+
+    public function isGenericObject(): bool
+    {
+        return true;
+    }
 }

@@ -54,6 +54,11 @@ final class SimpleType extends Type
         return $this->value;
     }
 
+    public function isSimple(): bool
+    {
+        return true;
+    }
+
     private function normalize(string $name): string
     {
         $name = strtolower($name);

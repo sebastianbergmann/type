@@ -7,6 +7,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 ### Added
 
 * Support for the `never` return type introduced in PHP 8.1
+* Added `Type::isCallable()`, `Type::isGenericObject()`, `Type::isIterable()`, `Type::isMixed()`, `Type::isNever()`, `Type::isNull()`, `Type::isObject()`, `Type::isSimple()`, `Type::isStatic()`, `Type::isUnion()`, `Type::isUnknown()`, and `Type::isVoid()`
 
 ### Removed
 

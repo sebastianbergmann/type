@@ -72,4 +72,19 @@ final class GenericObjectTypeTest extends TestCase
             )
         );
     }
+
+    public function testCanBeQueriedForType(): void
+    {
+        $this->assertFalse($this->type->isCallable());
+        $this->assertTrue($this->type->isGenericObject());
+        $this->assertFalse($this->type->isIterable());
+        $this->assertFalse($this->type->isMixed());
+        $this->assertFalse($this->type->isNull());
+        $this->assertFalse($this->type->isObject());
+        $this->assertFalse($this->type->isSimple());
+        $this->assertFalse($this->type->isStatic());
+        $this->assertFalse($this->type->isUnion());
+        $this->assertFalse($this->type->isUnknown());
+        $this->assertFalse($this->type->isVoid());
+    }
 }

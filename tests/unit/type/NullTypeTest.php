@@ -13,6 +13,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \SebastianBergmann\Type\NullType
+ *
+ * @uses \SebastianBergmann\Type\Type
  */
 final class NullTypeTest extends TestCase
 {
@@ -73,5 +75,20 @@ final class NullTypeTest extends TestCase
     public function testCanBeRepresentedAsString(): void
     {
         $this->assertSame('null', $this->type->asString());
+    }
+
+    public function testCanBeQueriedForType(): void
+    {
+        $this->assertFalse($this->type->isCallable());
+        $this->assertFalse($this->type->isGenericObject());
+        $this->assertFalse($this->type->isIterable());
+        $this->assertFalse($this->type->isMixed());
+        $this->assertTrue($this->type->isNull());
+        $this->assertFalse($this->type->isObject());
+        $this->assertFalse($this->type->isSimple());
+        $this->assertFalse($this->type->isStatic());
+        $this->assertFalse($this->type->isUnion());
+        $this->assertFalse($this->type->isUnknown());
+        $this->assertFalse($this->type->isVoid());
     }
 }

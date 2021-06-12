@@ -71,6 +71,11 @@ final class UnionType extends Type
         return false;
     }
 
+    public function isUnion(): bool
+    {
+        return true;
+    }
+
     /**
      * @throws RuntimeException
      */

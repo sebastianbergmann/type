@@ -114,4 +114,24 @@ final class UnionTypeTest extends TestCase
             Type::fromName('void', false)
         );
     }
+
+    public function testCanBeQueriedForType(): void
+    {
+        $type = new UnionType(
+            new SimpleType('bool', false),
+            new SimpleType('string', false)
+        );
+
+        $this->assertFalse($type->isCallable());
+        $this->assertFalse($type->isGenericObject());
+        $this->assertFalse($type->isIterable());
+        $this->assertFalse($type->isMixed());
+        $this->assertFalse($type->isNull());
+        $this->assertFalse($type->isObject());
+        $this->assertFalse($type->isSimple());
+        $this->assertFalse($type->isStatic());
+        $this->assertTrue($type->isUnion());
+        $this->assertFalse($type->isUnknown());
+        $this->assertFalse($type->isVoid());
+    }
 }

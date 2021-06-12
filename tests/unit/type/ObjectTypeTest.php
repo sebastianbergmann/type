@@ -133,4 +133,19 @@ final class ObjectTypeTest extends TestCase
     {
         $this->assertSame('SebastianBergmann\Type\TestFixture\ParentClass', $this->parentClass->className()->qualifiedName());
     }
+
+    public function testCanBeQueriedForType(): void
+    {
+        $this->assertFalse($this->childClass->isCallable());
+        $this->assertFalse($this->childClass->isGenericObject());
+        $this->assertFalse($this->childClass->isIterable());
+        $this->assertFalse($this->childClass->isMixed());
+        $this->assertFalse($this->childClass->isNull());
+        $this->assertTrue($this->childClass->isObject());
+        $this->assertFalse($this->childClass->isSimple());
+        $this->assertFalse($this->childClass->isStatic());
+        $this->assertFalse($this->childClass->isUnion());
+        $this->assertFalse($this->childClass->isUnknown());
+        $this->assertFalse($this->childClass->isVoid());
+    }
 }

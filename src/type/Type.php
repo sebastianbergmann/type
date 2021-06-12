@@ -57,6 +57,66 @@ abstract class Type
         return ($this->allowsNull() ? '?' : '') . $this->name();
     }
 
+    public function isCallable(): bool
+    {
+        return false;
+    }
+
+    public function isGenericObject(): bool
+    {
+        return false;
+    }
+
+    public function isIterable(): bool
+    {
+        return false;
+    }
+
+    public function isMixed(): bool
+    {
+        return false;
+    }
+
+    public function isNever(): bool
+    {
+        return false;
+    }
+
+    public function isNull(): bool
+    {
+        return false;
+    }
+
+    public function isObject(): bool
+    {
+        return false;
+    }
+
+    public function isSimple(): bool
+    {
+        return false;
+    }
+
+    public function isStatic(): bool
+    {
+        return false;
+    }
+
+    public function isUnion(): bool
+    {
+        return false;
+    }
+
+    public function isUnknown(): bool
+    {
+        return false;
+    }
+
+    public function isVoid(): bool
+    {
+        return false;
+    }
+
     abstract public function isAssignable(self $other): bool;
 
     abstract public function name(): string;

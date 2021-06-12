@@ -67,4 +67,21 @@ final class MixedTypeTest extends TestCase
             ['string'],
         ];
     }
+
+    public function testCanBeQueriedForType(): void
+    {
+        $type = new MixedType;
+
+        $this->assertFalse($type->isCallable());
+        $this->assertFalse($type->isGenericObject());
+        $this->assertFalse($type->isIterable());
+        $this->assertTrue($type->isMixed());
+        $this->assertFalse($type->isNull());
+        $this->assertFalse($type->isObject());
+        $this->assertFalse($type->isSimple());
+        $this->assertFalse($type->isStatic());
+        $this->assertFalse($type->isUnion());
+        $this->assertFalse($type->isUnknown());
+        $this->assertFalse($type->isVoid());
+    }
 }
