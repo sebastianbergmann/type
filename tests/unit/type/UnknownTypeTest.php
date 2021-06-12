@@ -18,10 +18,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class UnknownTypeTest extends TestCase
 {
-    /**
-     * @var UnknownType
-     */
-    private $type;
+    private UnknownType $type;
 
     protected function setUp(): void
     {
