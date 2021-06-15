@@ -31,6 +31,7 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
  * @uses \SebastianBergmann\Type\UnionType
  * @uses \SebastianBergmann\Type\MixedType
  * @uses \SebastianBergmann\Type\StaticType
+ * @uses \SebastianBergmann\Type\FalseType
  */
 final class ReflectionMapperTest extends TestCase
 {
@@ -108,6 +109,17 @@ final class ReflectionMapperTest extends TestCase
 
         $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('static|stdClass', $type->name());
+    }
+
+    /**
+     * @requires PHP >= 8.0
+     */
+    public function testMapsFromMethodUnionReturnTypeWithIntOrFalse(): void
+    {
+        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsIntOrFalse'));
+
+        $this->assertInstanceOf(UnionType::class, $type);
+        $this->assertSame('false|int', $type->name());
     }
 
     /**

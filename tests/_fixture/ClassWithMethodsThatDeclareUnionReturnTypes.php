@@ -22,4 +22,8 @@ class ClassWithMethodsThatDeclareUnionReturnTypes
     public function returnsSelfOrStdClass(): self|\stdClass
     {
     }
+
+    public function returnsIntOrFalse(): int|false
+    {
+    }
 }

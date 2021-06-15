@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [2.3.3] - 2021-MM-DD
+
+### Fixed
+
+* [#15](https://github.com/sebastianbergmann/type/issues/15): "false" pseudo type is not handled properly
+
 ## [2.3.2] - 2021-06-04
 
 ### Fixed
@@ -95,6 +101,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[2.3.3]: https://github.com/sebastianbergmann/type/compare/2.3.2...2.3
 [2.3.2]: https://github.com/sebastianbergmann/type/compare/2.3.1...2.3.2
 [2.3.1]: https://github.com/sebastianbergmann/type/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/sebastianbergmann/type/compare/2.2.2...2.3.0
