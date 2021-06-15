@@ -15,7 +15,12 @@ use stdClass;
 /**
  * @covers \SebastianBergmann\Type\SimpleType
  *
+ * @uses \SebastianBergmann\Type\FalseType
+ * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\Type
+ * @uses \SebastianBergmann\Type\TypeName
+ * @uses \SebastianBergmann\Type\UnknownType
+ * @uses \SebastianBergmann\Type\VoidType
  */
 final class SimpleTypeTest extends TestCase
 {
