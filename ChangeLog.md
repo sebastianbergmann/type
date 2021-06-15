@@ -17,7 +17,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Removed `TypeName::getQualifiedName()` (use `TypeName::qualifiedName()` instead)
 * This component is no longer supported on PHP 7.3 and PHP 7.4
 
-## [2.3.3] - 2021-MM-DD
+## [2.3.3] - 2021-06-15
 
 ### Fixed
 
@@ -117,7 +117,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
 [3.0.0]: https://github.com/sebastianbergmann/type/compare/2.3.3...master
-[2.3.3]: https://github.com/sebastianbergmann/type/compare/2.3.2...2.3
+[2.3.3]: https://github.com/sebastianbergmann/type/compare/2.3.2...2.3.3
 [2.3.2]: https://github.com/sebastianbergmann/type/compare/2.3.1...2.3.2
 [2.3.1]: https://github.com/sebastianbergmann/type/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/sebastianbergmann/type/compare/2.2.2...2.3.0
