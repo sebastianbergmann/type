@@ -32,6 +32,10 @@ final class SimpleType extends Type
             return true;
         }
 
+        if ($this->name === 'bool' && $other->name() === 'false') {
+            return true;
+        }
+
         if ($other instanceof self) {
             return $this->name === $other->name;
         }

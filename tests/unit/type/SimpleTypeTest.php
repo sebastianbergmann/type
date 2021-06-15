@@ -15,6 +15,13 @@ use stdClass;
 /**
  * @covers \SebastianBergmann\Type\SimpleType
  * @covers \SebastianBergmann\Type\Type
+ *
+ * @uses \SebastianBergmann\Type\FalseType
+ * @uses \SebastianBergmann\Type\ObjectType
+ * @uses \SebastianBergmann\Type\Type
+ * @uses \SebastianBergmann\Type\TypeName
+ * @uses \SebastianBergmann\Type\UnknownType
+ * @uses \SebastianBergmann\Type\VoidType
  */
 final class SimpleTypeTest extends TestCase
 {
@@ -111,6 +118,7 @@ final class SimpleTypeTest extends TestCase
             'nullable to nullable'         => [new SimpleType('int', true), new SimpleType('int', true)],
             'not nullable to not nullable' => [new SimpleType('int', false), new SimpleType('int', false)],
             'null to not nullable'         => [new SimpleType('int', true), new NullType],
+            'false to bool'                => [new SimpleType('bool', false), new FalseType],
         ];
     }
 
