@@ -4,6 +4,8 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ## [2.3.4] - 2021-MM-DD
 
+* Fixed regression introduced in 2.3.3
+
 ## [2.3.3] - 2021-06-15 [YANKED]
 
 ### Fixed
