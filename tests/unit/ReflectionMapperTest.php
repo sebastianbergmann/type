@@ -21,6 +21,7 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
 /**
  * @covers \SebastianBergmann\Type\ReflectionMapper
  *
+ * @uses \SebastianBergmann\Type\FalseType
  * @uses \SebastianBergmann\Type\GenericObjectType
  * @uses \SebastianBergmann\Type\MixedType
  * @uses \SebastianBergmann\Type\NeverType
@@ -91,6 +92,14 @@ final class ReflectionMapperTest extends TestCase
 
         $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('static|stdClass', $type->name());
+    }
+
+    public function testMapsFromMethodUnionReturnTypeWithIntOrFalse(): void
+    {
+        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsIntOrFalse'));
+
+        $this->assertInstanceOf(UnionType::class, $type);
+        $this->assertSame('false|int', $type->name());
     }
 
     /**
