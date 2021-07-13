@@ -10,6 +10,8 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionFunction;
+use ReflectionFunctionAbstract;
 use ReflectionMethod;
 use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
@@ -39,64 +41,64 @@ final class ReflectionMapperTest extends TestCase
     /**
      * @dataProvider typeProvider
      */
-    public function testMapsFromMethodReturnType(string $expected, ReflectionMethod $method): void
+    public function testMapsFromReturnType(string $expected, ReflectionFunctionAbstract $method): void
     {
-        $this->assertSame($expected, (new ReflectionMapper)->fromMethodReturnType($method)->name());
+        $this->assertSame($expected, (new ReflectionMapper)->fromReturnType($method)->name());
     }
 
-    public function testMapsFromMethodUnionReturnType(): void
+    public function testMapsFromUnionReturnType(): void
     {
-        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsBoolOrInt'));
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsBoolOrInt'));
 
         $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('bool|int', $type->name());
     }
 
-    public function testMapsFromMethodUnionReturnTypeWithSelf(): void
+    public function testMapsFromUnionReturnTypeWithSelf(): void
     {
-        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsSelfOrStdClass'));
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsSelfOrStdClass'));
 
         $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame(ClassWithMethodsThatDeclareUnionReturnTypes::class . '|stdClass', $type->name());
     }
 
-    public function testMapsFromMethodMixedReturnType(): void
+    public function testMapsFromMixedReturnType(): void
     {
-        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsMixed'));
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsMixed'));
 
         $this->assertInstanceOf(MixedType::class, $type);
         $this->assertSame('mixed', $type->name());
     }
 
-    public function testMapsFromMethodStaticReturnType(): void
+    public function testMapsFromStaticReturnType(): void
     {
-        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsStatic'));
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsStatic'));
 
         $this->assertInstanceOf(StaticType::class, $type);
         $this->assertSame('static', $type->asString());
         $this->assertFalse($type->allowsNull());
     }
 
-    public function testMapsFromMethodNullableStaticReturnType(): void
+    public function testMapsFromNullableStaticReturnType(): void
     {
-        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsNullableStatic'));
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsNullableStatic'));
 
         $this->assertInstanceOf(StaticType::class, $type);
         $this->assertSame('?static', $type->asString());
         $this->assertTrue($type->allowsNull());
     }
 
-    public function testMapsFromMethodUnionWithStaticReturnType(): void
+    public function testMapsFromUnionWithStaticReturnType(): void
     {
-        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsUnionWithStatic'));
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsUnionWithStatic'));
 
         $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('static|stdClass', $type->name());
     }
 
-    public function testMapsFromMethodUnionReturnTypeWithIntOrFalse(): void
+    public function testMapsFromUnionReturnTypeWithIntOrFalse(): void
     {
-        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsIntOrFalse'));
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsIntOrFalse'));
 
         $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('false|int', $type->name());
@@ -105,9 +107,9 @@ final class ReflectionMapperTest extends TestCase
     /**
      * @requires PHP < 8.1
      */
-    public function testMapsFromMethodClassNamedNeverReturnType(): void
+    public function testMapsFromClassNamedNeverReturnType(): void
     {
-        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNeverReturnType::class, 'neverReturnType'));
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNeverReturnType::class, 'neverReturnType'));
 
         $this->assertInstanceOf(ObjectType::class, $type);
         $this->assertSame('SebastianBergmann\Type\TestFixture\never', $type->name());
@@ -116,9 +118,9 @@ final class ReflectionMapperTest extends TestCase
     /**
      * @requires PHP >= 8.1
      */
-    public function testMapsFromMethodNeverReturnType(): void
+    public function testMapsFromNeverReturnType(): void
     {
-        $type = (new ReflectionMapper)->fromMethodReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNeverReturnType::class, 'neverReturnType'));
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNeverReturnType::class, 'neverReturnType'));
 
         $this->assertInstanceOf(NeverType::class, $type);
         $this->assertSame('never', $type->name());
@@ -159,6 +161,34 @@ final class ReflectionMapperTest extends TestCase
             ],
             [
                 'string', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'stringReturnType'),
+            ],
+
+            [
+                'unknown type', new ReflectionFunction('SebastianBergmann\Type\TestFixture\noReturnType'),
+            ],
+            [
+                'void', new ReflectionFunction('SebastianBergmann\Type\TestFixture\voidReturnType'),
+            ],
+            [
+                'stdClass', new ReflectionFunction('SebastianBergmann\Type\TestFixture\classReturnType'),
+            ],
+            [
+                'object', new ReflectionFunction('SebastianBergmann\Type\TestFixture\objectReturnType'),
+            ],
+            [
+                'array', new ReflectionFunction('SebastianBergmann\Type\TestFixture\arrayReturnType'),
+            ],
+            [
+                'bool', new ReflectionFunction('SebastianBergmann\Type\TestFixture\boolReturnType'),
+            ],
+            [
+                'float', new ReflectionFunction('SebastianBergmann\Type\TestFixture\floatReturnType'),
+            ],
+            [
+                'int', new ReflectionFunction('SebastianBergmann\Type\TestFixture\intReturnType'),
+            ],
+            [
+                'string', new ReflectionFunction('SebastianBergmann\Type\TestFixture\stringReturnType'),
             ],
         ];
     }

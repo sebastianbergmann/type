@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use function assert;
+use ReflectionFunctionAbstract;
 use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionType;
@@ -17,27 +18,27 @@ use ReflectionUnionType;
 
 final class ReflectionMapper
 {
-    public function fromMethodReturnType(ReflectionMethod $method): Type
+    public function fromReturnType(ReflectionFunctionAbstract $functionOrMethod): Type
     {
-        if (!$this->reflectionMethodHasReturnType($method)) {
+        if (!$this->hasReturnType($functionOrMethod)) {
             return new UnknownType;
         }
 
-        $returnType = $this->reflectionMethodGetReturnType($method);
+        $returnType = $this->returnType($functionOrMethod);
 
         assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType);
 
         if ($returnType instanceof ReflectionNamedType) {
-            if ($returnType->getName() === 'self') {
+            if ($functionOrMethod instanceof ReflectionMethod && $returnType->getName() === 'self') {
                 return ObjectType::fromName(
-                    $method->getDeclaringClass()->getName(),
+                    $functionOrMethod->getDeclaringClass()->getName(),
                     $returnType->allowsNull()
                 );
             }
 
-            if ($returnType->getName() === 'static') {
+            if ($functionOrMethod instanceof ReflectionMethod && $returnType->getName() === 'static') {
                 return new StaticType(
-                    TypeName::fromReflection($method->getDeclaringClass()),
+                    TypeName::fromReflection($functionOrMethod->getDeclaringClass()),
                     $returnType->allowsNull()
                 );
             }
@@ -46,9 +47,9 @@ final class ReflectionMapper
                 return new MixedType;
             }
 
-            if ($returnType->getName() === 'parent') {
+            if ($functionOrMethod instanceof ReflectionMethod && $returnType->getName() === 'parent') {
                 return ObjectType::fromName(
-                    $method->getDeclaringClass()->getParentClass()->getName(),
+                    $functionOrMethod->getDeclaringClass()->getParentClass()->getName(),
                     $returnType->allowsNull()
                 );
             }
@@ -64,9 +65,9 @@ final class ReflectionMapper
         $types = [];
 
         foreach ($returnType->getTypes() as $type) {
-            if ($type->getName() === 'self') {
+            if ($functionOrMethod instanceof ReflectionMethod && $type->getName() === 'self') {
                 $types[] = ObjectType::fromName(
-                    $method->getDeclaringClass()->getName(),
+                    $functionOrMethod->getDeclaringClass()->getName(),
                     false
                 );
             } else {
@@ -77,29 +78,29 @@ final class ReflectionMapper
         return new UnionType(...$types);
     }
 
-    private function reflectionMethodHasReturnType(ReflectionMethod $method): bool
+    private function hasReturnType(ReflectionFunctionAbstract $functionOrMethod): bool
     {
-        if ($method->hasReturnType()) {
+        if ($functionOrMethod->hasReturnType()) {
             return true;
         }
 
-        if (!method_exists($method, 'hasTentativeReturnType')) {
+        if (!method_exists($functionOrMethod, 'hasTentativeReturnType')) {
             return false;
         }
 
-        return $method->hasTentativeReturnType();
+        return $functionOrMethod->hasTentativeReturnType();
     }
 
-    private function reflectionMethodGetReturnType(ReflectionMethod $method): ?ReflectionType
+    private function returnType(ReflectionFunctionAbstract $functionOrMethod): ?ReflectionType
     {
-        if ($method->hasReturnType()) {
-            return $method->getReturnType();
+        if ($functionOrMethod->hasReturnType()) {
+            return $functionOrMethod->getReturnType();
         }
 
-        if (!method_exists($method, 'getTentativeReturnType')) {
+        if (!method_exists($functionOrMethod, 'getTentativeReturnType')) {
             return null;
         }
 
-        return $method->getTentativeReturnType();
+        return $functionOrMethod->getTentativeReturnType();
     }
 }
