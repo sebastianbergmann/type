@@ -45,7 +45,7 @@ abstract class Type
             return new NeverType;
         }
 
-        $typeName = strtolower(trim($typeName));
+        $typeName = trim($typeName);
         if (str_starts_with($typeName, '?')) {
             $allowsNull = true;
             $typeName   = substr($typeName, offset: 1);
@@ -76,8 +76,10 @@ abstract class Type
             static fn(string $typeName) => self::identifySingleTypeFromName($typeName, allowsNull: false),
             $typeNames
         );
-        if ($allowsNull) {
-            $types[] = new NullType();
+
+        $null = new NullType();
+        if ($allowsNull && !in_array($null, $types, strict: false)) {
+            $types[] = $null;
         }
 
         return new UnionType(...$types);
@@ -85,7 +87,7 @@ abstract class Type
 
     private static function identifySingleTypeFromName(string $typeName, bool $allowsNull): self
     {
-        return match ($typeName) {
+        return match (strtolower($typeName)) {
             'callable' => new CallableType($allowsNull),
             'false' => new FalseType(),
             'iterable' => new IterableType($allowsNull),
