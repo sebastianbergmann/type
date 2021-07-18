@@ -10,7 +10,6 @@
 namespace SebastianBergmann\Type;
 
 use ReflectionNamedType;
-use SebastianBergmann\Type\Type as AbstractType;
 use const PHP_VERSION;
 use function get_class;
 use function gettype;
