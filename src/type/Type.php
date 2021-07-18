@@ -88,13 +88,13 @@ abstract class Type
     private static function identifySingleTypeFromName(string $typeName, bool $allowsNull): self
     {
         return match (strtolower($typeName)) {
-            'callable' => new CallableType($allowsNull),
-            'false' => new FalseType(),
-            'iterable' => new IterableType($allowsNull),
-            'null' => new NullType(),
-            'object' => new GenericObjectType($allowsNull),
+            'callable'     => new CallableType($allowsNull),
+            'false'        => new FalseType(),
+            'iterable'     => new IterableType($allowsNull),
+            'null'         => new NullType(),
+            'object'       => new GenericObjectType($allowsNull),
             'unknown type' => new UnknownType(),
-            'void' => new VoidType(),
+            'void'         => new VoidType(),
             'array', 'bool', 'boolean', 'double', 'float', 'int', 'integer', 'real', 'resource', 'resource (closed)', 'string' => new SimpleType($typeName, $allowsNull),
             default => new ObjectType(TypeName::fromQualifiedName($typeName), $allowsNull),
         };
