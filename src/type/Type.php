@@ -9,6 +9,8 @@
  */
 namespace SebastianBergmann\Type;
 
+use ReflectionNamedType;
+use SebastianBergmann\Type\Type as AbstractType;
 use const PHP_VERSION;
 use function get_class;
 use function gettype;
@@ -38,20 +40,60 @@ abstract class Type
         return $type;
     }
 
-    public static function fromName(string $typeName, bool $allowsNull): self
+    public static function fromName(string $typeName, bool $allowsNull = false): self
     {
         if (version_compare(PHP_VERSION, '8.1.0-dev', '>=') && strtolower($typeName) === 'never') {
             return new NeverType;
         }
 
-        return match (strtolower($typeName)) {
-            'callable'     => new CallableType($allowsNull),
-            'false'        => new FalseType,
-            'iterable'     => new IterableType($allowsNull),
-            'null'         => new NullType,
-            'object'       => new GenericObjectType($allowsNull),
-            'unknown type' => new UnknownType,
-            'void'         => new VoidType,
+        $typeName = strtolower(trim($typeName));
+        if (str_starts_with($typeName, '?')) {
+            $allowsNull = true;
+            $typeName   = substr($typeName, offset: 1);
+        }
+
+        $unionTypeNames = array_map('trim', explode('|', $typeName));
+        if ($unionTypeNames !== [$typeName]) {
+            return self::buildUnionType($unionTypeNames, $allowsNull);
+        }
+
+        return self::identifySingleTypeFromName($typeName, $allowsNull);
+    }
+
+    public static function fromReflection(ReflectionNamedType $type): self
+    {
+        return self::fromName($type->getName(), allowsNull: $type->allowsNull());
+    }
+
+    /**
+     * @param array<string> $typeNames
+     * @param bool $allowsNull
+     *
+     * @return UnionType
+     */
+    private static function buildUnionType(array $typeNames, bool $allowsNull): UnionType
+    {
+        $types = array_map(
+            static fn(string $typeName) => self::identifySingleTypeFromName($typeName, allowsNull: false),
+            $typeNames
+        );
+        if ($allowsNull) {
+            $types[] = new NullType();
+        }
+
+        return new UnionType(...$types);
+    }
+
+    private static function identifySingleTypeFromName(string $typeName, bool $allowsNull): self
+    {
+        return match ($typeName) {
+            'callable' => new CallableType($allowsNull),
+            'false' => new FalseType(),
+            'iterable' => new IterableType($allowsNull),
+            'null' => new NullType(),
+            'object' => new GenericObjectType($allowsNull),
+            'unknown type' => new UnknownType(),
+            'void' => new VoidType(),
             'array', 'bool', 'boolean', 'double', 'float', 'int', 'integer', 'real', 'resource', 'resource (closed)', 'string' => new SimpleType($typeName, $allowsNull),
             default => new ObjectType(TypeName::fromQualifiedName($typeName), $allowsNull),
         };

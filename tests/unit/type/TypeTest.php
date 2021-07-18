@@ -59,10 +59,13 @@ final class TypeTest extends TestCase
     {
         return [
             '?void'             => ['void', true, new VoidType],
+            'int|null'          => ['int|null', true, new UnionType(new SimpleType('int', false), new NullType())],
+            'int|string|null'   => ['int|string|null', true, new UnionType(new SimpleType('int', false), new SimpleType('string', false), new NullType())],
             'void'              => ['void', false, new VoidType],
             '?null'             => ['null', true, new NullType],
             'null'              => ['null', true, new NullType],
             '?int'              => ['int', true, new SimpleType('int', true)],
+            'nullable int'      => ['?int', false, new UnionType(new SimpleType('int', false), new NullType())],
             '?integer'          => ['integer', true, new SimpleType('int', true)],
             'int'               => ['int', false, new SimpleType('int', false)],
             'bool'              => ['bool', false, new SimpleType('bool', false)],
