@@ -53,7 +53,7 @@ final class UnionTypeTest extends TestCase
     /**
      * @dataProvider assignableProvider
      */
-    public function testFoo(bool $expected, Type $type, UnionType $union): void
+    public function testAssignableTypesAreRecognized(bool $expected, Type $type, UnionType $union): void
     {
         $this->assertSame($expected, $union->isAssignable($type));
     }
