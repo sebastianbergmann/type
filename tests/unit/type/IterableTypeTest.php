@@ -89,6 +89,7 @@ final class IterableTypeTest extends TestCase
     {
         $this->assertFalse($this->type->isCallable());
         $this->assertFalse($this->type->isGenericObject());
+        $this->assertFalse($this->type->isIntersection());
         $this->assertTrue($this->type->isIterable());
         $this->assertFalse($this->type->isMixed());
         $this->assertFalse($this->type->isNever());

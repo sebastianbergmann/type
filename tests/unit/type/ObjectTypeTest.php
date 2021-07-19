@@ -137,6 +137,7 @@ final class ObjectTypeTest extends TestCase
     {
         $this->assertFalse($this->childClass->isCallable());
         $this->assertFalse($this->childClass->isGenericObject());
+        $this->assertFalse($this->childClass->isIntersection());
         $this->assertFalse($this->childClass->isIterable());
         $this->assertFalse($this->childClass->isMixed());
         $this->assertFalse($this->childClass->isNever());

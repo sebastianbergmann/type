@@ -11,6 +11,7 @@ namespace SebastianBergmann\Type;
 
 use function assert;
 use ReflectionFunctionAbstract;
+use ReflectionIntersectionType;
 use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionType;
@@ -26,7 +27,7 @@ final class ReflectionMapper
 
         $returnType = $this->returnType($functionOrMethod);
 
-        assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType);
+        assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType || $returnType instanceof ReflectionIntersectionType);
 
         if ($returnType instanceof ReflectionNamedType) {
             if ($functionOrMethod instanceof ReflectionMethod && $returnType->getName() === 'self') {
@@ -60,7 +61,7 @@ final class ReflectionMapper
             );
         }
 
-        assert($returnType instanceof ReflectionUnionType);
+        assert($returnType instanceof ReflectionUnionType || $returnType instanceof ReflectionIntersectionType);
 
         $types = [];
 
@@ -75,7 +76,11 @@ final class ReflectionMapper
             }
         }
 
-        return new UnionType(...$types);
+        if ($returnType instanceof ReflectionUnionType) {
+            return new UnionType(...$types);
+        }
+
+        return new IntersectionType(...$types);
     }
 
     private function hasReturnType(ReflectionFunctionAbstract $functionOrMethod): bool

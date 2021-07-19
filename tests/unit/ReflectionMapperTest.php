@@ -13,10 +13,13 @@ use PHPUnit\Framework\TestCase;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;
 use ReflectionMethod;
+use SebastianBergmann\Type\TestFixture\AnInterface;
+use SebastianBergmann\Type\TestFixture\AnotherInterface;
 use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareUnionReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatHaveStaticReturnTypes;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresIntersectionReturnType;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresNeverReturnType;
 use SebastianBergmann\Type\TestFixture\ParentClass;
 
@@ -25,6 +28,7 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
  *
  * @uses \SebastianBergmann\Type\FalseType
  * @uses \SebastianBergmann\Type\GenericObjectType
+ * @uses \SebastianBergmann\Type\IntersectionType
  * @uses \SebastianBergmann\Type\MixedType
  * @uses \SebastianBergmann\Type\NeverType
  * @uses \SebastianBergmann\Type\ObjectType
@@ -44,6 +48,17 @@ final class ReflectionMapperTest extends TestCase
     public function testMapsFromReturnType(string $expected, ReflectionFunctionAbstract $method): void
     {
         $this->assertSame($expected, (new ReflectionMapper)->fromReturnType($method)->name());
+    }
+
+    /**
+     * @requires PHP >= 8.1
+     */
+    public function testMapsFromIntersectionReturnType(): void
+    {
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresIntersectionReturnType::class, 'returnsAnInterfaceOrAnotherInterface'));
+
+        $this->assertInstanceOf(IntersectionType::class, $type);
+        $this->assertSame(AnInterface::class . '&' . AnotherInterface::class, $type->name());
     }
 
     public function testMapsFromUnionReturnType(): void

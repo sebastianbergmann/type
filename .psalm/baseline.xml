@@ -9,9 +9,19 @@
       <code>$functionOrMethod-&gt;getTentativeReturnType()</code>
       <code>$functionOrMethod-&gt;hasTentativeReturnType()</code>
     </MixedReturnStatement>
-    <RedundantConditionGivenDocblockType occurrences="1">
-      <code>assert($returnType instanceof ReflectionUnionType)</code>
-    </RedundantConditionGivenDocblockType>
+    <TypeDoesNotContainType occurrences="1">
+      <code>assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType || $returnType instanceof ReflectionIntersectionType)</code>
+    </TypeDoesNotContainType>
+    <UndefinedClass occurrences="3">
+      <code>$returnType</code>
+      <code>ReflectionIntersectionType</code>
+      <code>ReflectionIntersectionType</code>
+    </UndefinedClass>
+  </file>
+  <file src="src/type/IntersectionType.php">
+    <MixedPropertyTypeCoercion occurrences="1">
+      <code>$types</code>
+    </MixedPropertyTypeCoercion>
   </file>
   <file src="src/type/SimpleType.php">
     <MissingParamType occurrences="1">

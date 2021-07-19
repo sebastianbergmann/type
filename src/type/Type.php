@@ -77,6 +77,11 @@ abstract class Type
         return false;
     }
 
+    public function isIntersection(): bool
+    {
+        return false;
+    }
+
     public function isIterable(): bool
     {
         return false;

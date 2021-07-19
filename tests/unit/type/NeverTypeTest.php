@@ -73,6 +73,7 @@ final class NeverTypeTest extends TestCase
 
         $this->assertFalse($type->isCallable());
         $this->assertFalse($type->isGenericObject());
+        $this->assertFalse($type->isIntersection());
         $this->assertFalse($type->isIterable());
         $this->assertFalse($type->isMixed());
         $this->assertTrue($type->isNever());

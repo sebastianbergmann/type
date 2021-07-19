@@ -79,6 +79,7 @@ final class GenericObjectTypeTest extends TestCase
     {
         $this->assertFalse($this->type->isCallable());
         $this->assertTrue($this->type->isGenericObject());
+        $this->assertFalse($this->type->isIntersection());
         $this->assertFalse($this->type->isIterable());
         $this->assertFalse($this->type->isMixed());
         $this->assertFalse($this->type->isNever());
