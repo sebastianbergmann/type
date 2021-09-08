@@ -23,6 +23,11 @@
       <code>$types</code>
     </MixedPropertyTypeCoercion>
   </file>
+  <file src="src/type/ObjectType.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>$this-&gt;className-&gt;qualifiedName()</code>
+    </ArgumentTypeCoercion>
+  </file>
   <file src="src/type/SimpleType.php">
     <MissingParamType occurrences="1">
       <code>$value</code>
@@ -30,6 +35,11 @@
     <MissingReturnType occurrences="1">
       <code>value</code>
     </MissingReturnType>
+  </file>
+  <file src="src/type/StaticType.php">
+    <ArgumentTypeCoercion occurrences="1">
+      <code>$this-&gt;className-&gt;qualifiedName()</code>
+    </ArgumentTypeCoercion>
   </file>
   <file src="src/type/Type.php">
     <MixedArgument occurrences="1">
