@@ -108,6 +108,26 @@ final class ObjectTypeTest extends TestCase
         $this->assertFalse($someClass->isAssignable(Type::fromValue(null, true)));
     }
 
+    public function testClassAliasIsAssignableToItsClass(): void
+    {
+        $someClass = new ObjectType(
+            TypeName::fromQualifiedName('Parent_Class_Alias'),
+            false
+        );
+
+        $this->assertTrue($someClass->isAssignable($this->parentClass));
+    }
+
+    public function testClassIsAssignableToItsAliasClass()
+    {
+        $someClass = new ObjectType(
+            TypeName::fromQualifiedName('Parent_Class_Alias'),
+            false
+        );
+
+        $this->assertTrue($this->parentClass->isAssignable($someClass));
+    }
+
     public function testPreservesNullNotAllowed(): void
     {
         $someClass = new ObjectType(

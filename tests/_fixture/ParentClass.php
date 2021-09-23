@@ -9,9 +9,13 @@
  */
 namespace SebastianBergmann\Type\TestFixture;
 
+use function class_alias;
+
 class ParentClass
 {
     public function foo(): void
     {
     }
 }
+
+class_alias(ParentClass::class, 'Parent_Class_Alias');

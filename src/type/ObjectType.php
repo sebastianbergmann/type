@@ -9,6 +9,8 @@
  */
 namespace SebastianBergmann\Type;
 
+use ReflectionClass;
+use ReflectionException;
 use function is_subclass_of;
 use function strcasecmp;
 
@@ -37,6 +39,12 @@ final class ObjectType extends Type
 
             if (is_subclass_of($other->className->qualifiedName(), $this->className->qualifiedName(), true)) {
                 return true;
+            }
+
+            if ($this->className->isClassAlias() || $other->className->isClassAlias()) {
+                if (0 === strcasecmp($this->className->getUnaliasedClassName(), $other->className->getUnaliasedClassName())) {
+                    return true;
+                }
             }
         }
 

@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Type;
 
+use ReflectionException;
 use function array_pop;
 use function explode;
 use function implode;
@@ -73,5 +74,23 @@ final class TypeName
     public function isNamespaced(): bool
     {
         return $this->namespaceName !== null;
+    }
+
+    public function isClassAlias(): bool
+    {
+        try {
+            return $this->qualifiedName() !== $this->getUnaliasedClassName();
+        } catch (ReflectionException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * @throws ReflectionException
+     * @return string
+     */
+    public function getUnaliasedClassName(): string
+    {
+        return (new ReflectionClass($this->qualifiedName()))->name;
     }
 }
