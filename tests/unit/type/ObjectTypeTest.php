@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Type;
 
+use function class_exists;
 use function strtolower;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ChildClass;
@@ -67,6 +68,8 @@ final class ObjectTypeTest extends TestCase
 
     public function testClassFromOneNamespaceIsNotAssignableToClassInOtherNamespace(): void
     {
+        class_exists(\someNamespaceA\NamespacedClass::class, true);
+        class_exists(\someNamespaceB\NamespacedClass::class, true);
         $classFromNamespaceA = new ObjectType(
             TypeName::fromQualifiedName(\someNamespaceA\NamespacedClass::class),
             false

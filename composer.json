@@ -40,7 +40,9 @@
         ],
         "files": [
             "tests/_fixture/callback_function.php",
-            "tests/_fixture/functions_that_declare_return_types.php"
+            "tests/_fixture/functions_that_declare_return_types.php",
+            "vendor/phpunit/phpunit/tests/_files/namespace/someNamespaceA/NamespacedClass.php",
+            "vendor/phpunit/phpunit/tests/_files/namespace/someNamespaceB/NamespacedClass.php"
         ]
     },
     "extra": {
