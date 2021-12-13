@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.x-dev@">
   <file src="src/ReflectionMapper.php">
+    <MixedArgument occurrences="1">
+      <code>$type-&gt;getName()</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$type</code>
+    </MixedAssignment>
     <MixedInferredReturnType occurrences="2">
       <code>?ReflectionType</code>
       <code>bool</code>
     </MixedInferredReturnType>
+    <MixedMethodCall occurrences="2">
+      <code>getName</code>
+      <code>getName</code>
+    </MixedMethodCall>
     <MixedReturnStatement occurrences="2">
       <code>$functionOrMethod-&gt;getTentativeReturnType()</code>
       <code>$functionOrMethod-&gt;hasTentativeReturnType()</code>
     </MixedReturnStatement>
-    <TypeDoesNotContainType occurrences="1">
-      <code>assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType || $returnType instanceof ReflectionIntersectionType)</code>
-    </TypeDoesNotContainType>
-    <UndefinedClass occurrences="3">
-      <code>$returnType</code>
-      <code>ReflectionIntersectionType</code>
-      <code>ReflectionIntersectionType</code>
-    </UndefinedClass>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>$returnType instanceof ReflectionIntersectionType</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/type/IntersectionType.php">
     <MixedPropertyTypeCoercion occurrences="1">
