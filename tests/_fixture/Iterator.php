@@ -11,20 +11,23 @@ namespace SebastianBergmann\Type\TestFixture;
 
 final class Iterator implements \Iterator
 {
-    public function current(): void
+    public function current(): mixed
     {
+        return 'bar';
     }
 
     public function next(): void
     {
     }
 
-    public function key(): void
+    public function key(): mixed
     {
+        return 'foo';
     }
 
-    public function valid(): void
+    public function valid(): bool
     {
+        return false;
     }
 
     public function rewind(): void
