@@ -11,7 +11,7 @@ namespace SebastianBergmann\Type\TestFixture;
 
 final class Iterator implements \Iterator
 {
-    public function current(): void
+    public function current()/*: mixed*/
     {
     }
 
@@ -19,12 +19,13 @@ final class Iterator implements \Iterator
     {
     }
 
-    public function key(): void
+    public function key()/*: mixed*/
     {
     }
 
-    public function valid(): void
+    public function valid(): bool
     {
+        return false;
     }
 
     public function rewind(): void
