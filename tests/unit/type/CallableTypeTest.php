@@ -24,7 +24,10 @@ use SebastianBergmann\Type\TestFixture\ClassWithInvokeMethod;
  */
 final class CallableTypeTest extends TestCase
 {
-    private CallableType $type;
+    /**
+     * @var CallableType
+     */
+    private $type;
 
     protected function setUp(): void
     {

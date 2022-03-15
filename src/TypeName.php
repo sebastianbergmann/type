@@ -17,9 +17,15 @@ use ReflectionClass;
 
 final class TypeName
 {
-    private ?string $namespaceName;
+    /**
+     * @var ?string
+     */
+    private $namespaceName;
 
-    private string $simpleName;
+    /**
+     * @var string
+     */
+    private $simpleName;
 
     public static function fromQualifiedName(string $fullClassName): self
     {

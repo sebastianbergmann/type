@@ -13,11 +13,20 @@ use function strtolower;
 
 final class SimpleType extends Type
 {
-    private string $name;
+    /**
+     * @var string
+     */
+    private $name;
 
-    private bool $allowsNull;
+    /**
+     * @var bool
+     */
+    private $allowsNull;
 
-    private mixed $value;
+    /**
+     * @var mixed
+     */
+    private $value;
 
     public function __construct(string $name, bool $nullable, $value = null)
     {
@@ -67,12 +76,22 @@ final class SimpleType extends Type
     {
         $name = strtolower($name);
 
-        return match ($name) {
-            'boolean' => 'bool',
-            'real', 'double' => 'float',
-            'integer' => 'int',
-            '[]'      => 'array',
-            default   => $name,
-        };
+        switch ($name) {
+            case 'boolean':
+                return 'bool';
+
+            case 'real':
+            case 'double':
+                return 'float';
+
+            case 'integer':
+                return 'int';
+
+            case '[]':
+                return 'array';
+
+            default:
+                return $name;
+        }
     }
 }

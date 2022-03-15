@@ -17,7 +17,6 @@ use function function_exists;
 use function is_array;
 use function is_object;
 use function is_string;
-use function str_contains;
 use Closure;
 use ReflectionClass;
 use ReflectionException;
@@ -25,7 +24,10 @@ use ReflectionObject;
 
 final class CallableType extends Type
 {
-    private bool $allowsNull;
+    /**
+     * @var bool
+     */
+    private $allowsNull;
 
     public function __construct(bool $nullable)
     {
@@ -154,7 +156,7 @@ final class CallableType extends Type
         }
 
         if (is_string($type->value())) {
-            if (!str_contains($type->value(), '::')) {
+            if (strpos($type->value(), '::') === false) {
                 return false;
             }
 
