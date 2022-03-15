@@ -23,15 +23,9 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
  */
 final class ObjectTypeTest extends TestCase
 {
-    /**
-     * @var ObjectType
-     */
-    private $childClass;
+    private ObjectType $childClass;
 
-    /**
-     * @var ObjectType
-     */
-    private $parentClass;
+    private ObjectType $parentClass;
 
     protected function setUp(): void
     {

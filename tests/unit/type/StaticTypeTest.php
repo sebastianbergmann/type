@@ -92,9 +92,6 @@ final class StaticTypeTest extends TestCase
         );
     }
 
-    /**
-     * @requires PHP >= 8.0
-     */
     public function testSubTypeIsAssignable(): void
     {
         $type = new StaticType(

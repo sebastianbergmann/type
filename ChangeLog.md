@@ -2,17 +2,10 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [4.0.0] - 2022-MM-DD
-
-### Removed
-
-* This component is no longer supported on PHP 7.3 and PHP 7.4
-
-## [3.0.0] - 2022-MM-DD
+## [3.0.0] - 2021-MM-DD
 
 ### Added
 
-* Support for intersection types introduced in PHP 8.1
 * Support for the `never` return type introduced in PHP 8.1
 * Added `Type::isCallable()`, `Type::isGenericObject()`, `Type::isIterable()`, `Type::isMixed()`, `Type::isNever()`, `Type::isNull()`, `Type::isObject()`, `Type::isSimple()`, `Type::isStatic()`, `Type::isUnion()`, `Type::isUnknown()`, and `Type::isVoid()`
 
@@ -26,6 +19,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Removed `TypeName::getNamespaceName()` (use `TypeName::namespaceName()` instead)
 * Removed `TypeName::getSimpleName()` (use `TypeName::simpleName()` instead)
 * Removed `TypeName::getQualifiedName()` (use `TypeName::qualifiedName()` instead)
+* This component is no longer supported on PHP 7.3 and PHP 7.4
 
 ## [2.3.4] - 2021-06-15
 

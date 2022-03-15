@@ -22,10 +22,7 @@ use SebastianBergmann\Type\TestFixture\Iterator;
  */
 final class IterableTypeTest extends TestCase
 {
-    /**
-     * @var IterableType
-     */
-    private $type;
+    private IterableType $type;
 
     protected function setUp(): void
     {
