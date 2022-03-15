@@ -2,10 +2,17 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [3.0.0] - 2021-MM-DD
+## [4.0.0] - 2022-MM-DD
+
+### Removed
+
+* This component is no longer supported on PHP 7.3 and PHP 7.4
+
+## [3.0.0] - 2022-MM-DD
 
 ### Added
 
+* Support for intersection types introduced in PHP 8.1
 * Support for the `never` return type introduced in PHP 8.1
 * Added `Type::isCallable()`, `Type::isGenericObject()`, `Type::isIterable()`, `Type::isMixed()`, `Type::isNever()`, `Type::isNull()`, `Type::isObject()`, `Type::isSimple()`, `Type::isStatic()`, `Type::isUnion()`, `Type::isUnknown()`, and `Type::isVoid()`
 
@@ -19,7 +26,6 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 * Removed `TypeName::getNamespaceName()` (use `TypeName::namespaceName()` instead)
 * Removed `TypeName::getSimpleName()` (use `TypeName::simpleName()` instead)
 * Removed `TypeName::getQualifiedName()` (use `TypeName::qualifiedName()` instead)
-* This component is no longer supported on PHP 7.3 and PHP 7.4
 
 ## [2.3.4] - 2021-06-15
 
@@ -124,7 +130,8 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
-[3.0.0]: https://github.com/sebastianbergmann/type/compare/2.3.3...master
+[4.0.0]: https://github.com/sebastianbergmann/type/compare/3.0...master
+[3.0.0]: https://github.com/sebastianbergmann/type/compare/2.3.3...3.0
 [2.3.4]: https://github.com/sebastianbergmann/type/compare/ca39369c41313ed12c071ed38ecda8fcdb248859...2.3.4
 [2.3.3]: https://github.com/sebastianbergmann/type/compare/2.3.2...ca39369c41313ed12c071ed38ecda8fcdb248859
 [2.3.2]: https://github.com/sebastianbergmann/type/compare/2.3.1...2.3.2
