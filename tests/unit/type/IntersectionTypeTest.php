@@ -29,7 +29,7 @@ final class IntersectionTypeTest extends TestCase
     /**
      * @psalm-var AnInterface&AnotherInterface
      */
-    private object $type;
+    private $type;
 
     protected function setUp(): void
     {

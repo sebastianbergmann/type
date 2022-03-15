@@ -17,7 +17,10 @@ use PHPUnit\Framework\TestCase;
  */
 final class NullTypeTest extends TestCase
 {
-    private NullType $type;
+    /**
+     * @var NullType
+     */
+    private $type;
 
     protected function setUp(): void
     {

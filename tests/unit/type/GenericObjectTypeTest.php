@@ -22,7 +22,10 @@ use stdClass;
  */
 final class GenericObjectTypeTest extends TestCase
 {
-    private GenericObjectType $type;
+    /**
+     * @var GenericObjectType
+     */
+    private $type;
 
     protected function setUp(): void
     {

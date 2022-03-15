@@ -20,7 +20,7 @@ final class IntersectionType extends Type
     /**
      * @psalm-var list<Type>
      */
-    private array $types;
+    private $types;
 
     /**
      * @throws RuntimeException
