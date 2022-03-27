@@ -19,8 +19,10 @@ use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareUnionReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatHaveStaticReturnTypes;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresFalseReturnType;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresIntersectionReturnType;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresNeverReturnType;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresNullReturnType;
 use SebastianBergmann\Type\TestFixture\ParentClass;
 
 /**
@@ -160,6 +162,28 @@ final class ReflectionMapperTest extends TestCase
 
         $this->assertInstanceOf(NeverType::class, $type);
         $this->assertSame('never', $type->name());
+    }
+
+    /**
+     * @requires PHP >= 8.2
+     */
+    public function testMapsFromFalseReturnType(): void
+    {
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresFalseReturnType::class, 'falseReturnType'));
+
+        $this->assertInstanceOf(FalseType::class, $type);
+        $this->assertSame('false', $type->name());
+    }
+
+    /**
+     * @requires PHP >= 8.2
+     */
+    public function testMapsFromNullReturnType(): void
+    {
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNullReturnType::class, 'nullReturnType'));
+
+        $this->assertInstanceOf(NullType::class, $type);
+        $this->assertSame('null', $type->name());
     }
 
     public function typeProvider(): array
