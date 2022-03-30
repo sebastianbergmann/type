@@ -1,32 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.x-dev@">
   <file src="src/ReflectionMapper.php">
-    <MixedArgument occurrences="1">
-      <code>$type-&gt;getName()</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="1">
-      <code>$type</code>
-    </MixedAssignment>
-    <MixedInferredReturnType occurrences="2">
-      <code>?ReflectionType</code>
-      <code>bool</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall occurrences="2">
+    <PossiblyUndefinedMethod occurrences="2">
       <code>getName</code>
       <code>getName</code>
-    </MixedMethodCall>
-    <MixedReturnStatement occurrences="2">
-      <code>$functionOrMethod-&gt;getTentativeReturnType()</code>
-      <code>$functionOrMethod-&gt;hasTentativeReturnType()</code>
-    </MixedReturnStatement>
+    </PossiblyUndefinedMethod>
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>$returnType instanceof ReflectionIntersectionType</code>
     </RedundantConditionGivenDocblockType>
-  </file>
-  <file src="src/type/IntersectionType.php">
-    <MixedPropertyTypeCoercion occurrences="1">
-      <code>$types</code>
-    </MixedPropertyTypeCoercion>
   </file>
   <file src="src/type/ObjectType.php">
     <ArgumentTypeCoercion occurrences="1">
@@ -45,15 +26,5 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>$this-&gt;className-&gt;qualifiedName()</code>
     </ArgumentTypeCoercion>
-  </file>
-  <file src="src/type/Type.php">
-    <MixedArgument occurrences="1">
-      <code>$value</code>
-    </MixedArgument>
-  </file>
-  <file src="src/type/UnionType.php">
-    <MixedPropertyTypeCoercion occurrences="1">
-      <code>$types</code>
-    </MixedPropertyTypeCoercion>
   </file>
 </files>
