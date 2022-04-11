@@ -148,8 +148,6 @@ final class ReflectionMapperTest extends TestCase
      */
     public function testMapsFromFalseReturnType(): void
     {
-        $this->markTestSkipped('https://github.com/php/php-src/pull/7546 has not been merged yet');
-
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresFalseReturnType::class, 'falseReturnType'));
 
         $this->assertInstanceOf(FalseType::class, $type);
@@ -161,8 +159,6 @@ final class ReflectionMapperTest extends TestCase
      */
     public function testMapsFromNullReturnType(): void
     {
-        $this->markTestSkipped('https://github.com/php/php-src/pull/7546 has not been merged yet');
-
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNullReturnType::class, 'nullReturnType'));
 
         $this->assertInstanceOf(NullType::class, $type);
