@@ -162,4 +162,11 @@ final class SimpleTypeTest extends TestCase
         $this->assertFalse($type->isUnknown());
         $this->assertFalse($type->isVoid());
     }
+
+    public function testNormalizesName(): void
+    {
+        $type = new SimpleType('BOOLEAN', false);
+
+        $this->assertSame('bool', $type->name());
+    }
 }
