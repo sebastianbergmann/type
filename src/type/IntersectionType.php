@@ -24,10 +24,9 @@ final class IntersectionType extends Type
     /**
      * @throws RuntimeException
      */
-    public function __construct(Type ...$types)
+    public function __construct(ObjectType ...$types)
     {
         $this->ensureMinimumOfTwoTypes(...$types);
-        $this->ensureOnlyValidTypes(...$types);
         $this->ensureNoDuplicateTypes(...$types);
 
         $this->types = $types;
@@ -75,20 +74,6 @@ final class IntersectionType extends Type
             throw new RuntimeException(
                 'An intersection type must be composed of at least two types'
             );
-        }
-    }
-
-    /**
-     * @throws RuntimeException
-     */
-    private function ensureOnlyValidTypes(Type ...$types): void
-    {
-        foreach ($types as $type) {
-            if (!$type->isObject()) {
-                throw new RuntimeException(
-                    'An intersection type can only be composed of interfaces and classes'
-                );
-            }
         }
     }
 

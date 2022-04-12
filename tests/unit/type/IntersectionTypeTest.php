@@ -115,16 +115,6 @@ final class IntersectionTypeTest extends TestCase
         new IntersectionType;
     }
 
-    public function testCanOnlyBeCreatedForInterfacesAndClasses(): void
-    {
-        $this->expectException(RuntimeException::class);
-
-        new IntersectionType(
-            Type::fromValue(false, false),
-            Type::fromValue('string', false),
-        );
-    }
-
     public function testMustNotContainDuplicateTypes(): void
     {
         $this->expectException(RuntimeException::class);
