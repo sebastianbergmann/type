@@ -27,8 +27,6 @@ final class ReflectionMapper
 
         $returnType = $this->returnType($functionOrMethod);
 
-        assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType || $returnType instanceof ReflectionIntersectionType);
-
         if ($returnType instanceof ReflectionNamedType) {
             if ($functionOrMethod instanceof ReflectionMethod && $returnType->getName() === 'self') {
                 return ObjectType::fromName(
@@ -60,6 +58,8 @@ final class ReflectionMapper
                 $returnType->allowsNull()
             );
         }
+
+        assert($returnType instanceof ReflectionUnionType || $returnType instanceof ReflectionIntersectionType);
 
         $types = [];
 
