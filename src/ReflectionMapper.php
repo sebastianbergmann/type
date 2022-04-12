@@ -61,8 +61,6 @@ final class ReflectionMapper
             );
         }
 
-        assert($returnType instanceof ReflectionUnionType || $returnType instanceof ReflectionIntersectionType);
-
         $types = [];
 
         foreach ($returnType->getTypes() as $type) {
