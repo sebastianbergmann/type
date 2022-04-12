@@ -52,6 +52,7 @@ final class IntersectionType extends Type
 
         sort($types);
 
+        /* @noinspection ImplodeMissUseInspection */
         return implode('&', $types);
     }
 
