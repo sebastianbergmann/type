@@ -80,6 +80,7 @@ final class TypeTest extends TestCase
             '?callable'         => ['callable', true, new CallableType(true)],
             'iterable'          => ['iterable', false, new IterableType(false)],
             '?iterable'         => ['iterable', true, new IterableType(true)],
+            'mixed'             => ['mixed', false, new MixedType],
         ];
     }
 
