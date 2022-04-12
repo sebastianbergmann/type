@@ -11,6 +11,7 @@ namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
@@ -20,6 +21,7 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(CallableType::class)]
 #[UsesClass(GenericObjectType::class)]
 #[UsesClass(SimpleType::class)]
+#[Small]
 final class MixedTypeTest extends TestCase
 {
     public function testHasName(): void

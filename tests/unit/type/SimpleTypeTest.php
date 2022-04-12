@@ -11,6 +11,7 @@ namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -22,6 +23,7 @@ use stdClass;
 #[UsesClass(TypeName::class)]
 #[UsesClass(UnknownType::class)]
 #[UsesClass(VoidType::class)]
+#[Small]
 final class SimpleTypeTest extends TestCase
 {
     public function testCanBeBool(): void

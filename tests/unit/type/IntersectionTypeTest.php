@@ -11,6 +11,7 @@ namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\AnInterface;
@@ -22,6 +23,7 @@ use SebastianBergmann\Type\TestFixture\ClassImplementingAnInterfaceAndAnotherInt
 #[UsesClass(ObjectType::class)]
 #[UsesClass(SimpleType::class)]
 #[UsesClass(TypeName::class)]
+#[Small]
 final class IntersectionTypeTest extends TestCase
 {
     /**

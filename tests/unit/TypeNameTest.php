@@ -10,10 +10,12 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 #[CoversClass(TypeName::class)]
+#[Small]
 final class TypeNameTest extends TestCase
 {
     public function testFromReflection(): void

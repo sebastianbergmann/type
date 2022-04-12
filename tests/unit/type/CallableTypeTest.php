@@ -11,6 +11,7 @@ namespace SebastianBergmann\Type;
 
 use Closure;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ClassWithCallbackMethods;
@@ -21,6 +22,7 @@ use SebastianBergmann\Type\TestFixture\ClassWithInvokeMethod;
 #[UsesClass(ObjectType::class)]
 #[UsesClass(SimpleType::class)]
 #[UsesClass(TypeName::class)]
+#[Small]
 final class CallableTypeTest extends TestCase
 {
     private CallableType $type;

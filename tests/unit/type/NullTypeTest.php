@@ -11,10 +11,12 @@ namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(NullType::class)]
 #[CoversClass(Type::class)]
+#[Small]
 final class NullTypeTest extends TestCase
 {
     private NullType $type;

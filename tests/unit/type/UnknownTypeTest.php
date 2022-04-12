@@ -11,10 +11,12 @@ namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(UnknownType::class)]
 #[CoversClass(Type::class)]
+#[Small]
 final class UnknownTypeTest extends TestCase
 {
     private UnknownType $type;

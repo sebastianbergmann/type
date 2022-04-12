@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -19,6 +20,7 @@ use stdClass;
 #[UsesClass(ObjectType::class)]
 #[UsesClass(SimpleType::class)]
 #[UsesClass(TypeName::class)]
+#[Small]
 final class GenericObjectTypeTest extends TestCase
 {
     private GenericObjectType $type;

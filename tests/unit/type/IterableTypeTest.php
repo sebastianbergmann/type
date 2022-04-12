@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\Iterator;
@@ -19,6 +20,7 @@ use SebastianBergmann\Type\TestFixture\Iterator;
 #[UsesClass(ObjectType::class)]
 #[UsesClass(SimpleType::class)]
 #[UsesClass(TypeName::class)]
+#[Small]
 final class IterableTypeTest extends TestCase
 {
     private IterableType $type;

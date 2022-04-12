@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ChildClassThatExtendsClassWithMethodThatHasStaticReturnType;
@@ -20,6 +21,7 @@ use stdClass;
 #[CoversClass(Type::class)]
 #[UsesClass(ObjectType::class)]
 #[UsesClass(TypeName::class)]
+#[Small]
 final class StaticTypeTest extends TestCase
 {
     public function testHasName(): void

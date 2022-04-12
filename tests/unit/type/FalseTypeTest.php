@@ -11,12 +11,14 @@ namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
 #[CoversClass(FalseType::class)]
 #[CoversClass(Type::class)]
 #[UsesClass(SimpleType::class)]
+#[Small]
 final class FalseTypeTest extends TestCase
 {
     public function testHasName(): void

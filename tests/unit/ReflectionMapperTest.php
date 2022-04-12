@@ -12,6 +12,7 @@ namespace SebastianBergmann\Type;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\RequiresPhp;
+use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionFunction;
@@ -44,6 +45,7 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
 #[UsesClass(UnionType::class)]
 #[UsesClass(UnknownType::class)]
 #[UsesClass(VoidType::class)]
+#[Small]
 final class ReflectionMapperTest extends TestCase
 {
     #[DataProvider('types')]
