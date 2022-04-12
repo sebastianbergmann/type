@@ -57,20 +57,22 @@ final class IntersectionTypeTest extends TestCase
         $this->assertFalse($this->type->isVoid());
     }
 
-    public function testHasName(): void
-    {
-        $this->assertSame(
-            AnInterface::class . '&' . AnotherInterface::class,
-            $this->type->name()
-        );
-    }
-
     public function testCanBeRepresentedAsString(): void
     {
         $this->assertSame(
             AnInterface::class . '&' . AnotherInterface::class,
             $this->type->asString()
         );
+    }
+
+    public function testTypesOfIntersectionAreSortedByNameInStringRepresentation(): void
+    {
+        $type = new IntersectionType(
+            Type::fromName(AnotherInterface::class, false),
+            Type::fromName(AnInterface::class, false)
+        );
+
+        $this->assertSame(AnInterface::class . '&' . AnotherInterface::class, $type->asString());
     }
 
     #[DataProvider('assignableTypes')]

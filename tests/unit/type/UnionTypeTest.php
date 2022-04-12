@@ -32,6 +32,16 @@ final class UnionTypeTest extends TestCase
         $this->assertSame('bool|int', $type->asString());
     }
 
+    public function testTypesOfUnionAreSortedByNameInStringRepresentation(): void
+    {
+        $type = new UnionType(
+            Type::fromName('int', false),
+            Type::fromName('bool', false)
+        );
+
+        $this->assertSame('bool|int', $type->asString());
+    }
+
     public function testMayAllowNull(): void
     {
         $type = new UnionType(
