@@ -19,7 +19,6 @@ use stdClass;
 #[CoversClass(SimpleType::class)]
 #[CoversClass(Type::class)]
 #[UsesClass(FalseType::class)]
-#[UsesClass(NullType::class)]
 #[UsesClass(ObjectType::class)]
 #[UsesClass(TypeName::class)]
 #[UsesClass(UnknownType::class)]
