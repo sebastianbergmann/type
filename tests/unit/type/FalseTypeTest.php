@@ -62,7 +62,7 @@ final class FalseTypeTest extends TestCase
         ];
     }
 
-    public function testNotAllowNull(): void
+    public function testDoesNotAllowNull(): void
     {
         $type = new FalseType;
 
