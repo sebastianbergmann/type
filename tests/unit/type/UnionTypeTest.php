@@ -9,15 +9,15 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \SebastianBergmann\Type\Type
- * @covers \SebastianBergmann\Type\UnionType
- *
- * @uses \SebastianBergmann\Type\NullType
- * @uses \SebastianBergmann\Type\SimpleType
- */
+#[CoversClass(UnionType::class)]
+#[CoversClass(Type::class)]
+#[UsesClass(NullType::class)]
+#[UsesClass(SimpleType::class)]
 final class UnionTypeTest extends TestCase
 {
     public function testCanBeRepresentedAsString(): void
@@ -50,15 +50,13 @@ final class UnionTypeTest extends TestCase
         $this->assertFalse($type->allowsNull());
     }
 
-    /**
-     * @dataProvider assignableProvider
-     */
+    #[DataProvider('assignableTypes')]
     public function testAssignableTypesAreRecognized(bool $expected, Type $type, UnionType $union): void
     {
         $this->assertSame($expected, $union->isAssignable($type));
     }
 
-    public function assignableProvider(): array
+    public function assignableTypes(): array
     {
         return [
             [

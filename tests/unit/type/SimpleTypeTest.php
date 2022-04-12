@@ -9,20 +9,19 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-/**
- * @covers \SebastianBergmann\Type\SimpleType
- * @covers \SebastianBergmann\Type\Type
- *
- * @uses \SebastianBergmann\Type\FalseType
- * @uses \SebastianBergmann\Type\ObjectType
- * @uses \SebastianBergmann\Type\Type
- * @uses \SebastianBergmann\Type\TypeName
- * @uses \SebastianBergmann\Type\UnknownType
- * @uses \SebastianBergmann\Type\VoidType
- */
+#[CoversClass(SimpleType::class)]
+#[CoversClass(Type::class)]
+#[UsesClass(FalseType::class)]
+#[UsesClass(ObjectType::class)]
+#[UsesClass(TypeName::class)]
+#[UsesClass(UnknownType::class)]
+#[UsesClass(VoidType::class)]
 final class SimpleTypeTest extends TestCase
 {
     public function testCanBeBool(): void
@@ -102,9 +101,7 @@ final class SimpleTypeTest extends TestCase
         $this->assertFalse($type->allowsNull());
     }
 
-    /**
-     * @dataProvider assignablePairs
-     */
+    #[DataProvider('assignablePairs')]
     public function testIsAssignable(Type $assignTo, Type $assignedType): void
     {
         $this->assertTrue($assignTo->isAssignable($assignedType));
@@ -122,9 +119,7 @@ final class SimpleTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider notAssignablePairs
-     */
+    #[DataProvider('notAssignablePairs')]
     public function testIsNotAssignable(Type $assignTo, Type $assignedType): void
     {
         $this->assertFalse($assignTo->isAssignable($assignedType));

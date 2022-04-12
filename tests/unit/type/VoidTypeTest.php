@@ -9,12 +9,12 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \SebastianBergmann\Type\Type
- * @covers \SebastianBergmann\Type\VoidType
- */
+#[CoversClass(VoidType::class)]
+#[CoversClass(Type::class)]
 final class VoidTypeTest extends TestCase
 {
     public function testHasName(): void
@@ -22,9 +22,7 @@ final class VoidTypeTest extends TestCase
         $this->assertSame('void', (new VoidType)->name());
     }
 
-    /**
-     * @dataProvider assignableTypes
-     */
+    #[DataProvider('assignableTypes')]
     public function testIsAssignable(Type $assignableType): void
     {
         $type = new VoidType;
@@ -39,9 +37,7 @@ final class VoidTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider notAssignableTypes
-     */
+    #[DataProvider('notAssignableTypes')]
     public function testIsNotAssignable(Type $assignableType): void
     {
         $type = new VoidType;

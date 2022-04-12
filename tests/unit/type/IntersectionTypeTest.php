@@ -9,19 +9,19 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\AnInterface;
 use SebastianBergmann\Type\TestFixture\AnotherInterface;
 use SebastianBergmann\Type\TestFixture\ClassImplementingAnInterfaceAndAnotherInterface;
 
-/**
- * @covers \SebastianBergmann\Type\IntersectionType
- * @covers \SebastianBergmann\Type\Type
- *
- * @uses \SebastianBergmann\Type\ObjectType
- * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\TypeName
- */
+#[CoversClass(IntersectionType::class)]
+#[CoversClass(Type::class)]
+#[UsesClass(ObjectType::class)]
+#[UsesClass(SimpleType::class)]
+#[UsesClass(TypeName::class)]
 final class IntersectionTypeTest extends TestCase
 {
     /**
@@ -70,15 +70,13 @@ final class IntersectionTypeTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider assignableProvider
-     */
+    #[DataProvider('assignableTypes')]
     public function testAssignableTypesAreRecognized(bool $expected, Type $type, IntersectionType $intersection): void
     {
         $this->assertSame($expected, $intersection->isAssignable($type));
     }
 
-    public function assignableProvider(): array
+    public function assignableTypes(): array
     {
         return [
             [

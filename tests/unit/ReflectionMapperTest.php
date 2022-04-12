@@ -9,6 +9,10 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\RequiresPhp;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionFunction;
 use ReflectionFunctionAbstract;
@@ -25,29 +29,24 @@ use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresNeverReturnTyp
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresNullReturnType;
 use SebastianBergmann\Type\TestFixture\ParentClass;
 
-/**
- * @covers \SebastianBergmann\Type\ReflectionMapper
- *
- * @uses \SebastianBergmann\Type\FalseType
- * @uses \SebastianBergmann\Type\GenericObjectType
- * @uses \SebastianBergmann\Type\IntersectionType
- * @uses \SebastianBergmann\Type\MixedType
- * @uses \SebastianBergmann\Type\NeverType
- * @uses \SebastianBergmann\Type\NullType
- * @uses \SebastianBergmann\Type\ObjectType
- * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\StaticType
- * @uses \SebastianBergmann\Type\Type
- * @uses \SebastianBergmann\Type\TypeName
- * @uses \SebastianBergmann\Type\UnionType
- * @uses \SebastianBergmann\Type\UnknownType
- * @uses \SebastianBergmann\Type\VoidType
- */
+#[CoversClass(ReflectionMapper::class)]
+#[UsesClass(FalseType::class)]
+#[UsesClass(GenericObjectType::class)]
+#[UsesClass(IntersectionType::class)]
+#[UsesClass(MixedType::class)]
+#[UsesClass(NeverType::class)]
+#[UsesClass(NullType::class)]
+#[UsesClass(ObjectType::class)]
+#[UsesClass(SimpleType::class)]
+#[UsesClass(StaticType::class)]
+#[UsesClass(Type::class)]
+#[UsesClass(TypeName::class)]
+#[UsesClass(UnionType::class)]
+#[UsesClass(UnknownType::class)]
+#[UsesClass(VoidType::class)]
 final class ReflectionMapperTest extends TestCase
 {
-    /**
-     * @dataProvider typeProvider
-     */
+    #[DataProvider('types')]
     public function testMapsFromReturnType(string $expected, ReflectionFunctionAbstract $method): void
     {
         $this->assertSame($expected, (new ReflectionMapper)->fromReturnType($method)->name());
@@ -127,9 +126,7 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('never', $type->name());
     }
 
-    /**
-     * @requires PHP >= 8.2
-     */
+    #[RequiresPhp('>= 8.2')]
     public function testMapsFromFalseReturnType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresFalseReturnType::class, 'falseReturnType'));
@@ -138,9 +135,7 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('false', $type->name());
     }
 
-    /**
-     * @requires PHP >= 8.2
-     */
+    #[RequiresPhp('>= 8.2')]
     public function testMapsFromNullReturnType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNullReturnType::class, 'nullReturnType'));
@@ -149,7 +144,7 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('null', $type->name());
     }
 
-    public function typeProvider(): array
+    public function types(): array
     {
         return [
             [

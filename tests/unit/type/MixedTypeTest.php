@@ -9,16 +9,17 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \SebastianBergmann\Type\MixedType
- * @covers \SebastianBergmann\Type\Type
- *
- * @uses \SebastianBergmann\Type\CallableType
- * @uses \SebastianBergmann\Type\GenericObjectType
- * @uses \SebastianBergmann\Type\SimpleType
- */
+#[CoversClass(MixedType::class)]
+#[CoversClass(Type::class)]
+#[UsesClass(CallableType::class)]
+#[UsesClass(GenericObjectType::class)]
+#[UsesClass(SimpleType::class)]
 final class MixedTypeTest extends TestCase
 {
     public function testHasName(): void
@@ -42,10 +43,8 @@ final class MixedTypeTest extends TestCase
         $this->assertTrue($type->allowsNull());
     }
 
-    /**
-     * @dataProvider typeProvider
-     * @testdox $otherType can be assigned to mixed
-     */
+    #[DataProvider('assignableTypes')]
+    #[TestDox('$otherType can be assigned to mixed')]
     public function testOtherTypeCanBeAssigned(string $otherType): void
     {
         $type = new MixedType;
@@ -53,7 +52,7 @@ final class MixedTypeTest extends TestCase
         $this->assertTrue($type->isAssignable(Type::fromName($otherType, false)));
     }
 
-    public function typeProvider(): array
+    public function assignableTypes(): array
     {
         return [
             ['array'],

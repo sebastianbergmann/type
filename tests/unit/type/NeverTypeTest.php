@@ -9,12 +9,12 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \SebastianBergmann\Type\NeverType
- * @covers \SebastianBergmann\Type\Type
- */
+#[CoversClass(NeverType::class)]
+#[CoversClass(Type::class)]
 final class NeverTypeTest extends TestCase
 {
     public function testHasName(): void
@@ -22,9 +22,7 @@ final class NeverTypeTest extends TestCase
         $this->assertSame('never', (new NeverType)->name());
     }
 
-    /**
-     * @dataProvider assignableTypes
-     */
+    #[DataProvider('assignableTypes')]
     public function testIsAssignable(Type $assignableType): void
     {
         $type = new NeverType;
@@ -39,9 +37,7 @@ final class NeverTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider notAssignableTypes
-     */
+    #[DataProvider('notAssignableTypes')]
     public function testIsNotAssignable(Type $assignableType): void
     {
         $type = new NeverType;

@@ -9,12 +9,12 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \SebastianBergmann\Type\NullType
- * @covers \SebastianBergmann\Type\Type
- */
+#[CoversClass(NullType::class)]
+#[CoversClass(Type::class)]
 final class NullTypeTest extends TestCase
 {
     private NullType $type;
@@ -24,9 +24,7 @@ final class NullTypeTest extends TestCase
         $this->type = new NullType;
     }
 
-    /**
-     * @dataProvider assignableTypes
-     */
+    #[DataProvider('assignableTypes')]
     public function testIsAssignable(Type $assignableType): void
     {
         $this->assertTrue($this->type->isAssignable($assignableType));
@@ -43,15 +41,13 @@ final class NullTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider notAssignable
-     */
+    #[DataProvider('notAssignableTypes')]
     public function testIsNotAssignable(Type $assignedType): void
     {
         $this->assertFalse($this->type->isAssignable($assignedType));
     }
 
-    public function notAssignable(): array
+    public function notAssignableTypes(): array
     {
         return [
             'void' => [new VoidType],

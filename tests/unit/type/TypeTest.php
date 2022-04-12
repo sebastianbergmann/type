@@ -9,25 +9,23 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-/**
- * @covers \SebastianBergmann\Type\Type
- *
- * @uses \SebastianBergmann\Type\CallableType
- * @uses \SebastianBergmann\Type\GenericObjectType
- * @uses \SebastianBergmann\Type\IterableType
- * @uses \SebastianBergmann\Type\NeverType
- * @uses \SebastianBergmann\Type\ObjectType
- * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\TypeName
- */
+#[CoversClass(Type::class)]
+#[UsesClass(CallableType::class)]
+#[UsesClass(GenericObjectType::class)]
+#[UsesClass(IterableType::class)]
+#[UsesClass(NeverType::class)]
+#[UsesClass(ObjectType::class)]
+#[UsesClass(SimpleType::class)]
+#[UsesClass(TypeName::class)]
 final class TypeTest extends TestCase
 {
-    /**
-     * @dataProvider valuesToNullableType
-     */
+    #[DataProvider('valuesToNullableType')]
     public function testTypeMappingFromValue($value, bool $allowsNull, Type $expectedType): void
     {
         $this->assertEquals($expectedType, Type::fromValue($value, $allowsNull));
@@ -47,9 +45,7 @@ final class TypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider namesToTypes
-     */
+    #[DataProvider('namesToTypes')]
     public function testTypeMappingFromName(string $typeName, bool $allowsNull, $expectedType): void
     {
         $this->assertEquals($expectedType, Type::fromName($typeName, $allowsNull));

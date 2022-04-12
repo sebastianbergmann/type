@@ -9,17 +9,16 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-/**
- * @covers \SebastianBergmann\Type\GenericObjectType
- * @covers \SebastianBergmann\Type\Type
- *
- * @uses \SebastianBergmann\Type\ObjectType
- * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\TypeName
- */
+#[CoversClass(GenericObjectType::class)]
+#[CoversClass(Type::class)]
+#[UsesClass(ObjectType::class)]
+#[UsesClass(SimpleType::class)]
+#[UsesClass(TypeName::class)]
 final class GenericObjectTypeTest extends TestCase
 {
     private GenericObjectType $type;

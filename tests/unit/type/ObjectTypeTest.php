@@ -10,17 +10,16 @@
 namespace SebastianBergmann\Type;
 
 use function strtolower;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ParentClass;
 
-/**
- * @covers \SebastianBergmann\Type\ObjectType
- * @covers \SebastianBergmann\Type\Type
- *
- * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\TypeName
- */
+#[CoversClass(ObjectType::class)]
+#[CoversClass(Type::class)]
+#[UsesClass(SimpleType::class)]
+#[UsesClass(TypeName::class)]
 final class ObjectTypeTest extends TestCase
 {
     private ObjectType $childClass;

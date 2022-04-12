@@ -9,12 +9,11 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-/**
- * @covers \SebastianBergmann\Type\TypeName
- */
+#[CoversClass(TypeName::class)]
 final class TypeNameTest extends TestCase
 {
     public function testFromReflection(): void

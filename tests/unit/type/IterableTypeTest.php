@@ -9,17 +9,16 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\Iterator;
 
-/**
- * @covers \SebastianBergmann\Type\IterableType
- * @covers \SebastianBergmann\Type\Type
- *
- * @uses \SebastianBergmann\Type\ObjectType
- * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\TypeName
- */
+#[CoversClass(IterableType::class)]
+#[CoversClass(Type::class)]
+#[UsesClass(ObjectType::class)]
+#[UsesClass(SimpleType::class)]
+#[UsesClass(TypeName::class)]
 final class IterableTypeTest extends TestCase
 {
     private IterableType $type;

@@ -9,14 +9,14 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \SebastianBergmann\Type\FalseType
- *
- * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\Type
- */
+#[CoversClass(FalseType::class)]
+#[CoversClass(Type::class)]
+#[UsesClass(SimpleType::class)]
 final class FalseTypeTest extends TestCase
 {
     public function testHasName(): void
@@ -24,9 +24,7 @@ final class FalseTypeTest extends TestCase
         $this->assertSame('false', (new FalseType)->name());
     }
 
-    /**
-     * @dataProvider assignableTypes
-     */
+    #[DataProvider('assignableTypes')]
     public function testIsAssignable(Type $assignableType): void
     {
         $type = new FalseType;
@@ -42,9 +40,7 @@ final class FalseTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider notAssignableTypes
-     */
+    #[DataProvider('notAssignableTypes')]
     public function testIsNotAssignable(Type $assignableType): void
     {
         $type = new FalseType;

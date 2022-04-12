@@ -9,12 +9,12 @@
  */
 namespace SebastianBergmann\Type;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \SebastianBergmann\Type\Type
- * @covers \SebastianBergmann\Type\UnknownType
- */
+#[CoversClass(UnknownType::class)]
+#[CoversClass(Type::class)]
 final class UnknownTypeTest extends TestCase
 {
     private UnknownType $type;
@@ -24,9 +24,7 @@ final class UnknownTypeTest extends TestCase
         $this->type = new UnknownType;
     }
 
-    /**
-     * @dataProvider assignableTypes
-     */
+    #[DataProvider('assignableTypes')]
     public function testIsAssignable(Type $assignableType): void
     {
         $this->assertTrue($this->type->isAssignable($assignableType));
