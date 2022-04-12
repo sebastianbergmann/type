@@ -89,10 +89,6 @@ final class ReflectionMapper
             return true;
         }
 
-        if (!method_exists($functionOrMethod, 'hasTentativeReturnType')) {
-            return false;
-        }
-
         return $functionOrMethod->hasTentativeReturnType();
     }
 
@@ -100,10 +96,6 @@ final class ReflectionMapper
     {
         if ($functionOrMethod->hasReturnType()) {
             return $functionOrMethod->getReturnType();
-        }
-
-        if (!method_exists($functionOrMethod, 'getTentativeReturnType')) {
-            return null;
         }
 
         return $functionOrMethod->getTentativeReturnType();
