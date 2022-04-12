@@ -136,7 +136,8 @@ final class CallableTypeTest extends TestCase
         $this->assertFalse(
             $this->type->isAssignable(
                 Type::fromValue(
-                    new class {
+                    new class
+                    {
                     },
                     false
                 )

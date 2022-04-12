@@ -9,7 +9,6 @@
  */
 namespace SebastianBergmann\Type;
 
-use function assert;
 use ReflectionFunction;
 use ReflectionIntersectionType;
 use ReflectionMethod;

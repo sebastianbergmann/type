@@ -14,9 +14,7 @@ use function strtolower;
 final class SimpleType extends Type
 {
     private string $name;
-
     private bool $allowsNull;
-
     private mixed $value;
 
     public function __construct(string $name, bool $nullable, $value = null)

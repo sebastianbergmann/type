@@ -18,7 +18,6 @@ use ReflectionClass;
 final class TypeName
 {
     private ?string $namespaceName;
-
     private string $simpleName;
 
     public static function fromQualifiedName(string $fullClassName): self
