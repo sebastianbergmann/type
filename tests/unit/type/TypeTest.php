@@ -93,9 +93,6 @@ final class TypeTest extends TestCase
         $this->assertTrue(Type::fromName('never', false)->isObject());
     }
 
-    /**
-     * @requires PHP >= 8.1
-     */
     public function testMapsFromNever(): void
     {
         $this->assertTrue(Type::fromName('never', false)->isNever());

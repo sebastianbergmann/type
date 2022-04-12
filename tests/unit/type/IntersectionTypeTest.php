@@ -21,8 +21,6 @@ use SebastianBergmann\Type\TestFixture\ClassImplementingAnInterfaceAndAnotherInt
  * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\TypeName
- *
- * @requires PHP >= 8.1
  */
 final class IntersectionTypeTest extends TestCase
 {

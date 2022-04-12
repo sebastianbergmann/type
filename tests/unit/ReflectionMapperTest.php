@@ -53,9 +53,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame($expected, (new ReflectionMapper)->fromReturnType($method)->name());
     }
 
-    /**
-     * @requires PHP >= 8.1
-     */
     public function testMapsFromIntersectionReturnType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresIntersectionReturnType::class, 'returnsAnInterfaceOrAnotherInterface'));
@@ -133,9 +130,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('SebastianBergmann\Type\TestFixture\never', $type->name());
     }
 
-    /**
-     * @requires PHP >= 8.1
-     */
     public function testMapsFromNeverReturnType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNeverReturnType::class, 'neverReturnType'));
