@@ -73,6 +73,7 @@ final class MixedTypeTest extends TestCase
         $type = new MixedType;
 
         $this->assertFalse($type->isCallable());
+        $this->assertFalse($type->isFalse());
         $this->assertFalse($type->isGenericObject());
         $this->assertFalse($type->isIntersection());
         $this->assertFalse($type->isIterable());
