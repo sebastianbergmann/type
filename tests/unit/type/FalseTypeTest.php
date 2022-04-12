@@ -68,4 +68,24 @@ final class FalseTypeTest extends TestCase
 
         $this->assertFalse($type->allowsNull());
     }
+
+    public function testCanBeQueriedForType(): void
+    {
+        $type = new FalseType;
+
+        $this->assertFalse($type->isCallable());
+        $this->assertTrue($type->isFalse());
+        $this->assertFalse($type->isGenericObject());
+        $this->assertFalse($type->isIntersection());
+        $this->assertFalse($type->isIterable());
+        $this->assertFalse($type->isMixed());
+        $this->assertFalse($type->isNever());
+        $this->assertFalse($type->isNull());
+        $this->assertFalse($type->isObject());
+        $this->assertFalse($type->isSimple());
+        $this->assertFalse($type->isStatic());
+        $this->assertFalse($type->isUnion());
+        $this->assertFalse($type->isUnknown());
+        $this->assertFalse($type->isVoid());
+    }
 }
