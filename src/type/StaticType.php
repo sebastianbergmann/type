@@ -22,7 +22,7 @@ final class StaticType extends Type
 
     public function isAssignable(Type $other): bool
     {
-        if ($this->allowsNull && $other->allowsNull()) {
+        if ($this->allowsNull && $other instanceof NullType) {
             return true;
         }
 
