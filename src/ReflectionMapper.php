@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Type;
 
+use function assert;
 use ReflectionFunction;
 use ReflectionIntersectionType;
 use ReflectionMethod;
@@ -18,9 +19,6 @@ use ReflectionUnionType;
 
 final class ReflectionMapper
 {
-    /**
-     * @throws RuntimeException
-     */
     public function fromReturnType(ReflectionFunction|ReflectionMethod $functionOrMethod): Type
     {
         if (!$this->hasReturnType($functionOrMethod)) {
@@ -40,27 +38,13 @@ final class ReflectionMapper
             return $this->namedReturnTypeForMethod($returnType, $functionOrMethod);
         }
 
+        assert($returnType instanceof ReflectionIntersectionType || $returnType instanceof ReflectionUnionType);
+
         if ($functionOrMethod instanceof ReflectionFunction) {
-            if ($returnType instanceof ReflectionIntersectionType) {
-                return $this->intersectionOrUnionReturnTypeForFunction($returnType, $functionOrMethod);
-            }
-
-            if ($returnType instanceof ReflectionUnionType) {
-                return $this->intersectionOrUnionReturnTypeForFunction($returnType, $functionOrMethod);
-            }
+            return $this->intersectionOrUnionReturnTypeForFunction($returnType, $functionOrMethod);
         }
 
-        if ($functionOrMethod instanceof ReflectionMethod) {
-            if ($returnType instanceof ReflectionIntersectionType) {
-                return $this->intersectionOrUnionReturnTypeForMethod($returnType, $functionOrMethod);
-            }
-
-            if ($returnType instanceof ReflectionUnionType) {
-                return $this->intersectionOrUnionReturnTypeForMethod($returnType, $functionOrMethod);
-            }
-        }
-
-        throw new RuntimeException;
+        return $this->intersectionOrUnionReturnTypeForMethod($returnType, $functionOrMethod);
     }
 
     private function hasReturnType(ReflectionFunction|ReflectionMethod $functionOrMethod): bool
@@ -136,6 +120,8 @@ final class ReflectionMapper
                     false
                 );
             } else {
+                assert($type instanceof ReflectionNamedType);
+
                 $types[] = Type::fromName($type->getName(), $type->allowsNull());
             }
         }
