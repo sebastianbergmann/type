@@ -10,7 +10,6 @@
 namespace SebastianBergmann\Type;
 
 use function array_unique;
-use function assert;
 use function count;
 use function implode;
 use function sort;
@@ -96,13 +95,11 @@ final class IntersectionType extends Type
     /**
      * @throws RuntimeException
      */
-    private function ensureNoDuplicateTypes(Type ...$types): void
+    private function ensureNoDuplicateTypes(ObjectType ...$types): void
     {
         $names = [];
 
         foreach ($types as $type) {
-            assert($type instanceof ObjectType);
-
             $names[] = $type->className()->qualifiedName();
         }
 
