@@ -31,9 +31,6 @@ final class CallableType extends Type
         $this->allowsNull = $nullable;
     }
 
-    /**
-     * @throws RuntimeException
-     */
     public function isAssignable(Type $other): bool
     {
         if ($this->allowsNull && $other->allowsNull()) {
@@ -91,9 +88,6 @@ final class CallableType extends Type
         return $type->className()->qualifiedName() === Closure::class;
     }
 
-    /**
-     * @throws RuntimeException
-     */
     private function hasInvokeMethod(ObjectType $type): bool
     {
         $className = $type->className()->qualifiedName();
