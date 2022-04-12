@@ -116,7 +116,7 @@ final class SimpleTypeTest extends TestCase
             'not nullable to nullable'     => [new SimpleType('int', true), new SimpleType('int', false)],
             'nullable to nullable'         => [new SimpleType('int', true), new SimpleType('int', true)],
             'not nullable to not nullable' => [new SimpleType('int', false), new SimpleType('int', false)],
-            'null to not nullable'         => [new SimpleType('int', true), new NullType],
+            'null to nullable'             => [new SimpleType('int', true), new NullType],
             'false to bool'                => [new SimpleType('bool', false), new FalseType],
         ];
     }
