@@ -38,6 +38,7 @@ final class ReflectionMapper
             return $this->namedReturnTypeForMethod($returnType, $functionOrMethod);
         }
 
+        /* @infection-ignore-all */
         assert($returnType instanceof ReflectionIntersectionType || $returnType instanceof ReflectionUnionType);
 
         if ($functionOrMethod instanceof ReflectionFunction) {
@@ -120,6 +121,7 @@ final class ReflectionMapper
                     false
                 );
             } else {
+                /* @infection-ignore-all */
                 assert($type instanceof ReflectionNamedType);
 
                 $types[] = Type::fromName($type->getName(), $type->allowsNull());
