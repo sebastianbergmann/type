@@ -56,7 +56,7 @@ final class ReflectionMapperTest extends TestCase
 
     public function testMapsFromIntersectionReturnType(): void
     {
-        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresIntersectionReturnType::class, 'returnsAnInterfaceOrAnotherInterface'));
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresIntersectionReturnType::class, 'returnsObjectThatImplementsAnInterfaceAndAnotherInterface'));
 
         $this->assertInstanceOf(IntersectionType::class, $type);
         $this->assertSame(AnInterface::class . '&' . AnotherInterface::class, $type->name());

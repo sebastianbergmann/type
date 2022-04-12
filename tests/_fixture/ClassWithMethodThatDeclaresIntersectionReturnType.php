@@ -11,7 +11,7 @@ namespace SebastianBergmann\Type\TestFixture;
 
 class ClassWithMethodThatDeclaresIntersectionReturnType
 {
-    public function returnsAnInterfaceOrAnotherInterface(): AnInterface&AnotherInterface
+    public function returnsObjectThatImplementsAnInterfaceAndAnotherInterface(): AnInterface&AnotherInterface
     {
     }
 }
