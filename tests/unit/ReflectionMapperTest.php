@@ -119,17 +119,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('false|int', $type->name());
     }
 
-    /**
-     * @requires PHP < 8.1
-     */
-    public function testMapsFromClassNamedNeverReturnType(): void
-    {
-        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNeverReturnType::class, 'neverReturnType'));
-
-        $this->assertInstanceOf(ObjectType::class, $type);
-        $this->assertSame('SebastianBergmann\Type\TestFixture\never', $type->name());
-    }
-
     public function testMapsFromNeverReturnType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNeverReturnType::class, 'neverReturnType'));
