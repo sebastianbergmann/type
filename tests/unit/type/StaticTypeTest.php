@@ -19,6 +19,7 @@ use stdClass;
 
 #[CoversClass(StaticType::class)]
 #[CoversClass(Type::class)]
+#[UsesClass(NullType::class)]
 #[UsesClass(ObjectType::class)]
 #[UsesClass(TypeName::class)]
 #[Small]

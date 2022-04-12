@@ -19,6 +19,7 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
 
 #[CoversClass(ObjectType::class)]
 #[CoversClass(Type::class)]
+#[UsesClass(NullType::class)]
 #[UsesClass(SimpleType::class)]
 #[UsesClass(TypeName::class)]
 #[Small]

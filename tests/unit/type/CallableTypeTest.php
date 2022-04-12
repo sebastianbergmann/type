@@ -19,6 +19,7 @@ use SebastianBergmann\Type\TestFixture\ClassWithInvokeMethod;
 
 #[CoversClass(CallableType::class)]
 #[CoversClass(Type::class)]
+#[UsesClass(NullType::class)]
 #[UsesClass(ObjectType::class)]
 #[UsesClass(SimpleType::class)]
 #[UsesClass(TypeName::class)]

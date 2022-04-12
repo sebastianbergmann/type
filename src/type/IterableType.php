@@ -29,7 +29,7 @@ final class IterableType extends Type
      */
     public function isAssignable(Type $other): bool
     {
-        if ($this->allowsNull && $other instanceof NullType) {
+        if ($this->allowsNull && $other->allowsNull()) {
             return true;
         }
 
