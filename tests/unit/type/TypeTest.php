@@ -81,11 +81,7 @@ final class TypeTest extends TestCase
             'iterable'          => ['iterable', false, new IterableType(false)],
             '?iterable'         => ['iterable', true, new IterableType(true)],
             'mixed'             => ['mixed', false, new MixedType],
+            'never'             => ['never', false, new NeverType],
         ];
-    }
-
-    public function testMapsFromNever(): void
-    {
-        $this->assertTrue(Type::fromName('never', false)->isNever());
     }
 }
