@@ -30,6 +30,10 @@ final class SimpleType extends Type
             return true;
         }
 
+        if ($this->name === 'bool' && $other->name() === 'true') {
+            return true;
+        }
+
         if ($this->name === 'bool' && $other->name() === 'false') {
             return true;
         }

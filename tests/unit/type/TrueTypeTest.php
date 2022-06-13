@@ -12,79 +12,79 @@ namespace SebastianBergmann\Type;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
-use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(MixedType::class)]
+#[CoversClass(TrueType::class)]
 #[CoversClass(Type::class)]
-#[UsesClass(CallableType::class)]
-#[UsesClass(GenericObjectType::class)]
 #[UsesClass(SimpleType::class)]
 #[Small]
-final class MixedTypeTest extends TestCase
+final class TrueTypeTest extends TestCase
 {
     public function testHasName(): void
     {
-        $type = new MixedType;
-
-        $this->assertSame('mixed', $type->name());
-    }
-
-    public function testCanBeRepresentedAsString(): void
-    {
-        $type = new MixedType;
-
-        $this->assertSame('mixed', $type->asString());
-    }
-
-    public function testAllowsNull(): void
-    {
-        $type = new MixedType;
-
-        $this->assertTrue($type->allowsNull());
+        $this->assertSame('true', (new TrueType)->name());
     }
 
     #[DataProvider('assignableTypes')]
-    #[TestDox('$otherType can be assigned to mixed')]
-    public function testOtherTypeCanBeAssigned(string $otherType): void
+    public function testIsAssignable(Type $assignableType): void
     {
-        $type = new MixedType;
+        $type = new TrueType;
 
-        $this->assertTrue($type->isAssignable(Type::fromName($otherType, false)));
+        $this->assertTrue($type->isAssignable($assignableType));
     }
 
     public function assignableTypes(): array
     {
         return [
-            ['array'],
-            ['bool'],
-            ['callable'],
-            ['int'],
-            ['float'],
-            ['null'],
-            ['object'],
-            ['resource'],
-            ['string'],
+            [new TrueType],
+            [new SimpleType('bool', false, true)],
         ];
+    }
+
+    #[DataProvider('notAssignableTypes')]
+    public function testIsNotAssignable(Type $assignableType): void
+    {
+        $type = new TrueType;
+
+        $this->assertFalse($type->isAssignable($assignableType));
+    }
+
+    public function notAssignableTypes(): array
+    {
+        return [
+            [new SimpleType('bool', false, false)],
+            [new SimpleType('int', false)],
+            [new SimpleType('int', true)],
+            [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
+            [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
+            [new UnknownType],
+        ];
+    }
+
+    public function testDoesNotAllowNull(): void
+    {
+        $type = new TrueType;
+
+        $this->assertFalse($type->allowsNull());
     }
 
     public function testCanBeQueriedForType(): void
     {
-        $type = new MixedType;
+        $type = new TrueType;
 
         $this->assertFalse($type->isCallable());
         $this->assertFalse($type->isFalse());
         $this->assertFalse($type->isGenericObject());
         $this->assertFalse($type->isIntersection());
         $this->assertFalse($type->isIterable());
-        $this->assertTrue($type->isMixed());
+        $this->assertFalse($type->isMixed());
         $this->assertFalse($type->isNever());
         $this->assertFalse($type->isNull());
         $this->assertFalse($type->isObject());
         $this->assertFalse($type->isSimple());
         $this->assertFalse($type->isStatic());
-        $this->assertFalse($type->isTrue());
+        $this->assertTrue($type->isTrue());
         $this->assertFalse($type->isUnion());
         $this->assertFalse($type->isUnknown());
         $this->assertFalse($type->isVoid());

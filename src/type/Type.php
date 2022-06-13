@@ -17,8 +17,14 @@ abstract class Type
 {
     public static function fromValue(mixed $value, bool $allowsNull): self
     {
-        if ($value === false) {
-            return new FalseType;
+        if ($allowsNull === false) {
+            if ($value === true) {
+                return new TrueType;
+            }
+
+            if ($value === false) {
+                return new FalseType;
+            }
         }
 
         $typeName = gettype($value);
@@ -40,6 +46,7 @@ abstract class Type
     {
         return match (strtolower($typeName)) {
             'callable'     => new CallableType($allowsNull),
+            'true'         => new TrueType,
             'false'        => new FalseType,
             'iterable'     => new IterableType($allowsNull),
             'never'        => new NeverType,
@@ -59,6 +66,11 @@ abstract class Type
     }
 
     public function isCallable(): bool
+    {
+        return false;
+    }
+
+    public function isTrue(): bool
     {
         return false;
     }

@@ -157,6 +157,7 @@ final class CallableTypeTest extends TestCase
         $this->assertFalse($this->type->isObject());
         $this->assertFalse($this->type->isSimple());
         $this->assertFalse($this->type->isStatic());
+        $this->assertFalse($this->type->isTrue());
         $this->assertFalse($this->type->isUnion());
         $this->assertFalse($this->type->isUnknown());
         $this->assertFalse($this->type->isVoid());

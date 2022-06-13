@@ -4,6 +4,10 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ## [4.0.0] - 2022-MM-DD
 
+### Added
+
+* Support for stand-alone `true` type introduced in PHP 8.2
+
 ### Removed
 
 * This component is no longer supported on PHP 7.3, PHP 7.4 and PHP 8.0

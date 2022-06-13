@@ -18,6 +18,7 @@ use stdClass;
 
 #[CoversClass(SimpleType::class)]
 #[CoversClass(Type::class)]
+#[UsesClass(TrueType::class)]
 #[UsesClass(FalseType::class)]
 #[UsesClass(ObjectType::class)]
 #[UsesClass(TypeName::class)]
@@ -117,6 +118,7 @@ final class SimpleTypeTest extends TestCase
             'nullable to nullable'         => [new SimpleType('int', true), new SimpleType('int', true)],
             'not nullable to not nullable' => [new SimpleType('int', false), new SimpleType('int', false)],
             'null to nullable'             => [new SimpleType('int', true), new NullType],
+            'true to bool'                 => [new SimpleType('bool', false), new TrueType],
             'false to bool'                => [new SimpleType('bool', false), new FalseType],
         ];
     }
@@ -158,6 +160,7 @@ final class SimpleTypeTest extends TestCase
         $this->assertFalse($type->isObject());
         $this->assertTrue($type->isSimple());
         $this->assertFalse($type->isStatic());
+        $this->assertFalse($type->isTrue());
         $this->assertFalse($type->isUnion());
         $this->assertFalse($type->isUnknown());
         $this->assertFalse($type->isVoid());
