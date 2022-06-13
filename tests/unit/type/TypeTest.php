@@ -36,14 +36,16 @@ final class TypeTest extends TestCase
     public function valuesToNullableType(): array
     {
         return [
-            '?null'    => [null, true, new NullType],
-            'null'     => [null, false, new NullType],
-            '?integer' => [1, true, new SimpleType('int', true, 1)],
-            'integer'  => [1, false, new SimpleType('int', false, 1)],
-            '?boolean' => [true, true, new SimpleType('bool', true, true)],
-            'boolean'  => [true, false, new SimpleType('bool', false, true)],
-            '?object'  => [new stdClass, true, new ObjectType(TypeName::fromQualifiedName(stdClass::class), true)],
-            'object'   => [new stdClass, false, new ObjectType(TypeName::fromQualifiedName(stdClass::class), false)],
+            '?null'          => [null, true, new NullType],
+            'null'           => [null, false, new NullType],
+            '?integer'       => [1, true, new SimpleType('int', true, 1)],
+            'integer'        => [1, false, new SimpleType('int', false, 1)],
+            '?boolean-true'  => [true, true, new SimpleType('bool', true, true)],
+            '?boolean-false' => [false, true, new SimpleType('bool', true, false)],
+            'true'           => [true, false, new TrueType],
+            'false'          => [false, false, new FalseType],
+            '?object'        => [new stdClass, true, new ObjectType(TypeName::fromQualifiedName(stdClass::class), true)],
+            'object'         => [new stdClass, false, new ObjectType(TypeName::fromQualifiedName(stdClass::class), false)],
         ];
     }
 
@@ -67,6 +69,8 @@ final class TypeTest extends TestCase
             'int'               => ['int', false, new SimpleType('int', false)],
             'bool'              => ['bool', false, new SimpleType('bool', false)],
             'boolean'           => ['boolean', false, new SimpleType('bool', false)],
+            'true'              => ['true', false, new TrueType],
+            'false'             => ['false', false, new FalseType],
             'object'            => ['object', false, new GenericObjectType(false)],
             'real'              => ['real', false, new SimpleType('float', false)],
             'double'            => ['double', false, new SimpleType('float', false)],

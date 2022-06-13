@@ -4,6 +4,10 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ## [3.1.0] - 2022-MM-DD
 
+### Added
+
+* [#21](https://github.com/sebastianbergmann/type/issues/21): Support `true` as stand-alone type
+
 ## [3.0.0] - 2022-03-15
 
 ### Added

@@ -12,14 +12,17 @@ namespace SebastianBergmann\Type;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @covers \SebastianBergmann\Type\TrueType
  * @covers \SebastianBergmann\Type\Type
- * @covers \SebastianBergmann\Type\VoidType
+ *
+ * @uses \SebastianBergmann\Type\SimpleType
+ * @small
  */
-final class VoidTypeTest extends TestCase
+final class TrueTypeTest extends TestCase
 {
     public function testHasName(): void
     {
-        $this->assertSame('void', (new VoidType)->name());
+        $this->assertSame('true', (new TrueType)->name());
     }
 
     /**
@@ -27,7 +30,7 @@ final class VoidTypeTest extends TestCase
      */
     public function testIsAssignable(Type $assignableType): void
     {
-        $type = new VoidType;
+        $type = new TrueType;
 
         $this->assertTrue($type->isAssignable($assignableType));
     }
@@ -35,7 +38,8 @@ final class VoidTypeTest extends TestCase
     public function assignableTypes(): array
     {
         return [
-            [new VoidType],
+            [new TrueType],
+            [new SimpleType('bool', false, true)],
         ];
     }
 
@@ -44,7 +48,7 @@ final class VoidTypeTest extends TestCase
      */
     public function testIsNotAssignable(Type $assignableType): void
     {
-        $type = new VoidType;
+        $type = new TrueType;
 
         $this->assertFalse($type->isAssignable($assignableType));
     }
@@ -52,6 +56,7 @@ final class VoidTypeTest extends TestCase
     public function notAssignableTypes(): array
     {
         return [
+            [new SimpleType('bool', false, false)],
             [new SimpleType('int', false)],
             [new SimpleType('int', true)],
             [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
@@ -60,18 +65,19 @@ final class VoidTypeTest extends TestCase
         ];
     }
 
-    public function testNotAllowNull(): void
+    public function testDoesNotAllowNull(): void
     {
-        $type = new VoidType;
+        $type = new TrueType;
 
         $this->assertFalse($type->allowsNull());
     }
 
     public function testCanBeQueriedForType(): void
     {
-        $type = new VoidType;
+        $type = new TrueType;
 
         $this->assertFalse($type->isCallable());
+        $this->assertFalse($type->isFalse());
         $this->assertFalse($type->isGenericObject());
         $this->assertFalse($type->isIntersection());
         $this->assertFalse($type->isIterable());
@@ -81,9 +87,9 @@ final class VoidTypeTest extends TestCase
         $this->assertFalse($type->isObject());
         $this->assertFalse($type->isSimple());
         $this->assertFalse($type->isStatic());
-        $this->assertFalse($type->isTrue());
+        $this->assertTrue($type->isTrue());
         $this->assertFalse($type->isUnion());
         $this->assertFalse($type->isUnknown());
-        $this->assertTrue($type->isVoid());
+        $this->assertFalse($type->isVoid());
     }
 }

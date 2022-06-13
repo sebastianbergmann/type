@@ -151,6 +151,7 @@ final class ObjectTypeTest extends TestCase
         $this->assertTrue($this->childClass->isObject());
         $this->assertFalse($this->childClass->isSimple());
         $this->assertFalse($this->childClass->isStatic());
+        $this->assertFalse($this->childClass->isTrue());
         $this->assertFalse($this->childClass->isUnion());
         $this->assertFalse($this->childClass->isUnknown());
         $this->assertFalse($this->childClass->isVoid());
