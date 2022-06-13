@@ -16,7 +16,6 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionFunction;
-use ReflectionFunctionAbstract;
 use ReflectionMethod;
 use SebastianBergmann\Type\TestFixture\AnInterface;
 use SebastianBergmann\Type\TestFixture\AnotherInterface;
@@ -49,7 +48,7 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
 final class ReflectionMapperTest extends TestCase
 {
     #[DataProvider('types')]
-    public function testMapsFromReturnType(string $expected, ReflectionFunctionAbstract $method): void
+    public function testMapsFromReturnType(string $expected, ReflectionFunction|ReflectionMethod $method): void
     {
         $this->assertSame($expected, (new ReflectionMapper)->fromReturnType($method)->name());
     }
