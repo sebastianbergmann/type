@@ -61,9 +61,9 @@ final class CallableType extends Type
         return false;
     }
 
-    public function getReturnTypeDeclaration(): string
+    public function name(): string
     {
-        return ': ' . ($this->allowsNull ? '?' : '') . 'callable';
+        return 'callable';
     }
 
     public function allowsNull(): bool

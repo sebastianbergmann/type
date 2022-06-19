@@ -55,9 +55,9 @@ final class IterableType extends Type
         return false;
     }
 
-    public function getReturnTypeDeclaration(): string
+    public function name(): string
     {
-        return ': ' . ($this->allowsNull ? '?' : '') . 'iterable';
+        return 'iterable';
     }
 
     public function allowsNull(): bool

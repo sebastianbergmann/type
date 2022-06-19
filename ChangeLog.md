@@ -2,6 +2,10 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [1.2.0] - 2022-MM-DD
+* Backported support for union and intersection types
+* Backported name method
+
 ## [1.1.4] - 2020-11-30
 
 ### Changed

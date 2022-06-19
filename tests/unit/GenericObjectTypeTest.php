@@ -14,9 +14,9 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \SebastianBergmann\Type\GenericObjectType
  *
- * @uses \SebastianBergmann\Type\Type
  * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\SimpleType
+ * @uses \SebastianBergmann\Type\Type
  * @uses \SebastianBergmann\Type\TypeName
  */
 final class GenericObjectTypeTest extends TestCase
