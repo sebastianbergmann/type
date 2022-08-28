@@ -4,13 +4,15 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 ## [4.0.0] - 2022-MM-DD
 
-### Added
-
-* Support for stand-alone `true` type introduced in PHP 8.2
-
 ### Removed
 
 * This component is no longer supported on PHP 7.3, PHP 7.4 and PHP 8.0
+
+## [3.1.0] - 2022-MM-DD
+
+### Added
+
+* [#21](https://github.com/sebastianbergmann/type/issues/21): Support `true` as stand-alone type
 
 ## [3.0.0] - 2022-03-15
 
@@ -134,7 +136,8 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
-[4.0.0]: https://github.com/sebastianbergmann/type/compare/3.0...master
+[4.0.0]: https://github.com/sebastianbergmann/type/compare/3.1...main
+[3.1.0]: https://github.com/sebastianbergmann/type/compare/3.0.0...3.1
 [3.0.0]: https://github.com/sebastianbergmann/type/compare/2.3.4...3.0.0
 [2.3.4]: https://github.com/sebastianbergmann/type/compare/ca39369c41313ed12c071ed38ecda8fcdb248859...2.3.4
 [2.3.3]: https://github.com/sebastianbergmann/type/compare/2.3.2...ca39369c41313ed12c071ed38ecda8fcdb248859
