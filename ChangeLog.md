@@ -2,7 +2,7 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [3.1.0] - 2022-MM-DD
+## [3.1.0] - 2022-08-29
 
 ### Added
 
@@ -130,7 +130,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
-[3.1.0]: https://github.com/sebastianbergmann/type/compare/3.0.0...3.1
+[3.1.0]: https://github.com/sebastianbergmann/type/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/sebastianbergmann/type/compare/2.3.4...3.0.0
 [2.3.4]: https://github.com/sebastianbergmann/type/compare/ca39369c41313ed12c071ed38ecda8fcdb248859...2.3.4
 [2.3.3]: https://github.com/sebastianbergmann/type/compare/2.3.2...ca39369c41313ed12c071ed38ecda8fcdb248859
