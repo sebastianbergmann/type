@@ -23,6 +23,7 @@ use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresFalseReturnTyp
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresIntersectionReturnType;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresNeverReturnType;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresNullReturnType;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresTrueReturnType;
 use SebastianBergmann\Type\TestFixture\ParentClass;
 
 /**
@@ -37,6 +38,7 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
  * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\StaticType
+ * @uses \SebastianBergmann\Type\TrueType
  * @uses \SebastianBergmann\Type\Type
  * @uses \SebastianBergmann\Type\TypeName
  * @uses \SebastianBergmann\Type\UnionType
@@ -163,6 +165,17 @@ final class ReflectionMapperTest extends TestCase
 
         $this->assertInstanceOf(NeverType::class, $type);
         $this->assertSame('never', $type->name());
+    }
+
+    /**
+     * @requires PHP >= 8.2
+     */
+    public function testMapsFromTrueReturnType(): void
+    {
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresTrueReturnType::class, 'trueReturnType'));
+
+        $this->assertInstanceOf(TrueType::class, $type);
+        $this->assertSame('true', $type->name());
     }
 
     /**
