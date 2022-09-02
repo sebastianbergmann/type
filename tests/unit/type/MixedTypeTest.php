@@ -44,6 +44,7 @@ final class MixedTypeTest extends TestCase
 
     /**
      * @dataProvider typeProvider
+     *
      * @testdox $otherType can be assigned to mixed
      */
     public function testOtherTypeCanBeAssigned(string $otherType): void

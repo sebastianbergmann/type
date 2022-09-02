@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \SebastianBergmann\Type\Type
  *
  * @uses \SebastianBergmann\Type\SimpleType
+ *
  * @small
  */
 final class TrueTypeTest extends TestCase
