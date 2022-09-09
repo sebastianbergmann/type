@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.x-dev@">
   <file src="src/ReflectionMapper.php">
+    <InvalidReturnType occurrences="1">
+      <code>Type</code>
+    </InvalidReturnType>
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>$returnType instanceof ReflectionIntersectionType</code>
     </RedundantConditionGivenDocblockType>

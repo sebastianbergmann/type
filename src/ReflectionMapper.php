@@ -30,54 +30,95 @@ final class ReflectionMapper
         assert($returnType instanceof ReflectionNamedType || $returnType instanceof ReflectionUnionType || $returnType instanceof ReflectionIntersectionType);
 
         if ($returnType instanceof ReflectionNamedType) {
-            if ($functionOrMethod instanceof ReflectionMethod && $returnType->getName() === 'self') {
-                return ObjectType::fromName(
-                    $functionOrMethod->getDeclaringClass()->getName(),
-                    $returnType->allowsNull()
-                );
-            }
-
-            if ($functionOrMethod instanceof ReflectionMethod && $returnType->getName() === 'static') {
-                return new StaticType(
-                    TypeName::fromReflection($functionOrMethod->getDeclaringClass()),
-                    $returnType->allowsNull()
-                );
-            }
-
-            if ($returnType->getName() === 'mixed') {
-                return new MixedType;
-            }
-
-            if ($functionOrMethod instanceof ReflectionMethod && $returnType->getName() === 'parent') {
-                return ObjectType::fromName(
-                    $functionOrMethod->getDeclaringClass()->getParentClass()->getName(),
-                    $returnType->allowsNull()
-                );
-            }
-
-            return Type::fromName(
-                $returnType->getName(),
-                $returnType->allowsNull()
-            );
-        }
-
-        assert($returnType instanceof ReflectionUnionType || $returnType instanceof ReflectionIntersectionType);
-
-        $types = [];
-
-        foreach ($returnType->getTypes() as $type) {
-            if ($functionOrMethod instanceof ReflectionMethod && $type->getName() === 'self') {
-                $types[] = ObjectType::fromName(
-                    $functionOrMethod->getDeclaringClass()->getName(),
-                    false
-                );
-            } else {
-                $types[] = Type::fromName($type->getName(), false);
-            }
+            return $this->mapNamedType($returnType, $functionOrMethod);
         }
 
         if ($returnType instanceof ReflectionUnionType) {
-            return new UnionType(...$types);
+            return $this->mapUnionType($returnType, $functionOrMethod);
+        }
+
+        if ($returnType instanceof ReflectionIntersectionType) {
+            return $this->mapIntersectionType($returnType, $functionOrMethod);
+        }
+    }
+
+    private function mapNamedType(ReflectionNamedType $type, ReflectionFunctionAbstract $functionOrMethod): Type
+    {
+        if ($functionOrMethod instanceof ReflectionMethod && $type->getName() === 'self') {
+            return ObjectType::fromName(
+                $functionOrMethod->getDeclaringClass()->getName(),
+                $type->allowsNull()
+            );
+        }
+
+        if ($functionOrMethod instanceof ReflectionMethod && $type->getName() === 'static') {
+            return new StaticType(
+                TypeName::fromReflection($functionOrMethod->getDeclaringClass()),
+                $type->allowsNull()
+            );
+        }
+
+        if ($type->getName() === 'mixed') {
+            return new MixedType;
+        }
+
+        if ($functionOrMethod instanceof ReflectionMethod && $type->getName() === 'parent') {
+            return ObjectType::fromName(
+                $functionOrMethod->getDeclaringClass()->getParentClass()->getName(),
+                $type->allowsNull()
+            );
+        }
+
+        return Type::fromName(
+            $type->getName(),
+            $type->allowsNull()
+        );
+    }
+
+    private function mapUnionType(ReflectionUnionType $type, ReflectionFunctionAbstract $functionOrMethod): Type
+    {
+        if (!$this->unionContainsOnlyNamedTypes($type)) {
+            return $this->mapDistributedNormalFormType($type, $functionOrMethod);
+        }
+
+        $types = [];
+
+        foreach ($type->getTypes() as $_type) {
+            assert($_type instanceof ReflectionNamedType);
+
+            $types[] = $this->mapNamedType($_type, $functionOrMethod);
+        }
+
+        return new UnionType(...$types);
+    }
+
+    private function mapDistributedNormalFormType(ReflectionUnionType $type, ReflectionFunctionAbstract $functionOrMethod): Type
+    {
+        $types = [];
+
+        foreach ($type->getTypes() as $_type) {
+            assert($_type instanceof ReflectionNamedType || $_type instanceof ReflectionIntersectionType);
+
+            if ($_type instanceof ReflectionNamedType) {
+                $types[] = $this->mapNamedType($_type, $functionOrMethod);
+
+                continue;
+            }
+
+            $types[] = $this->mapIntersectionType($_type, $functionOrMethod);
+        }
+
+        return new DisjunctiveNormalFormType(...$types);
+    }
+
+    private function mapIntersectionType(ReflectionIntersectionType $type, ReflectionFunctionAbstract $functionOrMethod): Type
+    {
+        $types = [];
+
+        foreach ($type->getTypes() as $_type) {
+            assert($_type instanceof ReflectionNamedType);
+
+            $types[] = $this->mapNamedType($_type, $functionOrMethod);
         }
 
         return new IntersectionType(...$types);
@@ -107,5 +148,16 @@ final class ReflectionMapper
         }
 
         return $functionOrMethod->getTentativeReturnType();
+    }
+
+    private function unionContainsOnlyNamedTypes(ReflectionUnionType $type): bool
+    {
+        foreach ($type->getTypes() as $_type) {
+            if (!$_type instanceof ReflectionNamedType) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

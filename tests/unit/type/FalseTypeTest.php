@@ -76,6 +76,7 @@ final class FalseTypeTest extends TestCase
         $type = new FalseType;
 
         $this->assertFalse($type->isCallable());
+        $this->assertFalse($type->isDisjunctiveNormalForm());
         $this->assertTrue($type->isFalse());
         $this->assertFalse($type->isGenericObject());
         $this->assertFalse($type->isIntersection());

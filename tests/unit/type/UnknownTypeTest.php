@@ -65,6 +65,7 @@ final class UnknownTypeTest extends TestCase
     public function testCanBeQueriedForType(): void
     {
         $this->assertFalse($this->type->isCallable());
+        $this->assertFalse($this->type->isDisjunctiveNormalForm());
         $this->assertFalse($this->type->isFalse());
         $this->assertFalse($this->type->isGenericObject());
         $this->assertFalse($this->type->isIntersection());
