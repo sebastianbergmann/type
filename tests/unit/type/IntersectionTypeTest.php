@@ -27,7 +27,7 @@ use SebastianBergmann\Type\TestFixture\ClassImplementingAnInterfaceAndAnotherInt
 final class IntersectionTypeTest extends TestCase
 {
     /**
-     * @psalm-var AnInterface&AnotherInterface
+     * @psalm-var IntersectionType
      */
     private $type;
 
