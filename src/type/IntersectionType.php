@@ -71,6 +71,14 @@ final class IntersectionType extends Type
     }
 
     /**
+     * @psalm-return non-empty-list<Type>
+     */
+    public function types(): array
+    {
+        return $this->types;
+    }
+
+    /**
      * @throws RuntimeException
      */
     private function ensureMinimumOfTwoTypes(Type ...$types): void
