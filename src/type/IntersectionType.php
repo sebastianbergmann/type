@@ -18,7 +18,7 @@ use function sort;
 final class IntersectionType extends Type
 {
     /**
-     * @psalm-var list<Type>
+     * @psalm-var non-empty-list<Type>
      */
     private $types;
 

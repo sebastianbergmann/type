@@ -16,7 +16,7 @@ use function sort;
 final class UnionType extends Type
 {
     /**
-     * @psalm-var list<Type>
+     * @psalm-var non-empty-list<Type>
      */
     private $types;
 
