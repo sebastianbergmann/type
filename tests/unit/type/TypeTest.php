@@ -50,42 +50,42 @@ final class TypeTest extends TestCase
     }
 
     /**
-     * @dataProvider namesToTypes
+     * @dataProvider typeFromName
      */
-    public function testTypeMappingFromName(string $typeName, bool $allowsNull, $expectedType): void
+    public function testCanBeCreatedFromName($expectedType, string $typeName, bool $allowsNull): void
     {
         $this->assertEquals($expectedType, Type::fromName($typeName, $allowsNull));
     }
 
-    public function namesToTypes(): array
+    public function typeFromName(): array
     {
         return [
-            '?void'             => ['void', true, new VoidType],
-            'void'              => ['void', false, new VoidType],
-            '?null'             => ['null', true, new NullType],
-            'null'              => ['null', true, new NullType],
-            '?int'              => ['int', true, new SimpleType('int', true)],
-            '?integer'          => ['integer', true, new SimpleType('int', true)],
-            'int'               => ['int', false, new SimpleType('int', false)],
-            'bool'              => ['bool', false, new SimpleType('bool', false)],
-            'boolean'           => ['boolean', false, new SimpleType('bool', false)],
-            'true'              => ['true', false, new TrueType],
-            'false'             => ['false', false, new FalseType],
-            'object'            => ['object', false, new GenericObjectType(false)],
-            'real'              => ['real', false, new SimpleType('float', false)],
-            'double'            => ['double', false, new SimpleType('float', false)],
-            'float'             => ['float', false, new SimpleType('float', false)],
-            'string'            => ['string', false, new SimpleType('string', false)],
-            'array'             => ['array', false, new SimpleType('array', false)],
-            'resource'          => ['resource', false, new SimpleType('resource', false)],
-            'resource (closed)' => ['resource (closed)', false, new SimpleType('resource (closed)', false)],
-            'unknown type'      => ['unknown type', false, new UnknownType],
-            '?classname'        => [stdClass::class, true, new ObjectType(TypeName::fromQualifiedName(stdClass::class), true)],
-            'classname'         => [stdClass::class, false, new ObjectType(TypeName::fromQualifiedName(stdClass::class), false)],
-            'callable'          => ['callable', false, new CallableType(false)],
-            '?callable'         => ['callable', true, new CallableType(true)],
-            'iterable'          => ['iterable', false, new IterableType(false)],
-            '?iterable'         => ['iterable', true, new IterableType(true)],
+            '?void'             => [new VoidType, 'void', true],
+            'void'              => [new VoidType, 'void', false],
+            '?null'             => [new NullType, 'null', true],
+            'null'              => [new NullType, 'null', true],
+            '?int'              => [new SimpleType('int', true), 'int', true],
+            '?integer'          => [new SimpleType('int', true), 'integer', true],
+            'int'               => [new SimpleType('int', false), 'int', false],
+            'bool'              => [new SimpleType('bool', false), 'bool', false],
+            'boolean'           => [new SimpleType('bool', false), 'boolean', false],
+            'true'              => [new TrueType, 'true', false],
+            'false'             => [new FalseType, 'false', false],
+            'object'            => [new GenericObjectType(false), 'object', false],
+            'real'              => [new SimpleType('float', false), 'real', false],
+            'double'            => [new SimpleType('float', false), 'double', false],
+            'float'             => [new SimpleType('float', false), 'float', false],
+            'string'            => [new SimpleType('string', false), 'string', false],
+            'array'             => [new SimpleType('array', false), 'array', false],
+            'resource'          => [new SimpleType('resource', false), 'resource', false],
+            'resource (closed)' => [new SimpleType('resource (closed)', false), 'resource (closed)', false],
+            'unknown type'      => [new UnknownType, 'unknown type', false],
+            '?classname'        => [new ObjectType(TypeName::fromQualifiedName(stdClass::class), true), stdClass::class, true],
+            'classname'         => [new ObjectType(TypeName::fromQualifiedName(stdClass::class), false), stdClass::class, false],
+            'callable'          => [new CallableType(false), 'callable', false],
+            '?callable'         => [new CallableType(true), 'callable', true],
+            'iterable'          => [new IterableType(false), 'iterable', false],
+            '?iterable'         => [new IterableType(true), 'iterable', true],
         ];
     }
 
