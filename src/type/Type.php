@@ -10,9 +10,12 @@
 namespace SebastianBergmann\Type;
 
 use const PHP_VERSION;
+use function explode;
 use function get_class;
 use function gettype;
+use function strpos;
 use function strtolower;
+use function trim;
 use function version_compare;
 
 abstract class Type
@@ -91,6 +94,58 @@ abstract class Type
             default:
                 return new ObjectType(TypeName::fromQualifiedName($typeName), $allowsNull);
         }
+    }
+
+    public static function fromString(string $string): self
+    {
+        $dnf          = strpos($string, '(') !== false;
+        $union        = strpos($string, '|') !== false && !$dnf;
+        $intersection = strpos($string, '&') !== false && !$dnf;
+
+        if (!$intersection && !$union && !$dnf) {
+            return self::fromName($string, false);
+        }
+
+        if ($union) {
+            $types = [];
+
+            foreach (explode('|', $string) as $partOfUnion) {
+                $types[] = self::fromName($partOfUnion, false);
+            }
+
+            return new UnionType(...$types);
+        }
+
+        if ($intersection) {
+            $types = [];
+
+            foreach (explode('&', $string) as $partOfIntersection) {
+                $types[] = self::fromName($partOfIntersection, false);
+            }
+
+            return new IntersectionType(...$types);
+        }
+
+        $union = [];
+
+        foreach (explode('|', $string) as $partOfUnion) {
+            if (strpos($partOfUnion, '&') !== false) {
+                $intersection = [];
+                $partOfUnion  = trim($partOfUnion, '()');
+
+                foreach (explode('&', $partOfUnion) as $partOfIntersection) {
+                    $intersection[] = self::fromName($partOfIntersection, false);
+                }
+
+                $union[] = new IntersectionType(...$intersection);
+
+                continue;
+            }
+
+            $union[] = self::fromName($partOfUnion, false);
+        }
+
+        return new UnionType(...$union);
     }
 
     public function asString(): string
