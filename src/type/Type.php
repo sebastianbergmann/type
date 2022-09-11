@@ -98,6 +98,10 @@ abstract class Type
 
     public static function fromString(string $string): self
     {
+        if ($string === '') {
+            return new UnknownType;
+        }
+
         $dnf          = strpos($string, '(') !== false;
         $union        = strpos($string, '|') !== false && !$dnf;
         $intersection = strpos($string, '&') !== false && !$dnf;
