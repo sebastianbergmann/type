@@ -72,7 +72,6 @@ final class NeverTypeTest extends TestCase
         $type = new NeverType;
 
         $this->assertFalse($type->isCallable());
-        $this->assertFalse($type->isDisjunctiveNormalForm());
         $this->assertFalse($type->isFalse());
         $this->assertFalse($type->isGenericObject());
         $this->assertFalse($type->isIntersection());

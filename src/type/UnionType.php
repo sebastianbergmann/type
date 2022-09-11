@@ -52,6 +52,12 @@ final class UnionType extends Type
         $types = [];
 
         foreach ($this->types as $type) {
+            if ($type->isIntersection()) {
+                $types[] = '(' . $type->name() . ')';
+
+                continue;
+            }
+
             $types[] = $type->name();
         }
 

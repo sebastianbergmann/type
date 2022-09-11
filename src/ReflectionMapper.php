@@ -77,23 +77,6 @@ final class ReflectionMapper
 
     private function mapUnionType(ReflectionUnionType $type, ReflectionFunctionAbstract $functionOrMethod): Type
     {
-        if (!$this->unionContainsOnlyNamedTypes($type)) {
-            return $this->mapDistributedNormalFormType($type, $functionOrMethod);
-        }
-
-        $types = [];
-
-        foreach ($type->getTypes() as $_type) {
-            assert($_type instanceof ReflectionNamedType);
-
-            $types[] = $this->mapNamedType($_type, $functionOrMethod);
-        }
-
-        return new UnionType(...$types);
-    }
-
-    private function mapDistributedNormalFormType(ReflectionUnionType $type, ReflectionFunctionAbstract $functionOrMethod): Type
-    {
         $types = [];
 
         foreach ($type->getTypes() as $_type) {
@@ -108,7 +91,7 @@ final class ReflectionMapper
             $types[] = $this->mapIntersectionType($_type, $functionOrMethod);
         }
 
-        return new DisjunctiveNormalFormType(...$types);
+        return new UnionType(...$types);
     }
 
     private function mapIntersectionType(ReflectionIntersectionType $type, ReflectionFunctionAbstract $functionOrMethod): Type
@@ -148,16 +131,5 @@ final class ReflectionMapper
         }
 
         return $functionOrMethod->getTentativeReturnType();
-    }
-
-    private function unionContainsOnlyNamedTypes(ReflectionUnionType $type): bool
-    {
-        foreach ($type->getTypes() as $_type) {
-            if (!$_type instanceof ReflectionNamedType) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }

@@ -10,24 +10,50 @@
 namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\TestCase;
+use SebastianBergmann\Type\TestFixture\AnInterface;
+use SebastianBergmann\Type\TestFixture\AnotherInterface;
 
 /**
  * @covers \SebastianBergmann\Type\Type
  * @covers \SebastianBergmann\Type\UnionType
  *
+ * @uses \SebastianBergmann\Type\IntersectionType
  * @uses \SebastianBergmann\Type\NullType
+ * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\SimpleType
+ * @uses \SebastianBergmann\Type\TypeName
  */
 final class UnionTypeTest extends TestCase
 {
-    public function testCanBeRepresentedAsString(): void
+    /**
+     * @dataProvider stringRepresentationProvider
+     */
+    public function testCanBeRepresentedAsString(string $expected, Type $type): void
     {
-        $type = new UnionType(
-            Type::fromName('bool', false),
-            Type::fromName('int', false)
-        );
+        $this->assertSame($expected, $type->asString());
+    }
 
-        $this->assertSame('bool|int', $type->asString());
+    public function stringRepresentationProvider(): array
+    {
+        return [
+            [
+                'bool|int',
+                new UnionType(
+                    Type::fromName('bool', false),
+                    Type::fromName('int', false)
+                ),
+            ],
+            [
+                '(' . AnInterface::class . '&' . AnotherInterface::class . ')|bool',
+                new UnionType(
+                    new IntersectionType(
+                        Type::fromName(AnInterface::class, false),
+                        Type::fromName(AnotherInterface::class, false)
+                    ),
+                    Type::fromName('bool', false)
+                ),
+            ],
+        ];
     }
 
     public function testMayAllowNull(): void
@@ -123,7 +149,6 @@ final class UnionTypeTest extends TestCase
         );
 
         $this->assertFalse($type->isCallable());
-        $this->assertFalse($type->isDisjunctiveNormalForm());
         $this->assertFalse($type->isFalse());
         $this->assertFalse($type->isGenericObject());
         $this->assertFalse($type->isIntersection());

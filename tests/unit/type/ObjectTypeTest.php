@@ -142,7 +142,6 @@ final class ObjectTypeTest extends TestCase
     public function testCanBeQueriedForType(): void
     {
         $this->assertFalse($this->childClass->isCallable());
-        $this->assertFalse($this->childClass->isDisjunctiveNormalForm());
         $this->assertFalse($this->childClass->isFalse());
         $this->assertFalse($this->childClass->isGenericObject());
         $this->assertFalse($this->childClass->isIntersection());

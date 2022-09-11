@@ -163,11 +163,6 @@ abstract class Type
         return false;
     }
 
-    public function isDisjunctiveNormalForm(): bool
-    {
-        return false;
-    }
-
     public function isUnknown(): bool
     {
         return false;

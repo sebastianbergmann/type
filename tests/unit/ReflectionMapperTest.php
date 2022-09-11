@@ -16,6 +16,7 @@ use ReflectionMethod;
 use SebastianBergmann\Type\TestFixture\AnInterface;
 use SebastianBergmann\Type\TestFixture\AnotherInterface;
 use SebastianBergmann\Type\TestFixture\ChildClass;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareDisjunctiveNormalFormParameters;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareUnionReturnTypes;
@@ -30,7 +31,6 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
 /**
  * @covers \SebastianBergmann\Type\ReflectionMapper
  *
- * @uses \SebastianBergmann\Type\DisjunctiveNormalFormType
  * @uses \SebastianBergmann\Type\FalseType
  * @uses \SebastianBergmann\Type\GenericObjectType
  * @uses \SebastianBergmann\Type\IntersectionType
@@ -208,15 +208,15 @@ final class ReflectionMapperTest extends TestCase
     public function testMapsFromDisjunctiveNormalFormReturnType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes::class, 'one'));
-        $this->assertInstanceOf(DisjunctiveNormalFormType::class, $type);
+        $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B)|SebastianBergmann\Type\TestFixture\D', $type->name());
 
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes::class, 'two'));
-        $this->assertInstanceOf(DisjunctiveNormalFormType::class, $type);
+        $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('(SebastianBergmann\Type\TestFixture\D&SebastianBergmann\Type\TestFixture\X)|SebastianBergmann\Type\TestFixture\C|null', $type->name());
 
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes::class, 'three'));
-        $this->assertInstanceOf(DisjunctiveNormalFormType::class, $type);
+        $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B&SebastianBergmann\Type\TestFixture\D)|int|null', $type->name());
     }
 

@@ -148,7 +148,6 @@ final class CallableTypeTest extends TestCase
     public function testCanBeQueriedForType(): void
     {
         $this->assertTrue($this->type->isCallable());
-        $this->assertFalse($this->type->isDisjunctiveNormalForm());
         $this->assertFalse($this->type->isFalse());
         $this->assertFalse($this->type->isGenericObject());
         $this->assertFalse($this->type->isIntersection());
