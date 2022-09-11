@@ -62,6 +62,9 @@ final class IntersectionType extends Type
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true IntersectionType $this
+     */
     public function isIntersection(): bool
     {
         return true;

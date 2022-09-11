@@ -32,6 +32,9 @@ final class TrueType extends Type
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true TrueType $this
+     */
     public function isTrue(): bool
     {
         return true;

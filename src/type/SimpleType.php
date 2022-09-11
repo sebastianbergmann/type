@@ -71,6 +71,9 @@ final class SimpleType extends Type
         return $this->value;
     }
 
+    /**
+     * @psalm-assert-if-true SimpleType $this
+     */
     public function isSimple(): bool
     {
         return true;

@@ -77,6 +77,9 @@ final class UnionType extends Type
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true UnionType $this
+     */
     public function isUnion(): bool
     {
         return true;
