@@ -8,6 +8,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * [#25](https://github.com/sebastianbergmann/type/issues/25): Support Disjunctive Normal Form types
 * Added `ReflectionMapper::fromParameterTypes()`
+* Added `UnionType::containsIntersectionTypes()`
 
 ## [3.1.0] - 2022-08-29
 

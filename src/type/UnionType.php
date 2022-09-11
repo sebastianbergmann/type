@@ -82,6 +82,17 @@ final class UnionType extends Type
         return true;
     }
 
+    public function containsIntersectionTypes(): bool
+    {
+        foreach ($this->types as $type) {
+            if ($type->isIntersection()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * @throws RuntimeException
      */

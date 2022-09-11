@@ -76,6 +76,29 @@ final class UnionTypeTest extends TestCase
         $this->assertFalse($type->allowsNull());
     }
 
+    public function testMayContainIntersectionType(): void
+    {
+        $type = new UnionType(
+            Type::fromName('bool', false),
+            new IntersectionType(
+                Type::fromName(AnInterface::class, false),
+                Type::fromName(AnotherInterface::class, false)
+            ),
+        );
+
+        $this->assertTrue($type->containsIntersectionTypes());
+    }
+
+    public function testMayNotContainIntersectionType(): void
+    {
+        $type = new UnionType(
+            Type::fromName('bool', false),
+            Type::fromName('int', false)
+        );
+
+        $this->assertFalse($type->containsIntersectionTypes());
+    }
+
     /**
      * @dataProvider assignableProvider
      */
