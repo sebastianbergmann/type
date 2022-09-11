@@ -16,9 +16,12 @@ use ReflectionMethod;
 use SebastianBergmann\Type\TestFixture\AnInterface;
 use SebastianBergmann\Type\TestFixture\AnotherInterface;
 use SebastianBergmann\Type\TestFixture\ChildClass;
-use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareDisjunctiveNormalFormParameters;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareDisjunctiveNormalFormParameterTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareIntersectionParameterTypes;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareParameterTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareReturnTypes;
+use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareUnionParameterTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareUnionReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatHaveStaticReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresFalseReturnType;
@@ -38,6 +41,7 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
  * @uses \SebastianBergmann\Type\NeverType
  * @uses \SebastianBergmann\Type\NullType
  * @uses \SebastianBergmann\Type\ObjectType
+ * @uses \SebastianBergmann\Type\Parameter
  * @uses \SebastianBergmann\Type\SimpleType
  * @uses \SebastianBergmann\Type\StaticType
  * @uses \SebastianBergmann\Type\TrueType
@@ -218,6 +222,76 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes::class, 'three'));
         $this->assertInstanceOf(UnionType::class, $type);
         $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B&SebastianBergmann\Type\TestFixture\D)|int|null', $type->name());
+    }
+
+    public function testMapsFromParameters(): void
+    {
+        $method = new ReflectionMethod(ClassWithMethodsThatDeclareParameterTypes::class, 'unknown');
+        $types  = (new ReflectionMapper)->fromParameterTypes($method);
+
+        $this->assertCount(1, $types);
+        $this->assertSame('x', $types[0]->name());
+        $this->assertSame('', $types[0]->type()->asString());
+
+        $method = new ReflectionMethod(ClassWithMethodsThatDeclareParameterTypes::class, 'named');
+        $types  = (new ReflectionMapper)->fromParameterTypes($method);
+
+        $this->assertCount(1, $types);
+        $this->assertSame('x', $types[0]->name());
+        $this->assertSame('SebastianBergmann\Type\TestFixture\A', $types[0]->type()->asString());
+    }
+
+    /**
+     * @requires PHP >= 8.0
+     */
+    public function testMapsFromUnionTypeParameters(): void
+    {
+        $method = new ReflectionMethod(ClassWithMethodsThatDeclareUnionParameterTypes::class, 'union');
+        $types  = (new ReflectionMapper)->fromParameterTypes($method);
+
+        $this->assertCount(1, $types);
+        $this->assertSame('x', $types[0]->name());
+        $this->assertSame('bool|int', $types[0]->type()->asString());
+    }
+
+    /**
+     * @requires PHP >= 8.1
+     */
+    public function testMapsFromIntersectionTypeParameters(): void
+    {
+        $method = new ReflectionMethod(ClassWithMethodsThatDeclareIntersectionParameterTypes::class, 'intersection');
+        $types  = (new ReflectionMapper)->fromParameterTypes($method);
+
+        $this->assertCount(1, $types);
+        $this->assertSame('x', $types[0]->name());
+        $this->assertSame('SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B', $types[0]->type()->asString());
+    }
+
+    /**
+     * @requires PHP >= 8.2
+     */
+    public function testMapsFromDisjunctiveNormalFormParameters(): void
+    {
+        $method = new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormParameterTypes::class, 'dnfOne');
+        $types  = (new ReflectionMapper)->fromParameterTypes($method);
+
+        $this->assertCount(1, $types);
+        $this->assertSame('x', $types[0]->name());
+        $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B)|SebastianBergmann\Type\TestFixture\D', $types[0]->type()->asString());
+
+        $method = new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormParameterTypes::class, 'dnfTwo');
+        $types  = (new ReflectionMapper)->fromParameterTypes($method);
+
+        $this->assertCount(1, $types);
+        $this->assertSame('x', $types[0]->name());
+        $this->assertSame('(SebastianBergmann\Type\TestFixture\D&SebastianBergmann\Type\TestFixture\X)|SebastianBergmann\Type\TestFixture\C|null', $types[0]->type()->asString());
+
+        $method = new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormParameterTypes::class, 'dnfThree');
+        $types  = (new ReflectionMapper)->fromParameterTypes($method);
+
+        $this->assertCount(1, $types);
+        $this->assertSame('x', $types[0]->name());
+        $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B&SebastianBergmann\Type\TestFixture\D)|int|null', $types[0]->type()->asString());
     }
 
     public function typeProvider(): array

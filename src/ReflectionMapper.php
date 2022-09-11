@@ -19,6 +19,55 @@ use ReflectionUnionType;
 
 final class ReflectionMapper
 {
+    /**
+     * @psalm-return list<Parameter>
+     */
+    public function fromParameterTypes(ReflectionFunctionAbstract $functionOrMethod): array
+    {
+        $parameters = [];
+
+        foreach ($functionOrMethod->getParameters() as $parameter) {
+            $name = $parameter->getName();
+
+            assert($name !== '');
+
+            if (!$parameter->hasType()) {
+                $parameters[] = new Parameter($name, new UnknownType);
+
+                continue;
+            }
+
+            $type = $parameter->getType();
+
+            if ($type instanceof ReflectionNamedType) {
+                $parameters[] = new Parameter(
+                    $name,
+                    $this->mapNamedType($type, $functionOrMethod)
+                );
+
+                continue;
+            }
+
+            if ($type instanceof ReflectionUnionType) {
+                $parameters[] = new Parameter(
+                    $name,
+                    $this->mapUnionType($type, $functionOrMethod)
+                );
+
+                continue;
+            }
+
+            if ($type instanceof ReflectionIntersectionType) {
+                $parameters[] = new Parameter(
+                    $name,
+                    $this->mapIntersectionType($type, $functionOrMethod)
+                );
+            }
+        }
+
+        return $parameters;
+    }
+
     public function fromReturnType(ReflectionFunctionAbstract $functionOrMethod): Type
     {
         if (!$this->hasReturnType($functionOrMethod)) {
