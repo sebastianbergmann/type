@@ -16,16 +16,12 @@ use stdClass;
  * @covers \SebastianBergmann\Type\Type
  *
  * @uses \SebastianBergmann\Type\CallableType
- * @uses \SebastianBergmann\Type\FalseType
  * @uses \SebastianBergmann\Type\GenericObjectType
- * @uses \SebastianBergmann\Type\IntersectionType
  * @uses \SebastianBergmann\Type\IterableType
  * @uses \SebastianBergmann\Type\NeverType
  * @uses \SebastianBergmann\Type\ObjectType
  * @uses \SebastianBergmann\Type\SimpleType
- * @uses \SebastianBergmann\Type\TrueType
  * @uses \SebastianBergmann\Type\TypeName
- * @uses \SebastianBergmann\Type\UnionType
  */
 final class TypeTest extends TestCase
 {
@@ -90,31 +86,6 @@ final class TypeTest extends TestCase
             '?callable'         => [new CallableType(true), 'callable', true],
             'iterable'          => [new IterableType(false), 'iterable', false],
             '?iterable'         => [new IterableType(true), 'iterable', true],
-        ];
-    }
-
-    /**
-     * @dataProvider typeFromString
-     */
-    public function testCanBeCreatedFromString(string $string): void
-    {
-        $this->assertSame($string, Type::fromString($string)->asString());
-    }
-
-    public function typeFromString(): array
-    {
-        return [
-            ['bool'],
-            ['false'],
-            ['true'],
-            ['int'],
-            ['float'],
-            ['string'],
-            ['array'],
-            ['object'],
-            ['a|b'],
-            ['a&b'],
-            ['(a&b)|(b&c)|d'],
         ];
     }
 
