@@ -26,7 +26,6 @@ use stdClass;
  * @uses \SebastianBergmann\Type\TrueType
  * @uses \SebastianBergmann\Type\TypeName
  * @uses \SebastianBergmann\Type\UnionType
- * @uses \SebastianBergmann\Type\UnknownType
  */
 final class TypeTest extends TestCase
 {
@@ -105,7 +104,6 @@ final class TypeTest extends TestCase
     public function typeFromString(): array
     {
         return [
-            [''],
             ['bool'],
             ['false'],
             ['true'],
