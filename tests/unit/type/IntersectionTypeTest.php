@@ -39,16 +39,6 @@ final class IntersectionTypeTest extends TestCase
         );
     }
 
-    public function testTypesCanBeQueried(): void
-    {
-        $a = Type::fromName(AnInterface::class, false);
-        $b = Type::fromName(AnotherInterface::class, false);
-
-        $type = new IntersectionType($a, $b);
-
-        $this->assertSame([$a, $b], $type->types());
-    }
-
     public function testCanBeQueriedForType(): void
     {
         $this->assertFalse($this->type->isCallable());

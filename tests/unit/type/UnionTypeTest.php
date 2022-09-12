@@ -56,15 +56,6 @@ final class UnionTypeTest extends TestCase
         ];
     }
 
-    public function testTypesCanBeQueried(): void
-    {
-        $bool = Type::fromName('bool', false);
-        $null = Type::fromName('null', true);
-        $type = new UnionType($bool, $null);
-
-        $this->assertSame([$bool, $null], $type->types());
-    }
-
     public function testMayAllowNull(): void
     {
         $type = new UnionType(
