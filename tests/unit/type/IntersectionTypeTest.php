@@ -26,10 +26,7 @@ use SebastianBergmann\Type\TestFixture\ClassImplementingAnInterfaceAndAnotherInt
 #[Small]
 final class IntersectionTypeTest extends TestCase
 {
-    /**
-     * @psalm-var AnInterface&AnotherInterface
-     */
-    private object $type;
+    private IntersectionType $type;
 
     protected function setUp(): void
     {
@@ -37,6 +34,16 @@ final class IntersectionTypeTest extends TestCase
             Type::fromName(AnInterface::class, false),
             Type::fromName(AnotherInterface::class, false)
         );
+    }
+
+    public function testTypesCanBeQueried(): void
+    {
+        $a = Type::fromName(AnInterface::class, false);
+        $b = Type::fromName(AnotherInterface::class, false);
+
+        $type = new IntersectionType($a, $b);
+
+        $this->assertSame([$a, $b], $type->types());
     }
 
     public function testCanBeQueriedForType(): void
@@ -56,6 +63,14 @@ final class IntersectionTypeTest extends TestCase
         $this->assertFalse($this->type->isUnion());
         $this->assertFalse($this->type->isUnknown());
         $this->assertFalse($this->type->isVoid());
+    }
+
+    public function testHasName(): void
+    {
+        $this->assertSame(
+            AnInterface::class . '&' . AnotherInterface::class,
+            $this->type->name()
+        );
     }
 
     public function testCanBeRepresentedAsString(): void
@@ -114,6 +129,16 @@ final class IntersectionTypeTest extends TestCase
         $this->expectException(RuntimeException::class);
 
         new IntersectionType;
+    }
+
+    public function testCanOnlyBeCreatedForInterfacesAndClasses(): void
+    {
+        $this->expectException(RuntimeException::class);
+
+        new IntersectionType(
+            Type::fromValue(false, false),
+            Type::fromValue('string', false),
+        );
     }
 
     public function testMustNotContainDuplicateTypes(): void

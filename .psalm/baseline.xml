@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.x-dev@">
   <file src="src/ReflectionMapper.php">
-    <ArgumentTypeCoercion occurrences="2">
-      <code>$types</code>
-      <code>$types</code>
-    </ArgumentTypeCoercion>
-    <PossiblyUndefinedMethod occurrences="2">
-      <code>getName</code>
-      <code>getName</code>
-    </PossiblyUndefinedMethod>
+    <DocblockTypeContradiction occurrences="2">
+      <code>$_type instanceof ReflectionIntersectionType</code>
+      <code>assert($_type instanceof ReflectionNamedType || $_type instanceof ReflectionIntersectionType)</code>
+    </DocblockTypeContradiction>
+    <InvalidReturnType occurrences="1">
+      <code>Type</code>
+    </InvalidReturnType>
+    <RedundantConditionGivenDocblockType occurrences="2">
+      <code>$returnType instanceof ReflectionIntersectionType</code>
+      <code>assert($_type instanceof ReflectionNamedType || $_type instanceof ReflectionIntersectionType)</code>
+    </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/type/ObjectType.php">
     <ArgumentTypeCoercion occurrences="1">

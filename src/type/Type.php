@@ -65,76 +65,121 @@ abstract class Type
         return ($this->allowsNull() ? '?' : '') . $this->name();
     }
 
+    /**
+     * @psalm-assert-if-true CallableType $this
+     */
     public function isCallable(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true TrueType $this
+     */
     public function isTrue(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true FalseType $this
+     */
     public function isFalse(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true GenericObjectType $this
+     */
     public function isGenericObject(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true IntersectionType $this
+     */
     public function isIntersection(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true IterableType $this
+     */
     public function isIterable(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true MixedType $this
+     */
     public function isMixed(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true NeverType $this
+     */
     public function isNever(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true NullType $this
+     */
     public function isNull(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true ObjectType $this
+     */
     public function isObject(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true SimpleType $this
+     */
     public function isSimple(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true StaticType $this
+     */
     public function isStatic(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true UnionType $this
+     */
     public function isUnion(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true UnknownType $this
+     */
     public function isUnknown(): bool
     {
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true VoidType $this
+     */
     public function isVoid(): bool
     {
         return false;

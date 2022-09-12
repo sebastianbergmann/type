@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use function array_unique;
+use function assert;
 use function count;
 use function implode;
 use function sort;
@@ -17,16 +18,17 @@ use function sort;
 final class IntersectionType extends Type
 {
     /**
-     * @psalm-var list<Type>
+     * @psalm-var non-empty-list<Type>
      */
     private array $types;
 
     /**
      * @throws RuntimeException
      */
-    public function __construct(ObjectType ...$types)
+    public function __construct(Type ...$types)
     {
         $this->ensureMinimumOfTwoTypes(...$types);
+        $this->ensureOnlyValidTypes(...$types);
         $this->ensureNoDuplicateTypes(...$types);
 
         $this->types = $types;
@@ -52,7 +54,6 @@ final class IntersectionType extends Type
 
         sort($types);
 
-        /* @noinspection ImplodeMissUseInspection */
         return implode('&', $types);
     }
 
@@ -61,9 +62,20 @@ final class IntersectionType extends Type
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true IntersectionType $this
+     */
     public function isIntersection(): bool
     {
         return true;
+    }
+
+    /**
+     * @psalm-return non-empty-list<Type>
+     */
+    public function types(): array
+    {
+        return $this->types;
     }
 
     /**
@@ -81,11 +93,27 @@ final class IntersectionType extends Type
     /**
      * @throws RuntimeException
      */
-    private function ensureNoDuplicateTypes(ObjectType ...$types): void
+    private function ensureOnlyValidTypes(Type ...$types): void
+    {
+        foreach ($types as $type) {
+            if (!$type->isObject()) {
+                throw new RuntimeException(
+                    'An intersection type can only be composed of interfaces and classes'
+                );
+            }
+        }
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    private function ensureNoDuplicateTypes(Type ...$types): void
     {
         $names = [];
 
         foreach ($types as $type) {
+            assert($type instanceof ObjectType);
+
             $names[] = $type->className()->qualifiedName();
         }
 
