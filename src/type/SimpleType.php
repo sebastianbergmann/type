@@ -17,7 +17,7 @@ final class SimpleType extends Type
     private bool $allowsNull;
     private mixed $value;
 
-    public function __construct(string $name, bool $nullable, $value = null)
+    public function __construct(string $name, bool $nullable, mixed $value = null)
     {
         $this->name       = $this->normalize($name);
         $this->allowsNull = $nullable;
@@ -55,7 +55,7 @@ final class SimpleType extends Type
         return $this->allowsNull;
     }
 
-    public function value()
+    public function value(): mixed
     {
         return $this->value;
     }

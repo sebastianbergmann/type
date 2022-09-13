@@ -18,14 +18,6 @@
       <code>$this-&gt;className-&gt;qualifiedName()</code>
     </ArgumentTypeCoercion>
   </file>
-  <file src="src/type/SimpleType.php">
-    <MissingParamType occurrences="1">
-      <code>$value</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="1">
-      <code>value</code>
-    </MissingReturnType>
-  </file>
   <file src="src/type/StaticType.php">
     <ArgumentTypeCoercion occurrences="1">
       <code>$this-&gt;className-&gt;qualifiedName()</code>
