@@ -80,10 +80,10 @@ final class TypeTest extends TestCase
             'unknown type'      => [new UnknownType, 'unknown type', false],
             '?classname'        => [new ObjectType(TypeName::fromQualifiedName(stdClass::class), true), stdClass::class, true],
             'classname'         => [new ObjectType(TypeName::fromQualifiedName(stdClass::class), false), stdClass::class, false],
-            'callable'          => [new CallableType(false), 'callable', false],
             '?callable'         => [new CallableType(true), 'callable', true],
-            'iterable'          => [new IterableType(false), 'iterable', false],
+            'callable'          => [new CallableType(false), 'callable', false],
             '?iterable'         => [new IterableType(true), 'iterable', true],
+            'iterable'          => [new IterableType(false), 'iterable', false],
             'mixed'             => [new MixedType, 'mixed', false],
             'never'             => [new NeverType, 'never', false],
         ];
