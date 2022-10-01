@@ -61,7 +61,7 @@ final class TypeTest extends TestCase
             '?void'             => [new VoidType, 'void', true],
             'void'              => [new VoidType, 'void', false],
             '?null'             => [new NullType, 'null', true],
-            'null'              => [new NullType, 'null', true],
+            'null'              => [new NullType, 'null', false],
             '?int'              => [new SimpleType('int', true), 'int', true],
             '?integer'          => [new SimpleType('int', true), 'integer', true],
             'int'               => [new SimpleType('int', false), 'int', false],
