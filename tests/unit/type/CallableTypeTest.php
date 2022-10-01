@@ -34,7 +34,7 @@ final class CallableTypeTest extends TestCase
 
     public function testHasName(): void
     {
-        $this->assertSame('callable', $this->type->name());
+        $this->assertSame('callable', $this->type->name);
     }
 
     public function testMayDisallowNull(): void

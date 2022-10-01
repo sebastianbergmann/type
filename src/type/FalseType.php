@@ -13,7 +13,7 @@ final class FalseType extends Type
 {
     public function __construct()
     {
-        parent::__construct(false);
+        parent::__construct('false', false);
     }
 
     public function isAssignable(Type $other): bool
@@ -23,13 +23,8 @@ final class FalseType extends Type
         }
 
         return $other instanceof SimpleType &&
-              $other->name() === 'bool' &&
+              $other->name === 'bool' &&
               $other->value() === false;
-    }
-
-    public function name(): string
-    {
-        return 'false';
     }
 
     /**

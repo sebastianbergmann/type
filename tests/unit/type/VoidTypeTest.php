@@ -21,7 +21,7 @@ final class VoidTypeTest extends TestCase
 {
     public function testHasName(): void
     {
-        $this->assertSame('void', (new VoidType)->name());
+        $this->assertSame('void', (new VoidType)->name);
     }
 
     #[DataProvider('assignableTypes')]

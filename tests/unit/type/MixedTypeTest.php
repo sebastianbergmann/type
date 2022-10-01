@@ -28,7 +28,7 @@ final class MixedTypeTest extends TestCase
     {
         $type = new MixedType;
 
-        $this->assertSame('mixed', $type->name());
+        $this->assertSame('mixed', $type->name);
     }
 
     public function testCanBeRepresentedAsString(): void

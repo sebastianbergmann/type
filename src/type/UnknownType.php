@@ -13,17 +13,12 @@ final class UnknownType extends Type
 {
     public function __construct()
     {
-        parent::__construct(true);
+        parent::__construct('unknown type', true);
     }
 
     public function isAssignable(Type $other): bool
     {
         return true;
-    }
-
-    public function name(): string
-    {
-        return 'unknown type';
     }
 
     public function asString(): string

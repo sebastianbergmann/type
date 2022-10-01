@@ -23,7 +23,7 @@ final class TrueTypeTest extends TestCase
 {
     public function testHasName(): void
     {
-        $this->assertSame('true', (new TrueType)->name());
+        $this->assertSame('true', (new TrueType)->name);
     }
 
     #[DataProvider('assignableTypes')]

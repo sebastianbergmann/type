@@ -32,7 +32,7 @@ final class IterableTypeTest extends TestCase
 
     public function testHasName(): void
     {
-        $this->assertSame('iterable', $this->type->name());
+        $this->assertSame('iterable', $this->type->name);
     }
 
     public function testMayDisallowNull(): void

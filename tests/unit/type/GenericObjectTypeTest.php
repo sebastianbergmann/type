@@ -32,7 +32,7 @@ final class GenericObjectTypeTest extends TestCase
 
     public function testHasName(): void
     {
-        $this->assertSame('object', $this->type->name());
+        $this->assertSame('object', $this->type->name);
     }
 
     public function testMayDisallowNull(): void

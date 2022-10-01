@@ -13,14 +13,12 @@ use function strtolower;
 
 final class SimpleType extends Type
 {
-    private string $name;
     private mixed $value;
 
     public function __construct(string $name, bool $allowsNull, mixed $value = null)
     {
-        parent::__construct($allowsNull);
+        parent::__construct($this->normalize($name), $allowsNull);
 
-        $this->name  = $this->normalize($name);
         $this->value = $value;
     }
 
@@ -30,11 +28,11 @@ final class SimpleType extends Type
             return true;
         }
 
-        if ($this->name === 'bool' && $other->name() === 'true') {
+        if ($this->name === 'bool' && $other->name === 'true') {
             return true;
         }
 
-        if ($this->name === 'bool' && $other->name() === 'false') {
+        if ($this->name === 'bool' && $other->name === 'false') {
             return true;
         }
 
@@ -43,11 +41,6 @@ final class SimpleType extends Type
         }
 
         return false;
-    }
-
-    public function name(): string
-    {
-        return $this->name;
     }
 
     public function value(): mixed

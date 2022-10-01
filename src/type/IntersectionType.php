@@ -23,6 +23,22 @@ final class IntersectionType extends Type
     private array $types;
 
     /**
+     * @psalm-param non-empty-list<ObjectType> $types
+     */
+    public static function getFullName(Type ...$types): string
+    {
+        $names = [];
+
+        foreach ($types as $type) {
+            $names[] = $type->name;
+        }
+
+        sort($names);
+
+        return implode('&', $names);
+    }
+
+    /**
      * @throws RuntimeException
      */
     public function __construct(Type ...$types)
@@ -31,7 +47,7 @@ final class IntersectionType extends Type
         $this->ensureOnlyValidTypes(...$types);
         $this->ensureNoDuplicateTypes(...$types);
 
-        parent::__construct(false);
+        parent::__construct(self::getFullName(...$types), false);
 
         $this->types = $types;
     }
@@ -45,24 +61,6 @@ final class IntersectionType extends Type
         }
 
         return true;
-    }
-
-    public function asString(): string
-    {
-        return $this->name();
-    }
-
-    public function name(): string
-    {
-        $types = [];
-
-        foreach ($this->types as $type) {
-            $types[] = $type->name();
-        }
-
-        sort($types);
-
-        return implode('&', $types);
     }
 
     /**

@@ -21,7 +21,7 @@ final class NeverTypeTest extends TestCase
 {
     public function testHasName(): void
     {
-        $this->assertSame('never', (new NeverType)->name());
+        $this->assertSame('never', (new NeverType)->name);
     }
 
     #[DataProvider('assignableTypes')]

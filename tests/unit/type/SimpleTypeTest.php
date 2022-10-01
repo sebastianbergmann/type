@@ -31,63 +31,63 @@ final class SimpleTypeTest extends TestCase
     {
         $type = new SimpleType('bool', false);
 
-        $this->assertSame('bool', $type->name());
+        $this->assertSame('bool', $type->name);
     }
 
     public function testCanBeBoolean(): void
     {
         $type = new SimpleType('boolean', false);
 
-        $this->assertSame('bool', $type->name());
+        $this->assertSame('bool', $type->name);
     }
 
     public function testCanBeDouble(): void
     {
         $type = new SimpleType('double', false);
 
-        $this->assertSame('float', $type->name());
+        $this->assertSame('float', $type->name);
     }
 
     public function testCanBeFloat(): void
     {
         $type = new SimpleType('float', false);
 
-        $this->assertSame('float', $type->name());
+        $this->assertSame('float', $type->name);
     }
 
     public function testCanBeReal(): void
     {
         $type = new SimpleType('real', false);
 
-        $this->assertSame('float', $type->name());
+        $this->assertSame('float', $type->name);
     }
 
     public function testCanBeInt(): void
     {
         $type = new SimpleType('int', false);
 
-        $this->assertSame('int', $type->name());
+        $this->assertSame('int', $type->name);
     }
 
     public function testCanBeInteger(): void
     {
         $type = new SimpleType('integer', false);
 
-        $this->assertSame('int', $type->name());
+        $this->assertSame('int', $type->name);
     }
 
     public function testCanBeArray(): void
     {
         $type = new SimpleType('array', false);
 
-        $this->assertSame('array', $type->name());
+        $this->assertSame('array', $type->name);
     }
 
     public function testCanBeArray2(): void
     {
         $type = new SimpleType('[]', false);
 
-        $this->assertSame('array', $type->name());
+        $this->assertSame('array', $type->name);
     }
 
     public function testMayAllowNull(): void
@@ -170,6 +170,6 @@ final class SimpleTypeTest extends TestCase
     {
         $type = new SimpleType('BOOLEAN', false);
 
-        $this->assertSame('bool', $type->name());
+        $this->assertSame('bool', $type->name);
     }
 }

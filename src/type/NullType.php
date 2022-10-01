@@ -13,17 +13,12 @@ final class NullType extends Type
 {
     public function __construct()
     {
-        parent::__construct(true);
+        parent::__construct('null', true);
     }
 
     public function isAssignable(Type $other): bool
     {
         return !($other instanceof VoidType);
-    }
-
-    public function name(): string
-    {
-        return 'null';
     }
 
     public function asString(): string

@@ -20,6 +20,24 @@ final class UnionType extends Type
      */
     private array $types;
 
+    public static function getFullName(Type ...$types): string
+    {
+        $names = [];
+
+        foreach ($types as $type) {
+            if ($type->isIntersection()) {
+                // Support for PHP 8.2 Disjunctive Normal Form types.
+                $names[] = '(' . $type->name . ')';
+            } else {
+                $names[] = $type->name;
+            }
+        }
+
+        sort($names);
+
+        return implode('|', $names);
+    }
+
     /**
      * @throws RuntimeException
      */
@@ -28,7 +46,7 @@ final class UnionType extends Type
         $this->ensureMinimumOfTwoTypes(...$types);
         $this->ensureOnlyValidTypes(...$types);
 
-        parent::__construct(self::isAnyTypeNull(...$types));
+        parent::__construct(self::getFullName(...$types), self::isAnyTypeNull(...$types));
 
         $this->types = $types;
     }
@@ -42,30 +60,6 @@ final class UnionType extends Type
         }
 
         return false;
-    }
-
-    public function asString(): string
-    {
-        return $this->name();
-    }
-
-    public function name(): string
-    {
-        $types = [];
-
-        foreach ($this->types as $type) {
-            if ($type->isIntersection()) {
-                $types[] = '(' . $type->name() . ')';
-
-                continue;
-            }
-
-            $types[] = $type->name();
-        }
-
-        sort($types);
-
-        return implode('|', $types);
     }
 
     /**

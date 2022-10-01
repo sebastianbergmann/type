@@ -51,7 +51,7 @@ final class UnknownTypeTest extends TestCase
 
     public function testHasName(): void
     {
-        $this->assertSame('unknown type', $this->type->name());
+        $this->assertSame('unknown type', $this->type->name);
     }
 
     public function testCanBeRepresentedAsString(): void

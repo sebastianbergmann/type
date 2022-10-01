@@ -42,7 +42,7 @@ final class ObjectTypeTest extends TestCase
 
     public function testHasName(): void
     {
-        $this->assertSame(ChildClass::class, $this->childClass->name());
+        $this->assertSame(ChildClass::class, $this->childClass->name);
     }
 
     public function testParentIsNotAssignableToChild(): void

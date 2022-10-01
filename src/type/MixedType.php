@@ -13,7 +13,7 @@ final class MixedType extends Type
 {
     public function __construct()
     {
-        parent::__construct(true);
+        parent::__construct('mixed', true);
     }
 
     public function isAssignable(Type $other): bool
@@ -22,11 +22,6 @@ final class MixedType extends Type
     }
 
     public function asString(): string
-    {
-        return 'mixed';
-    }
-
-    public function name(): string
     {
         return 'mixed';
     }

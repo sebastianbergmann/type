@@ -58,7 +58,7 @@ final class ReflectionMapperTest extends TestCase
     #[DataProvider('typeProvider')]
     public function testMapsFromReturnType(string $expected, ReflectionFunction|ReflectionMethod $method): void
     {
-        $this->assertSame($expected, (new ReflectionMapper)->fromReturnType($method)->name());
+        $this->assertSame($expected, (new ReflectionMapper)->fromReturnType($method)->name);
     }
 
     public function testMapsFromIntersectionReturnType(): void
@@ -66,7 +66,7 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresIntersectionReturnType::class, 'returnsObjectThatImplementsAnInterfaceAndAnotherInterface'));
 
         $this->assertInstanceOf(IntersectionType::class, $type);
-        $this->assertSame(AnInterface::class . '&' . AnotherInterface::class, $type->name());
+        $this->assertSame(AnInterface::class . '&' . AnotherInterface::class, $type->name);
     }
 
     public function testMapsFromUnionReturnType(): void
@@ -74,7 +74,7 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsBoolOrInt'));
 
         $this->assertInstanceOf(UnionType::class, $type);
-        $this->assertSame('bool|int', $type->name());
+        $this->assertSame('bool|int', $type->name);
     }
 
     public function testMapsFromUnionReturnTypeWithSelf(): void
@@ -82,7 +82,7 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsSelfOrStdClass'));
 
         $this->assertInstanceOf(UnionType::class, $type);
-        $this->assertSame(ClassWithMethodsThatDeclareUnionReturnTypes::class . '|stdClass', $type->name());
+        $this->assertSame(ClassWithMethodsThatDeclareUnionReturnTypes::class . '|stdClass', $type->name);
     }
 
     public function testMapsFromMixedReturnType(): void
@@ -90,7 +90,7 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsMixed'));
 
         $this->assertInstanceOf(MixedType::class, $type);
-        $this->assertSame('mixed', $type->name());
+        $this->assertSame('mixed', $type->name);
     }
 
     public function testMapsFromStaticReturnType(): void
@@ -116,7 +116,7 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatHaveStaticReturnTypes::class, 'returnsUnionWithStatic'));
 
         $this->assertInstanceOf(UnionType::class, $type);
-        $this->assertSame('static|stdClass', $type->name());
+        $this->assertSame('static|stdClass', $type->name);
     }
 
     public function testMapsFromUnionReturnTypeWithIntOrFalse(): void
@@ -124,7 +124,7 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareUnionReturnTypes::class, 'returnsIntOrFalse'));
 
         $this->assertInstanceOf(UnionType::class, $type);
-        $this->assertSame('false|int', $type->name());
+        $this->assertSame('false|int', $type->name);
     }
 
     public function testMapsFromNeverReturnType(): void
@@ -132,7 +132,7 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNeverReturnType::class, 'neverReturnType'));
 
         $this->assertInstanceOf(NeverType::class, $type);
-        $this->assertSame('never', $type->name());
+        $this->assertSame('never', $type->name);
     }
 
     #[RequiresPhp('>= 8.2')]
@@ -141,7 +141,7 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresTrueReturnType::class, 'trueReturnType'));
 
         $this->assertInstanceOf(TrueType::class, $type);
-        $this->assertSame('true', $type->name());
+        $this->assertSame('true', $type->name);
     }
 
     #[RequiresPhp('>= 8.2')]
@@ -150,7 +150,7 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresFalseReturnType::class, 'falseReturnType'));
 
         $this->assertInstanceOf(FalseType::class, $type);
-        $this->assertSame('false', $type->name());
+        $this->assertSame('false', $type->name);
     }
 
     #[RequiresPhp('>= 8.2')]
@@ -159,7 +159,7 @@ final class ReflectionMapperTest extends TestCase
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNullReturnType::class, 'nullReturnType'));
 
         $this->assertInstanceOf(NullType::class, $type);
-        $this->assertSame('null', $type->name());
+        $this->assertSame('null', $type->name);
     }
 
     #[RequiresPhp('>= 8.2')]
@@ -167,15 +167,15 @@ final class ReflectionMapperTest extends TestCase
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes::class, 'one'));
         $this->assertInstanceOf(UnionType::class, $type);
-        $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B)|SebastianBergmann\Type\TestFixture\D', $type->name());
+        $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B)|SebastianBergmann\Type\TestFixture\D', $type->name);
 
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes::class, 'two'));
         $this->assertInstanceOf(UnionType::class, $type);
-        $this->assertSame('(SebastianBergmann\Type\TestFixture\D&SebastianBergmann\Type\TestFixture\X)|SebastianBergmann\Type\TestFixture\C|null', $type->name());
+        $this->assertSame('(SebastianBergmann\Type\TestFixture\D&SebastianBergmann\Type\TestFixture\X)|SebastianBergmann\Type\TestFixture\C|null', $type->name);
 
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes::class, 'three'));
         $this->assertInstanceOf(UnionType::class, $type);
-        $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B&SebastianBergmann\Type\TestFixture\D)|int|null', $type->name());
+        $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B&SebastianBergmann\Type\TestFixture\D)|int|null', $type->name);
     }
 
     public function testMapsFromParameters(): void

@@ -70,7 +70,7 @@ final class IntersectionTypeTest extends TestCase
     {
         $this->assertSame(
             AnInterface::class . '&' . AnotherInterface::class,
-            $this->type->name()
+            $this->type->name
         );
     }
 

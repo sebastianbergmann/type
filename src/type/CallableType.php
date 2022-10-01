@@ -24,6 +24,11 @@ use ReflectionObject;
 
 final class CallableType extends Type
 {
+    public function __construct(bool $allowsNull)
+    {
+        parent::__construct('callable', $allowsNull);
+    }
+
     public function isAssignable(Type $other): bool
     {
         if ($this->allowsNull && $other instanceof NullType) {
@@ -59,11 +64,6 @@ final class CallableType extends Type
         }
 
         return false;
-    }
-
-    public function name(): string
-    {
-        return 'callable';
     }
 
     /**

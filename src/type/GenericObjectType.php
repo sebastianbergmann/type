@@ -11,6 +11,11 @@ namespace SebastianBergmann\Type;
 
 final class GenericObjectType extends Type
 {
+    public function __construct(bool $allowsNull)
+    {
+        parent::__construct('object', $allowsNull);
+    }
+
     public function isAssignable(Type $other): bool
     {
         if ($this->allowsNull && $other instanceof NullType) {
@@ -22,11 +27,6 @@ final class GenericObjectType extends Type
         }
 
         return true;
-    }
-
-    public function name(): string
-    {
-        return 'object';
     }
 
     /**

@@ -15,9 +15,9 @@ final class StaticType extends Type
 
     public function __construct(TypeName $className, bool $allowsNull)
     {
-        parent::__construct($allowsNull);
+        parent::__construct('static', $allowsNull);
 
-        $this->className  = $className;
+        $this->className = $className;
     }
 
     public function isAssignable(Type $other): bool
@@ -39,11 +39,6 @@ final class StaticType extends Type
         }
 
         return false;
-    }
-
-    public function name(): string
-    {
-        return 'static';
     }
 
     /**

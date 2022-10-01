@@ -13,17 +13,12 @@ final class NeverType extends Type
 {
     public function __construct()
     {
-        parent::__construct(false);
+        parent::__construct('never', false);
     }
 
     public function isAssignable(Type $other): bool
     {
         return $other instanceof self;
-    }
-
-    public function name(): string
-    {
-        return 'never';
     }
 
     /**

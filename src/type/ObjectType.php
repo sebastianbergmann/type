@@ -18,7 +18,7 @@ final class ObjectType extends Type
 
     public function __construct(TypeName $className, bool $allowsNull)
     {
-        parent::__construct($allowsNull);
+        parent::__construct($className->qualifiedName(), $allowsNull);
 
         $this->className  = $className;
     }
@@ -40,11 +40,6 @@ final class ObjectType extends Type
         }
 
         return false;
-    }
-
-    public function name(): string
-    {
-        return $this->className->qualifiedName();
     }
 
     public function className(): TypeName

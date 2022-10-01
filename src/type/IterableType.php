@@ -16,6 +16,11 @@ use ReflectionClass;
 
 final class IterableType extends Type
 {
+    public function __construct(bool $allowsNull)
+    {
+        parent::__construct('iterable', $allowsNull);
+    }
+
     /**
      * @throws RuntimeException
      */
@@ -42,11 +47,6 @@ final class IterableType extends Type
         }
 
         return false;
-    }
-
-    public function name(): string
-    {
-        return 'iterable';
     }
 
     /**

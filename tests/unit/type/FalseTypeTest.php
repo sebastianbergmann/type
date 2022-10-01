@@ -23,7 +23,7 @@ final class FalseTypeTest extends TestCase
 {
     public function testHasName(): void
     {
-        $this->assertSame('false', (new FalseType)->name());
+        $this->assertSame('false', (new FalseType)->name);
     }
 
     #[DataProvider('assignableTypes')]
