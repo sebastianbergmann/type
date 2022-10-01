@@ -18,7 +18,7 @@ use function sort;
 final class IntersectionType extends Type
 {
     /**
-     * @psalm-var non-empty-list<Type>
+     * @psalm-var non-empty-list<ObjectType>
      */
     private array $types;
 
@@ -38,7 +38,13 @@ final class IntersectionType extends Type
 
     public function isAssignable(Type $other): bool
     {
-        return $other->isObject();
+        foreach ($this->types as $type) {
+            if (!$type->isAssignable($other)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public function asString(): string
@@ -68,7 +74,7 @@ final class IntersectionType extends Type
     }
 
     /**
-     * @psalm-return non-empty-list<Type>
+     * @psalm-return non-empty-list<ObjectType>
      */
     public function types(): array
     {

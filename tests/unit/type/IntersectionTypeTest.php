@@ -17,6 +17,7 @@ use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\AnInterface;
 use SebastianBergmann\Type\TestFixture\AnotherInterface;
 use SebastianBergmann\Type\TestFixture\ClassImplementingAnInterfaceAndAnotherInterface;
+use stdClass;
 
 #[CoversClass(IntersectionType::class)]
 #[CoversClass(Type::class)]
@@ -111,6 +112,14 @@ final class IntersectionTypeTest extends TestCase
             [
                 false,
                 Type::fromValue(false, false),
+                new IntersectionType(
+                    Type::fromName(AnInterface::class, false),
+                    Type::fromName(AnotherInterface::class, false)
+                ),
+            ],
+            [
+                false,
+                Type::fromName(stdClass::class, false),
                 new IntersectionType(
                     Type::fromName(AnInterface::class, false),
                     Type::fromName(AnotherInterface::class, false)
