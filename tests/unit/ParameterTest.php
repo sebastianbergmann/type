@@ -24,7 +24,7 @@ final class ParameterTest extends TestCase
     {
         $parameter = new Parameter('name', Type::fromValue(1, false));
 
-        $this->assertSame('name', $parameter->name());
+        $this->assertSame('name', $parameter->name);
     }
 
     public function testHasType(): void
@@ -32,6 +32,6 @@ final class ParameterTest extends TestCase
         $type      = Type::fromValue(1, false);
         $parameter = new Parameter('name', $type);
 
-        $this->assertSame($type, $parameter->type());
+        $this->assertSame($type, $parameter->type);
     }
 }

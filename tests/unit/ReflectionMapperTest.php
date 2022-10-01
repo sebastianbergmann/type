@@ -184,15 +184,15 @@ final class ReflectionMapperTest extends TestCase
         $types  = (new ReflectionMapper)->fromParameterTypes($method);
 
         $this->assertCount(1, $types);
-        $this->assertSame('x', $types[0]->name());
-        $this->assertSame('', $types[0]->type()->asString());
+        $this->assertSame('x', $types[0]->name);
+        $this->assertSame('', $types[0]->type->asString());
 
         $method = new ReflectionMethod(ClassWithMethodsThatDeclareParameterTypes::class, 'named');
         $types  = (new ReflectionMapper)->fromParameterTypes($method);
 
         $this->assertCount(1, $types);
-        $this->assertSame('x', $types[0]->name());
-        $this->assertSame('SebastianBergmann\Type\TestFixture\A', $types[0]->type()->asString());
+        $this->assertSame('x', $types[0]->name);
+        $this->assertSame('SebastianBergmann\Type\TestFixture\A', $types[0]->type->asString());
     }
 
     public function testMapsFromUnionTypeParameters(): void
@@ -201,8 +201,8 @@ final class ReflectionMapperTest extends TestCase
         $types  = (new ReflectionMapper)->fromParameterTypes($method);
 
         $this->assertCount(1, $types);
-        $this->assertSame('x', $types[0]->name());
-        $this->assertSame('bool|int', $types[0]->type()->asString());
+        $this->assertSame('x', $types[0]->name);
+        $this->assertSame('bool|int', $types[0]->type->asString());
     }
 
     public function testMapsFromIntersectionTypeParameters(): void
@@ -211,8 +211,8 @@ final class ReflectionMapperTest extends TestCase
         $types  = (new ReflectionMapper)->fromParameterTypes($method);
 
         $this->assertCount(1, $types);
-        $this->assertSame('x', $types[0]->name());
-        $this->assertSame('SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B', $types[0]->type()->asString());
+        $this->assertSame('x', $types[0]->name);
+        $this->assertSame('SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B', $types[0]->type->asString());
     }
 
     #[RequiresPhp('>= 8.2')]
@@ -222,22 +222,22 @@ final class ReflectionMapperTest extends TestCase
         $types  = (new ReflectionMapper)->fromParameterTypes($method);
 
         $this->assertCount(1, $types);
-        $this->assertSame('x', $types[0]->name());
-        $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B)|SebastianBergmann\Type\TestFixture\D', $types[0]->type()->asString());
+        $this->assertSame('x', $types[0]->name);
+        $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B)|SebastianBergmann\Type\TestFixture\D', $types[0]->type->asString());
 
         $method = new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormParameterTypes::class, 'dnfTwo');
         $types  = (new ReflectionMapper)->fromParameterTypes($method);
 
         $this->assertCount(1, $types);
-        $this->assertSame('x', $types[0]->name());
-        $this->assertSame('(SebastianBergmann\Type\TestFixture\D&SebastianBergmann\Type\TestFixture\X)|SebastianBergmann\Type\TestFixture\C|null', $types[0]->type()->asString());
+        $this->assertSame('x', $types[0]->name);
+        $this->assertSame('(SebastianBergmann\Type\TestFixture\D&SebastianBergmann\Type\TestFixture\X)|SebastianBergmann\Type\TestFixture\C|null', $types[0]->type->asString());
 
         $method = new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormParameterTypes::class, 'dnfThree');
         $types  = (new ReflectionMapper)->fromParameterTypes($method);
 
         $this->assertCount(1, $types);
-        $this->assertSame('x', $types[0]->name());
-        $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B&SebastianBergmann\Type\TestFixture\D)|int|null', $types[0]->type()->asString());
+        $this->assertSame('x', $types[0]->name);
+        $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B&SebastianBergmann\Type\TestFixture\D)|int|null', $types[0]->type->asString());
     }
 
     public function typeProvider(): array

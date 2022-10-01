@@ -12,27 +12,7 @@ namespace SebastianBergmann\Type;
 final class Parameter
 {
     /**
-     * @psalm-var non-empty-string
-     */
-    private string $name;
-    private Type $type;
-
-    /**
      * @psalm-param non-empty-string $name
      */
-    public function __construct(string $name, Type $type)
-    {
-        $this->name = $name;
-        $this->type = $type;
-    }
-
-    public function name(): string
-    {
-        return $this->name;
-    }
-
-    public function type(): Type
-    {
-        return $this->type;
-    }
+    public function __construct(public readonly string $name, public readonly Type $type) {}
 }
