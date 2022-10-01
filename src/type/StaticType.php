@@ -30,15 +30,7 @@ final class StaticType extends Type
             return false;
         }
 
-        if (0 === strcasecmp($this->className->qualifiedName(), $other->className()->qualifiedName())) {
-            return true;
-        }
-
-        if (is_subclass_of($other->className()->qualifiedName(), $this->className->qualifiedName(), true)) {
-            return true;
-        }
-
-        return false;
+        return ObjectType::isSameOrParentClass($this->className, $other->className());
     }
 
     /**

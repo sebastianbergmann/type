@@ -16,11 +16,27 @@ final class ObjectType extends Type
 {
     private TypeName $className;
 
+    /**
+     * Checks if $maybeParent is the same as $maybeChild, or a parent of $maybeChild.
+     */
+    public static function isSameOrParentClass(TypeName $maybeParent, TypeName $maybeChild): bool
+    {
+        if (0 === strcasecmp($maybeParent->qualifiedName(), $maybeChild->qualifiedName())) {
+            return true;
+        }
+
+        if (is_subclass_of($maybeChild->qualifiedName(), $maybeParent->qualifiedName(), true)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function __construct(TypeName $className, bool $allowsNull)
     {
         parent::__construct($className->qualifiedName(), $allowsNull);
 
-        $this->className  = $className;
+        $this->className = $className;
     }
 
     public function isAssignable(Type $other): bool
@@ -29,17 +45,11 @@ final class ObjectType extends Type
             return true;
         }
 
-        if ($other instanceof self) {
-            if (0 === strcasecmp($this->className->qualifiedName(), $other->className->qualifiedName())) {
-                return true;
-            }
-
-            if (is_subclass_of($other->className->qualifiedName(), $this->className->qualifiedName(), true)) {
-                return true;
-            }
+        if (!$other instanceof self) {
+            return false;
         }
 
-        return false;
+        return self::isSameOrParentClass($this->className, $other->className);
     }
 
     public function className(): TypeName
