@@ -14,8 +14,6 @@ use function strcasecmp;
 
 final class ObjectType extends Type
 {
-    private TypeName $className;
-
     /**
      * Checks if $maybeParent is the same as $maybeChild, or a parent of $maybeChild.
      */
@@ -32,11 +30,9 @@ final class ObjectType extends Type
         return false;
     }
 
-    public function __construct(TypeName $className, bool $allowsNull)
+    public function __construct(public readonly TypeName $className, bool $allowsNull)
     {
         parent::__construct($className->qualifiedName(), $allowsNull);
-
-        $this->className = $className;
     }
 
     public function isAssignable(Type $other): bool
@@ -50,11 +46,6 @@ final class ObjectType extends Type
         }
 
         return self::isSameOrParentClass($this->className, $other->className);
-    }
-
-    public function className(): TypeName
-    {
-        return $this->className;
     }
 
     /**

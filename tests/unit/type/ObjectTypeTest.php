@@ -130,7 +130,7 @@ final class ObjectTypeTest extends TestCase
 
     public function testHasClassName(): void
     {
-        $this->assertSame('SebastianBergmann\Type\TestFixture\ParentClass', $this->parentClass->className()->qualifiedName());
+        $this->assertSame('SebastianBergmann\Type\TestFixture\ParentClass', $this->parentClass->className->qualifiedName());
     }
 
     public function testCanBeQueriedForType(): void

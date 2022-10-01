@@ -11,13 +11,9 @@ namespace SebastianBergmann\Type;
 
 final class StaticType extends Type
 {
-    private TypeName $className;
-
-    public function __construct(TypeName $className, bool $allowsNull)
+    public function __construct(public readonly TypeName $className, bool $allowsNull)
     {
         parent::__construct('static', $allowsNull);
-
-        $this->className = $className;
     }
 
     public function isAssignable(Type $other): bool
@@ -30,7 +26,7 @@ final class StaticType extends Type
             return false;
         }
 
-        return ObjectType::isSameOrParentClass($this->className, $other->className());
+        return ObjectType::isSameOrParentClass($this->className, $other->className);
     }
 
     /**

@@ -76,12 +76,12 @@ final class CallableType extends Type
 
     private function isClosure(ObjectType $type): bool
     {
-        return $type->className()->qualifiedName() === Closure::class;
+        return $type->className->qualifiedName() === Closure::class;
     }
 
     private function hasInvokeMethod(ObjectType $type): bool
     {
-        $className = $type->className()->qualifiedName();
+        $className = $type->className->qualifiedName();
 
         assert(class_exists($className));
 

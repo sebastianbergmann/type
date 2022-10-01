@@ -115,7 +115,7 @@ final class IntersectionType extends Type
         foreach ($types as $type) {
             assert($type instanceof ObjectType);
 
-            $classQualifiedName = $type->className()->qualifiedName();
+            $classQualifiedName = $type->className->qualifiedName();
 
             if (in_array($classQualifiedName, $names, true)) {
                 throw new RuntimeException('An intersection type must not contain duplicate types');
