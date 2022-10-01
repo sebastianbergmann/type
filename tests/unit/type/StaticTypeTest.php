@@ -42,7 +42,7 @@ final class StaticTypeTest extends TestCase
     {
         $type = new StaticType(TypeName::fromQualifiedName('vendor\project\foo'), false);
 
-        $this->assertFalse($type->allowsNull());
+        $this->assertFalse($type->allowsNull);
         $this->assertSame('static', $type->asString());
     }
 
@@ -50,7 +50,7 @@ final class StaticTypeTest extends TestCase
     {
         $type = new StaticType(TypeName::fromQualifiedName('vendor\project\foo'), true);
 
-        $this->assertTrue($type->allowsNull());
+        $this->assertTrue($type->allowsNull);
         $this->assertSame('?static', $type->asString());
     }
 

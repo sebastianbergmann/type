@@ -11,6 +11,11 @@ namespace SebastianBergmann\Type;
 
 final class NullType extends Type
 {
+    public function __construct()
+    {
+        parent::__construct(true);
+    }
+
     public function isAssignable(Type $other): bool
     {
         return !($other instanceof VoidType);
@@ -24,11 +29,6 @@ final class NullType extends Type
     public function asString(): string
     {
         return 'null';
-    }
-
-    public function allowsNull(): bool
-    {
-        return true;
     }
 
     /**

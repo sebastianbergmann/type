@@ -31,6 +31,8 @@ final class IntersectionType extends Type
         $this->ensureOnlyValidTypes(...$types);
         $this->ensureNoDuplicateTypes(...$types);
 
+        parent::__construct(false);
+
         $this->types = $types;
     }
 
@@ -55,11 +57,6 @@ final class IntersectionType extends Type
         sort($types);
 
         return implode('&', $types);
-    }
-
-    public function allowsNull(): bool
-    {
-        return false;
     }
 
     /**

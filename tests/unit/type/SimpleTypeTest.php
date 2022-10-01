@@ -94,14 +94,14 @@ final class SimpleTypeTest extends TestCase
     {
         $type = new SimpleType('bool', true);
 
-        $this->assertTrue($type->allowsNull());
+        $this->assertTrue($type->allowsNull);
     }
 
     public function testMayNotAllowNull(): void
     {
         $type = new SimpleType('bool', false);
 
-        $this->assertFalse($type->allowsNull());
+        $this->assertFalse($type->allowsNull);
     }
 
     #[DataProvider('assignablePairs')]

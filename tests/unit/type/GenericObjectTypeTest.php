@@ -37,14 +37,14 @@ final class GenericObjectTypeTest extends TestCase
 
     public function testMayDisallowNull(): void
     {
-        $this->assertFalse($this->type->allowsNull());
+        $this->assertFalse($this->type->allowsNull);
     }
 
     public function testMayAllowNull(): void
     {
         $type = new GenericObjectType(true);
 
-        $this->assertTrue($type->allowsNull());
+        $this->assertTrue($type->allowsNull);
     }
 
     public function testObjectCanBeAssignedToGenericObject(): void

@@ -16,13 +16,6 @@ use ReflectionClass;
 
 final class IterableType extends Type
 {
-    private bool $allowsNull;
-
-    public function __construct(bool $nullable)
-    {
-        $this->allowsNull = $nullable;
-    }
-
     /**
      * @throws RuntimeException
      */
@@ -54,11 +47,6 @@ final class IterableType extends Type
     public function name(): string
     {
         return 'iterable';
-    }
-
-    public function allowsNull(): bool
-    {
-        return $this->allowsNull;
     }
 
     /**

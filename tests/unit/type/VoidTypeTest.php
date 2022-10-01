@@ -62,7 +62,7 @@ final class VoidTypeTest extends TestCase
     {
         $type = new VoidType;
 
-        $this->assertFalse($type->allowsNull());
+        $this->assertFalse($type->allowsNull);
     }
 
     public function testCanBeQueriedForType(): void

@@ -46,7 +46,7 @@ final class UnknownTypeTest extends TestCase
 
     public function testAllowsNull(): void
     {
-        $this->assertTrue($this->type->allowsNull());
+        $this->assertTrue($this->type->allowsNull);
     }
 
     public function testHasName(): void

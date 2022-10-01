@@ -11,6 +11,11 @@ namespace SebastianBergmann\Type;
 
 final class UnknownType extends Type
 {
+    public function __construct()
+    {
+        parent::__construct(true);
+    }
+
     public function isAssignable(Type $other): bool
     {
         return true;
@@ -24,11 +29,6 @@ final class UnknownType extends Type
     public function asString(): string
     {
         return '';
-    }
-
-    public function allowsNull(): bool
-    {
-        return true;
     }
 
     /**

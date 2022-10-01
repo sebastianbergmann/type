@@ -11,6 +11,11 @@ namespace SebastianBergmann\Type;
 
 final class VoidType extends Type
 {
+    public function __construct()
+    {
+        parent::__construct(false);
+    }
+
     public function isAssignable(Type $other): bool
     {
         return $other instanceof self;
@@ -19,11 +24,6 @@ final class VoidType extends Type
     public function name(): string
     {
         return 'void';
-    }
-
-    public function allowsNull(): bool
-    {
-        return false;
     }
 
     /**

@@ -28,6 +28,8 @@ final class UnionType extends Type
         $this->ensureMinimumOfTwoTypes(...$types);
         $this->ensureOnlyValidTypes(...$types);
 
+        parent::__construct(self::isAnyTypeNull(...$types));
+
         $this->types = $types;
     }
 
@@ -64,17 +66,6 @@ final class UnionType extends Type
         sort($types);
 
         return implode('|', $types);
-    }
-
-    public function allowsNull(): bool
-    {
-        foreach ($this->types as $type) {
-            if ($type instanceof NullType) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**
@@ -134,5 +125,16 @@ final class UnionType extends Type
                 );
             }
         }
+    }
+
+    private static function isAnyTypeNull(Type ...$types): bool
+    {
+        foreach ($types as $type) {
+            if ($type instanceof NullType) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

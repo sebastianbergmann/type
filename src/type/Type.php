@@ -60,9 +60,11 @@ abstract class Type
         };
     }
 
+    public function __construct(public readonly bool $allowsNull) {}
+
     public function asString(): string
     {
-        return ($this->allowsNull() ? '?' : '') . $this->name();
+        return ($this->allowsNull ? '?' : '') . $this->name();
     }
 
     /**
@@ -188,6 +190,4 @@ abstract class Type
     abstract public function isAssignable(self $other): bool;
 
     abstract public function name(): string;
-
-    abstract public function allowsNull(): bool;
 }

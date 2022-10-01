@@ -39,14 +39,14 @@ final class CallableTypeTest extends TestCase
 
     public function testMayDisallowNull(): void
     {
-        $this->assertFalse($this->type->allowsNull());
+        $this->assertFalse($this->type->allowsNull);
     }
 
     public function testMayAllowNull(): void
     {
         $type = new CallableType(true);
 
-        $this->assertTrue($type->allowsNull());
+        $this->assertTrue($type->allowsNull);
     }
 
     public function testNullCanBeAssignedToNullableCallable(): void

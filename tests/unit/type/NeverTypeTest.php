@@ -62,7 +62,7 @@ final class NeverTypeTest extends TestCase
     {
         $type = new NeverType;
 
-        $this->assertFalse($type->allowsNull());
+        $this->assertFalse($type->allowsNull);
     }
 
     public function testCanBeQueriedForType(): void

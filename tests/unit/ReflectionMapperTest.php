@@ -99,7 +99,7 @@ final class ReflectionMapperTest extends TestCase
 
         $this->assertInstanceOf(StaticType::class, $type);
         $this->assertSame('static', $type->asString());
-        $this->assertFalse($type->allowsNull());
+        $this->assertFalse($type->allowsNull);
     }
 
     public function testMapsFromNullableStaticReturnType(): void
@@ -108,7 +108,7 @@ final class ReflectionMapperTest extends TestCase
 
         $this->assertInstanceOf(StaticType::class, $type);
         $this->assertSame('?static', $type->asString());
-        $this->assertTrue($type->allowsNull());
+        $this->assertTrue($type->allowsNull);
     }
 
     public function testMapsFromUnionWithStaticReturnType(): void

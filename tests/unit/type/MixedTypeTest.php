@@ -42,7 +42,7 @@ final class MixedTypeTest extends TestCase
     {
         $type = new MixedType;
 
-        $this->assertTrue($type->allowsNull());
+        $this->assertTrue($type->allowsNull);
     }
 
     #[DataProvider('assignableTypes')]

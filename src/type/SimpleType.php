@@ -14,14 +14,14 @@ use function strtolower;
 final class SimpleType extends Type
 {
     private string $name;
-    private bool $allowsNull;
     private mixed $value;
 
-    public function __construct(string $name, bool $nullable, mixed $value = null)
+    public function __construct(string $name, bool $allowsNull, mixed $value = null)
     {
-        $this->name       = $this->normalize($name);
-        $this->allowsNull = $nullable;
-        $this->value      = $value;
+        parent::__construct($allowsNull);
+
+        $this->name  = $this->normalize($name);
+        $this->value = $value;
     }
 
     public function isAssignable(Type $other): bool
@@ -48,11 +48,6 @@ final class SimpleType extends Type
     public function name(): string
     {
         return $this->name;
-    }
-
-    public function allowsNull(): bool
-    {
-        return $this->allowsNull;
     }
 
     public function value(): mixed

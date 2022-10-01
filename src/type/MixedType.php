@@ -11,6 +11,11 @@ namespace SebastianBergmann\Type;
 
 final class MixedType extends Type
 {
+    public function __construct()
+    {
+        parent::__construct(true);
+    }
+
     public function isAssignable(Type $other): bool
     {
         return !$other instanceof VoidType;
@@ -24,11 +29,6 @@ final class MixedType extends Type
     public function name(): string
     {
         return 'mixed';
-    }
-
-    public function allowsNull(): bool
-    {
-        return true;
     }
 
     /**

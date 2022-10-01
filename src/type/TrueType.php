@@ -11,6 +11,11 @@ namespace SebastianBergmann\Type;
 
 final class TrueType extends Type
 {
+    public function __construct()
+    {
+        parent::__construct(false);
+    }
+
     public function isAssignable(Type $other): bool
     {
         if ($other instanceof self) {
@@ -25,11 +30,6 @@ final class TrueType extends Type
     public function name(): string
     {
         return 'true';
-    }
-
-    public function allowsNull(): bool
-    {
-        return false;
     }
 
     /**

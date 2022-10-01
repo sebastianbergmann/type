@@ -66,7 +66,7 @@ final class TrueTypeTest extends TestCase
     {
         $type = new TrueType;
 
-        $this->assertFalse($type->allowsNull());
+        $this->assertFalse($type->allowsNull);
     }
 
     public function testCanBeQueriedForType(): void

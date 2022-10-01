@@ -121,7 +121,7 @@ final class IntersectionTypeTest extends TestCase
 
     public function testDoesNotAllowNull(): void
     {
-        $this->assertFalse($this->type->allowsNull());
+        $this->assertFalse($this->type->allowsNull);
     }
 
     public function testCannotBeCreatedFromLessThanTwoTypes(): void

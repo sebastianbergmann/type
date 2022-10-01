@@ -12,12 +12,12 @@ namespace SebastianBergmann\Type;
 final class StaticType extends Type
 {
     private TypeName $className;
-    private bool $allowsNull;
 
     public function __construct(TypeName $className, bool $allowsNull)
     {
+        parent::__construct($allowsNull);
+
         $this->className  = $className;
-        $this->allowsNull = $allowsNull;
     }
 
     public function isAssignable(Type $other): bool
@@ -44,11 +44,6 @@ final class StaticType extends Type
     public function name(): string
     {
         return 'static';
-    }
-
-    public function allowsNull(): bool
-    {
-        return $this->allowsNull;
     }
 
     /**

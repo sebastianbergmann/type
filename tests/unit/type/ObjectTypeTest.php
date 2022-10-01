@@ -115,7 +115,7 @@ final class ObjectTypeTest extends TestCase
             false
         );
 
-        $this->assertFalse($someClass->allowsNull());
+        $this->assertFalse($someClass->allowsNull);
     }
 
     public function testPreservesNullAllowed(): void
@@ -125,7 +125,7 @@ final class ObjectTypeTest extends TestCase
             true
         );
 
-        $this->assertTrue($someClass->allowsNull());
+        $this->assertTrue($someClass->allowsNull);
     }
 
     public function testHasClassName(): void

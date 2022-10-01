@@ -72,7 +72,7 @@ final class UnionTypeTest extends TestCase
             Type::fromName('null', true)
         );
 
-        $this->assertTrue($type->allowsNull());
+        $this->assertTrue($type->allowsNull);
     }
 
     public function testMayNotAllowNull(): void
@@ -82,7 +82,7 @@ final class UnionTypeTest extends TestCase
             Type::fromName('int', false)
         );
 
-        $this->assertFalse($type->allowsNull());
+        $this->assertFalse($type->allowsNull);
     }
 
     public function testMayContainIntersectionType(): void

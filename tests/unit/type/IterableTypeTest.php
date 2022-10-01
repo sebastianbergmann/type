@@ -37,14 +37,14 @@ final class IterableTypeTest extends TestCase
 
     public function testMayDisallowNull(): void
     {
-        $this->assertFalse($this->type->allowsNull());
+        $this->assertFalse($this->type->allowsNull);
     }
 
     public function testMayAllowNull(): void
     {
         $type = new IterableType(true);
 
-        $this->assertTrue($type->allowsNull());
+        $this->assertTrue($type->allowsNull);
     }
 
     public function testNullCanBeAssignedToNullableIterable(): void
