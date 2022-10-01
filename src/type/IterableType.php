@@ -35,7 +35,7 @@ final class IterableType extends Type
         }
 
         if ($other instanceof SimpleType) {
-            return is_iterable($other->value());
+            return is_iterable($other->value);
         }
 
         if ($other instanceof ObjectType) {

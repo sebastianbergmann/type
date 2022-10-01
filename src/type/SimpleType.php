@@ -13,13 +13,9 @@ use function strtolower;
 
 final class SimpleType extends Type
 {
-    private mixed $value;
-
-    public function __construct(string $name, bool $allowsNull, mixed $value = null)
+    public function __construct(string $name, bool $allowsNull, public readonly mixed $value = null)
     {
         parent::__construct($this->normalize($name), $allowsNull);
-
-        $this->value = $value;
     }
 
     public function isAssignable(Type $other): bool
@@ -41,11 +37,6 @@ final class SimpleType extends Type
         }
 
         return false;
-    }
-
-    public function value(): mixed
-    {
-        return $this->value;
     }
 
     /**

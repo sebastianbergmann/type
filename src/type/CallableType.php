@@ -90,64 +90,64 @@ final class CallableType extends Type
 
     private function isFunction(SimpleType $type): bool
     {
-        if (!is_string($type->value())) {
+        if (!is_string($type->value)) {
             return false;
         }
 
-        return function_exists($type->value());
+        return function_exists($type->value);
     }
 
     private function isObjectCallback(SimpleType $type): bool
     {
-        if (!is_array($type->value())) {
+        if (!is_array($type->value)) {
             return false;
         }
 
-        if (count($type->value()) !== 2) {
+        if (count($type->value) !== 2) {
             return false;
         }
 
-        if (!isset($type->value()[0], $type->value()[1])) {
+        if (!isset($type->value[0], $type->value[1])) {
             return false;
         }
 
-        if (!is_object($type->value()[0]) || !is_string($type->value()[1])) {
+        if (!is_object($type->value[0]) || !is_string($type->value[1])) {
             return false;
         }
 
-        [$object, $methodName] = $type->value();
+        [$object, $methodName] = $type->value;
 
         return (new ReflectionObject($object))->hasMethod($methodName);
     }
 
     private function isClassCallback(SimpleType $type): bool
     {
-        if (!is_string($type->value()) && !is_array($type->value())) {
+        if (!is_string($type->value) && !is_array($type->value)) {
             return false;
         }
 
-        if (is_string($type->value())) {
-            if (!str_contains($type->value(), '::')) {
+        if (is_string($type->value)) {
+            if (!str_contains($type->value, '::')) {
                 return false;
             }
 
-            [$className, $methodName] = explode('::', $type->value());
+            [$className, $methodName] = explode('::', $type->value);
         }
 
-        if (is_array($type->value())) {
-            if (count($type->value()) !== 2) {
+        if (is_array($type->value)) {
+            if (count($type->value) !== 2) {
                 return false;
             }
 
-            if (!isset($type->value()[0], $type->value()[1])) {
+            if (!isset($type->value[0], $type->value[1])) {
                 return false;
             }
 
-            if (!is_string($type->value()[0]) || !is_string($type->value()[1])) {
+            if (!is_string($type->value[0]) || !is_string($type->value[1])) {
                 return false;
             }
 
-            [$className, $methodName] = $type->value();
+            [$className, $methodName] = $type->value;
         }
 
         assert(isset($className) && is_string($className));

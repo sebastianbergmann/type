@@ -142,7 +142,7 @@ final class SimpleTypeTest extends TestCase
 
     public function testCanHaveValue(): void
     {
-        $this->assertSame('string', Type::fromValue('string', false)->value());
+        $this->assertSame('string', Type::fromValue('string', false)->value);
     }
 
     public function testCanBeQueriedForType(): void

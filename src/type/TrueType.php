@@ -24,7 +24,7 @@ final class TrueType extends Type
 
         return $other instanceof SimpleType &&
               $other->name === 'bool' &&
-              $other->value() === true;
+              $other->value === true;
     }
 
     /**

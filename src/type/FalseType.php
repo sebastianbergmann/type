@@ -24,7 +24,7 @@ final class FalseType extends Type
 
         return $other instanceof SimpleType &&
               $other->name === 'bool' &&
-              $other->value() === false;
+              $other->value === false;
     }
 
     /**
