@@ -24,9 +24,9 @@ final class TypeNameTest extends TestCase
         $typeName = TypeName::fromReflection($class);
 
         $this->assertTrue($typeName->isNamespaced());
-        $this->assertSame('SebastianBergmann\\Type', $typeName->namespaceName());
+        $this->assertSame('SebastianBergmann\\Type', $typeName->namespaceName);
         $this->assertSame(TypeName::class, $typeName->qualifiedName());
-        $this->assertSame('TypeName', $typeName->simpleName());
+        $this->assertSame('TypeName', $typeName->simpleName);
     }
 
     public function testFromQualifiedName(): void
@@ -34,9 +34,9 @@ final class TypeNameTest extends TestCase
         $typeName = TypeName::fromQualifiedName('PHPUnit\\Framework\\MockObject\\TypeName');
 
         $this->assertTrue($typeName->isNamespaced());
-        $this->assertSame('PHPUnit\\Framework\\MockObject', $typeName->namespaceName());
+        $this->assertSame('PHPUnit\\Framework\\MockObject', $typeName->namespaceName);
         $this->assertSame('PHPUnit\\Framework\\MockObject\\TypeName', $typeName->qualifiedName());
-        $this->assertSame('TypeName', $typeName->simpleName());
+        $this->assertSame('TypeName', $typeName->simpleName);
     }
 
     public function testFromQualifiedNameWithLeadingSeparator(): void
@@ -44,9 +44,9 @@ final class TypeNameTest extends TestCase
         $typeName = TypeName::fromQualifiedName('\\Foo\\Bar');
 
         $this->assertTrue($typeName->isNamespaced());
-        $this->assertSame('Foo', $typeName->namespaceName());
+        $this->assertSame('Foo', $typeName->namespaceName);
         $this->assertSame('Foo\\Bar', $typeName->qualifiedName());
-        $this->assertSame('Bar', $typeName->simpleName());
+        $this->assertSame('Bar', $typeName->simpleName);
     }
 
     public function testFromQualifiedNameWithoutNamespace(): void
@@ -54,8 +54,8 @@ final class TypeNameTest extends TestCase
         $typeName = TypeName::fromQualifiedName('Bar');
 
         $this->assertFalse($typeName->isNamespaced());
-        $this->assertNull($typeName->namespaceName());
+        $this->assertNull($typeName->namespaceName);
         $this->assertSame('Bar', $typeName->qualifiedName());
-        $this->assertSame('Bar', $typeName->simpleName());
+        $this->assertSame('Bar', $typeName->simpleName);
     }
 }

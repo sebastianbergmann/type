@@ -17,8 +17,8 @@ use ReflectionClass;
 
 final class TypeName
 {
-    private ?string $namespaceName;
-    private string $simpleName;
+    public readonly ?string $namespaceName;
+    public readonly string $simpleName;
 
     public static function fromQualifiedName(string $fullClassName): self
     {
@@ -50,16 +50,6 @@ final class TypeName
 
         $this->namespaceName = $namespaceName;
         $this->simpleName    = $simpleName;
-    }
-
-    public function namespaceName(): ?string
-    {
-        return $this->namespaceName;
-    }
-
-    public function simpleName(): string
-    {
-        return $this->simpleName;
     }
 
     public function qualifiedName(): string
