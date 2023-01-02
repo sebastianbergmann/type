@@ -34,7 +34,7 @@ final class ObjectType extends Type
         }
 
         if ($other instanceof self) {
-            if (0 === \strcasecmp($this->className->getQualifiedName(), $other->className->getQualifiedName())) {
+            if (0 === \strcasecmp($this->className->getCanonicalName(), $other->className->getCanonicalName())) {
                 return true;
             }
 

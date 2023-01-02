@@ -12,6 +12,7 @@ namespace SebastianBergmann\Type;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ParentClass;
+use SebastianBergmann\Type\TestFixture\ParentClassAlias;
 
 /**
  * @covers \SebastianBergmann\Type\ObjectType
@@ -106,6 +107,26 @@ final class ObjectTypeTest extends TestCase
         );
 
         $this->assertFalse($someClass->isAssignable(Type::fromValue(null, true)));
+    }
+
+    public function testClassAliasIsAssignableToClassItIsAliasing(): void
+    {
+        $someClass = new ObjectType(
+            TypeName::fromQualifiedName(ParentClassAlias::class),
+            false
+        );
+
+        $this->assertTrue($someClass->isAssignable($this->parentClass));
+    }
+
+    public function testClassIsAssignableToItsAliasClass(): void
+    {
+        $someClass = new ObjectType(
+            TypeName::fromQualifiedName(ParentClassAlias::class),
+            false
+        );
+
+        $this->assertTrue($this->parentClass->isAssignable($someClass));
     }
 
     public function testPreservesNullNotAllowed(): void
