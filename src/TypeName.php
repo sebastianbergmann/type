@@ -21,6 +21,11 @@ final class TypeName
      */
     private $simpleName;
 
+    /**
+     * @var string
+     */
+    private $canonicalName;
+
     public static function fromQualifiedName(string $fullClassName): self
     {
         if ($fullClassName[0] === '\\') {
@@ -51,6 +56,15 @@ final class TypeName
 
         $this->namespaceName = $namespaceName;
         $this->simpleName    = $simpleName;
+
+        try {
+            $this->canonicalName = (new \ReflectionClass($this->getQualifiedName()))->name;
+        } catch (\ReflectionException) {
+            // If the class represented by instance does not exist, it can't be an
+            // alias of existing class. We can safely assume the qualified name is
+            // also cannonical name.
+            $this->canonicalName = $this->getQualifiedName();
+        }
     }
 
     public function getNamespaceName(): ?string
@@ -73,5 +87,15 @@ final class TypeName
     public function isNamespaced(): bool
     {
         return $this->namespaceName !== null;
+    }
+
+    public function isCanonical(): bool
+    {
+        return $this->getQualifiedName() === $this->getCanonicalName();
+    }
+
+    public function getCanonicalName(): string
+    {
+        return $this->canonicalName;
     }
 }

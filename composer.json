@@ -38,7 +38,8 @@
             "tests/_fixture"
         ],
         "files": [
-            "tests/_fixture/callback_function.php"
+            "tests/_fixture/callback_function.php",
+            "tests/_fixture/class_alias.php"
         ]
     },
     "extra": {
