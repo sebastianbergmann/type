@@ -37,7 +37,7 @@ final class ObjectType extends Type
         }
 
         if ($other instanceof self) {
-            if (0 === strcasecmp($this->className->qualifiedName(), $other->className->qualifiedName())) {
+            if (0 === strcasecmp($this->className->canonicalName(), $other->className->canonicalName())) {
                 return true;
             }
 
