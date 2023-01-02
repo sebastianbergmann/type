@@ -12,6 +12,9 @@ namespace SebastianBergmann\Type;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
+use SebastianBergmann\Type\TestFixture\ParentClass;
+use SebastianBergmann\Type\TestFixture\ParentClassAlias;
+
 /**
  * @covers \SebastianBergmann\Type\TypeName
  */
@@ -56,5 +59,31 @@ final class TypeNameTest extends TestCase
         $this->assertNull($typeName->namespaceName());
         $this->assertSame('Bar', $typeName->qualifiedName());
         $this->assertSame('Bar', $typeName->simpleName());
+    }
+
+    public function testCannonicalWithClassNotExist(): void
+    {
+        $typeName = TypeName::fromQualifiedName('Bar');
+
+        $this->assertEquals(true, $typeName->isCanonical());
+        $this->assertEquals('Bar', $typeName->canonicalName());
+    }
+
+    public function testCannonicalWithClassExist(): void
+    {
+        $typeName = TypeName::fromQualifiedName(ParentClass::class);
+
+        $this->assertEquals(true, $typeName->isCanonical());
+        $this->assertEquals(ParentClass::class, $typeName->qualifiedName());
+        $this->assertEquals(ParentClass::class, $typeName->canonicalName());
+    }
+
+    public function testCannonicalWithClassAlias(): void
+    {
+        $typeName = TypeName::fromQualifiedName(ParentClassAlias::class);
+
+        $this->assertEquals(false, $typeName->isCanonical());
+        $this->assertEquals(ParentClassAlias::class, $typeName->qualifiedName());
+        $this->assertEquals(ParentClass::class, $typeName->canonicalName());
     }
 }

@@ -39,7 +39,8 @@
         ],
         "files": [
             "tests/_fixture/callback_function.php",
-            "tests/_fixture/functions_that_declare_return_types.php"
+            "tests/_fixture/functions_that_declare_return_types.php",
+            "tests/_fixture/class_alias.php"
         ]
     },
     "extra": {
