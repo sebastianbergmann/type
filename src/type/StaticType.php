@@ -9,6 +9,9 @@
  */
 namespace SebastianBergmann\Type;
 
+use function is_subclass_of;
+use function strcasecmp;
+
 final class StaticType extends Type
 {
     private TypeName $className;
