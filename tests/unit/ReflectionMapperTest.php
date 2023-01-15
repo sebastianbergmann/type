@@ -55,6 +55,73 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
 #[Small]
 final class ReflectionMapperTest extends TestCase
 {
+    public static function typeProvider(): array
+    {
+        return [
+            [
+                'unknown type', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'noReturnType'),
+            ],
+            [
+                'void', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'voidReturnType'),
+            ],
+            [
+                ClassWithMethodsThatDeclareReturnTypes::class, new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'selfReturnType'),
+            ],
+            [
+                ParentClass::class, new ReflectionMethod(ChildClass::class, 'bar'),
+            ],
+            [
+                'stdClass', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'classReturnType'),
+            ],
+            [
+                'object', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'objectReturnType'),
+            ],
+            [
+                'array', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'arrayReturnType'),
+            ],
+            [
+                'bool', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'boolReturnType'),
+            ],
+            [
+                'float', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'floatReturnType'),
+            ],
+            [
+                'int', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'intReturnType'),
+            ],
+            [
+                'string', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'stringReturnType'),
+            ],
+
+            [
+                'unknown type', new ReflectionFunction('SebastianBergmann\Type\TestFixture\noReturnType'),
+            ],
+            [
+                'void', new ReflectionFunction('SebastianBergmann\Type\TestFixture\voidReturnType'),
+            ],
+            [
+                'stdClass', new ReflectionFunction('SebastianBergmann\Type\TestFixture\classReturnType'),
+            ],
+            [
+                'object', new ReflectionFunction('SebastianBergmann\Type\TestFixture\objectReturnType'),
+            ],
+            [
+                'array', new ReflectionFunction('SebastianBergmann\Type\TestFixture\arrayReturnType'),
+            ],
+            [
+                'bool', new ReflectionFunction('SebastianBergmann\Type\TestFixture\boolReturnType'),
+            ],
+            [
+                'float', new ReflectionFunction('SebastianBergmann\Type\TestFixture\floatReturnType'),
+            ],
+            [
+                'int', new ReflectionFunction('SebastianBergmann\Type\TestFixture\intReturnType'),
+            ],
+            [
+                'string', new ReflectionFunction('SebastianBergmann\Type\TestFixture\stringReturnType'),
+            ],
+        ];
+    }
+
     #[DataProvider('typeProvider')]
     public function testMapsFromReturnType(string $expected, ReflectionFunction|ReflectionMethod $method): void
     {
@@ -238,72 +305,5 @@ final class ReflectionMapperTest extends TestCase
         $this->assertCount(1, $types);
         $this->assertSame('x', $types[0]->name());
         $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B&SebastianBergmann\Type\TestFixture\D)|int|null', $types[0]->type()->asString());
-    }
-
-    public function typeProvider(): array
-    {
-        return [
-            [
-                'unknown type', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'noReturnType'),
-            ],
-            [
-                'void', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'voidReturnType'),
-            ],
-            [
-                ClassWithMethodsThatDeclareReturnTypes::class, new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'selfReturnType'),
-            ],
-            [
-                ParentClass::class, new ReflectionMethod(ChildClass::class, 'bar'),
-            ],
-            [
-                'stdClass', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'classReturnType'),
-            ],
-            [
-                'object', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'objectReturnType'),
-            ],
-            [
-                'array', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'arrayReturnType'),
-            ],
-            [
-                'bool', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'boolReturnType'),
-            ],
-            [
-                'float', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'floatReturnType'),
-            ],
-            [
-                'int', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'intReturnType'),
-            ],
-            [
-                'string', new ReflectionMethod(ClassWithMethodsThatDeclareReturnTypes::class, 'stringReturnType'),
-            ],
-
-            [
-                'unknown type', new ReflectionFunction('SebastianBergmann\Type\TestFixture\noReturnType'),
-            ],
-            [
-                'void', new ReflectionFunction('SebastianBergmann\Type\TestFixture\voidReturnType'),
-            ],
-            [
-                'stdClass', new ReflectionFunction('SebastianBergmann\Type\TestFixture\classReturnType'),
-            ],
-            [
-                'object', new ReflectionFunction('SebastianBergmann\Type\TestFixture\objectReturnType'),
-            ],
-            [
-                'array', new ReflectionFunction('SebastianBergmann\Type\TestFixture\arrayReturnType'),
-            ],
-            [
-                'bool', new ReflectionFunction('SebastianBergmann\Type\TestFixture\boolReturnType'),
-            ],
-            [
-                'float', new ReflectionFunction('SebastianBergmann\Type\TestFixture\floatReturnType'),
-            ],
-            [
-                'int', new ReflectionFunction('SebastianBergmann\Type\TestFixture\intReturnType'),
-            ],
-            [
-                'string', new ReflectionFunction('SebastianBergmann\Type\TestFixture\stringReturnType'),
-            ],
-        ];
     }
 }

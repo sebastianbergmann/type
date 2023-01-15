@@ -28,6 +28,28 @@ final class IntersectionTypeTest extends TestCase
 {
     private IntersectionType $type;
 
+    public static function assignableTypes(): array
+    {
+        return [
+            [
+                true,
+                Type::fromName(ClassImplementingAnInterfaceAndAnotherInterface::class, false),
+                new IntersectionType(
+                    Type::fromName(AnInterface::class, false),
+                    Type::fromName(AnotherInterface::class, false)
+                ),
+            ],
+            [
+                false,
+                Type::fromValue(false, false),
+                new IntersectionType(
+                    Type::fromName(AnInterface::class, false),
+                    Type::fromName(AnotherInterface::class, false)
+                ),
+            ],
+        ];
+    }
+
     protected function setUp(): void
     {
         $this->type = new IntersectionType(
@@ -95,28 +117,6 @@ final class IntersectionTypeTest extends TestCase
     public function testAssignableTypesAreRecognized(bool $expected, Type $type, IntersectionType $intersection): void
     {
         $this->assertSame($expected, $intersection->isAssignable($type));
-    }
-
-    public function assignableTypes(): array
-    {
-        return [
-            [
-                true,
-                Type::fromName(ClassImplementingAnInterfaceAndAnotherInterface::class, false),
-                new IntersectionType(
-                    Type::fromName(AnInterface::class, false),
-                    Type::fromName(AnotherInterface::class, false)
-                ),
-            ],
-            [
-                false,
-                Type::fromValue(false, false),
-                new IntersectionType(
-                    Type::fromName(AnInterface::class, false),
-                    Type::fromName(AnotherInterface::class, false)
-                ),
-            ],
-        ];
     }
 
     public function testDoesNotAllowNull(): void

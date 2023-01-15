@@ -21,6 +21,24 @@ final class NullTypeTest extends TestCase
 {
     private NullType $type;
 
+    public static function assignableTypes(): array
+    {
+        return [
+            [new SimpleType('int', false)],
+            [new SimpleType('int', true)],
+            [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
+            [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
+            [new UnknownType],
+        ];
+    }
+
+    public static function notAssignableTypes(): array
+    {
+        return [
+            'void' => [new VoidType],
+        ];
+    }
+
     protected function setUp(): void
     {
         $this->type = new NullType;
@@ -32,28 +50,10 @@ final class NullTypeTest extends TestCase
         $this->assertTrue($this->type->isAssignable($assignableType));
     }
 
-    public function assignableTypes(): array
-    {
-        return [
-            [new SimpleType('int', false)],
-            [new SimpleType('int', true)],
-            [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
-            [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
-            [new UnknownType],
-        ];
-    }
-
     #[DataProvider('notAssignableTypes')]
     public function testIsNotAssignable(Type $assignedType): void
     {
         $this->assertFalse($this->type->isAssignable($assignedType));
-    }
-
-    public function notAssignableTypes(): array
-    {
-        return [
-            'void' => [new VoidType],
-        ];
     }
 
     public function testAllowsNull(): void

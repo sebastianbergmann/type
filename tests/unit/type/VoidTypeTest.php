@@ -19,6 +19,24 @@ use PHPUnit\Framework\TestCase;
 #[Small]
 final class VoidTypeTest extends TestCase
 {
+    public static function assignableTypes(): array
+    {
+        return [
+            [new VoidType],
+        ];
+    }
+
+    public static function notAssignableTypes(): array
+    {
+        return [
+            [new SimpleType('int', false)],
+            [new SimpleType('int', true)],
+            [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
+            [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
+            [new UnknownType],
+        ];
+    }
+
     public function testHasName(): void
     {
         $this->assertSame('void', (new VoidType)->name());
@@ -32,30 +50,12 @@ final class VoidTypeTest extends TestCase
         $this->assertTrue($type->isAssignable($assignableType));
     }
 
-    public function assignableTypes(): array
-    {
-        return [
-            [new VoidType],
-        ];
-    }
-
     #[DataProvider('notAssignableTypes')]
     public function testIsNotAssignable(Type $assignableType): void
     {
         $type = new VoidType;
 
         $this->assertFalse($type->isAssignable($assignableType));
-    }
-
-    public function notAssignableTypes(): array
-    {
-        return [
-            [new SimpleType('int', false)],
-            [new SimpleType('int', true)],
-            [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
-            [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
-            [new UnknownType],
-        ];
     }
 
     public function testNotAllowNull(): void

@@ -27,13 +27,7 @@ use stdClass;
 #[Small]
 final class TypeTest extends TestCase
 {
-    #[DataProvider('valuesToNullableType')]
-    public function testTypeMappingFromValue($value, bool $allowsNull, Type $expectedType): void
-    {
-        $this->assertEquals($expectedType, Type::fromValue($value, $allowsNull));
-    }
-
-    public function valuesToNullableType(): array
+    public static function valuesToNullableType(): array
     {
         return [
             '?null'          => [null, true, new NullType],
@@ -49,13 +43,7 @@ final class TypeTest extends TestCase
         ];
     }
 
-    #[DataProvider('namesToTypes')]
-    public function testTypeMappingFromName(Type $expectedType, string $typeName, bool $allowsNull): void
-    {
-        $this->assertEquals($expectedType, Type::fromName($typeName, $allowsNull));
-    }
-
-    public function namesToTypes(): array
+    public static function namesToTypes(): array
     {
         return [
             '?void'             => [new VoidType, 'void', true],
@@ -87,5 +75,17 @@ final class TypeTest extends TestCase
             'mixed'             => [new MixedType, 'mixed', false],
             'never'             => [new NeverType, 'never', false],
         ];
+    }
+
+    #[DataProvider('valuesToNullableType')]
+    public function testTypeMappingFromValue($value, bool $allowsNull, Type $expectedType): void
+    {
+        $this->assertEquals($expectedType, Type::fromValue($value, $allowsNull));
+    }
+
+    #[DataProvider('namesToTypes')]
+    public function testTypeMappingFromName(Type $expectedType, string $typeName, bool $allowsNull): void
+    {
+        $this->assertEquals($expectedType, Type::fromName($typeName, $allowsNull));
     }
 }

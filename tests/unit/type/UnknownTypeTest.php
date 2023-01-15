@@ -21,18 +21,7 @@ final class UnknownTypeTest extends TestCase
 {
     private UnknownType $type;
 
-    protected function setUp(): void
-    {
-        $this->type = new UnknownType;
-    }
-
-    #[DataProvider('assignableTypes')]
-    public function testIsAssignable(Type $assignableType): void
-    {
-        $this->assertTrue($this->type->isAssignable($assignableType));
-    }
-
-    public function assignableTypes(): array
+    public static function assignableTypes(): array
     {
         return [
             [new SimpleType('int', false)],
@@ -42,6 +31,17 @@ final class UnknownTypeTest extends TestCase
             [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
             [new UnknownType],
         ];
+    }
+
+    protected function setUp(): void
+    {
+        $this->type = new UnknownType;
+    }
+
+    #[DataProvider('assignableTypes')]
+    public function testIsAssignable(Type $assignableType): void
+    {
+        $this->assertTrue($this->type->isAssignable($assignableType));
     }
 
     public function testAllowsNull(): void

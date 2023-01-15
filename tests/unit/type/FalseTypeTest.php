@@ -21,6 +21,26 @@ use PHPUnit\Framework\TestCase;
 #[Small]
 final class FalseTypeTest extends TestCase
 {
+    public static function assignableTypes(): array
+    {
+        return [
+            [new FalseType],
+            [new SimpleType('bool', false, false)],
+        ];
+    }
+
+    public static function notAssignableTypes(): array
+    {
+        return [
+            [new SimpleType('bool', false, true)],
+            [new SimpleType('int', false)],
+            [new SimpleType('int', true)],
+            [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
+            [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
+            [new UnknownType],
+        ];
+    }
+
     public function testHasName(): void
     {
         $this->assertSame('false', (new FalseType)->name());
@@ -34,32 +54,12 @@ final class FalseTypeTest extends TestCase
         $this->assertTrue($type->isAssignable($assignableType));
     }
 
-    public function assignableTypes(): array
-    {
-        return [
-            [new FalseType],
-            [new SimpleType('bool', false, false)],
-        ];
-    }
-
     #[DataProvider('notAssignableTypes')]
     public function testIsNotAssignable(Type $assignableType): void
     {
         $type = new FalseType;
 
         $this->assertFalse($type->isAssignable($assignableType));
-    }
-
-    public function notAssignableTypes(): array
-    {
-        return [
-            [new SimpleType('bool', false, true)],
-            [new SimpleType('int', false)],
-            [new SimpleType('int', true)],
-            [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
-            [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
-            [new UnknownType],
-        ];
     }
 
     public function testDoesNotAllowNull(): void

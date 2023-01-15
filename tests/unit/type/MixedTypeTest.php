@@ -24,6 +24,21 @@ use PHPUnit\Framework\TestCase;
 #[Small]
 final class MixedTypeTest extends TestCase
 {
+    public static function assignableTypes(): array
+    {
+        return [
+            ['array'],
+            ['bool'],
+            ['callable'],
+            ['int'],
+            ['float'],
+            ['null'],
+            ['object'],
+            ['resource'],
+            ['string'],
+        ];
+    }
+
     public function testHasName(): void
     {
         $type = new MixedType;
@@ -52,21 +67,6 @@ final class MixedTypeTest extends TestCase
         $type = new MixedType;
 
         $this->assertTrue($type->isAssignable(Type::fromName($otherType, false)));
-    }
-
-    public function assignableTypes(): array
-    {
-        return [
-            ['array'],
-            ['bool'],
-            ['callable'],
-            ['int'],
-            ['float'],
-            ['null'],
-            ['object'],
-            ['resource'],
-            ['string'],
-        ];
     }
 
     public function testCanBeQueriedForType(): void

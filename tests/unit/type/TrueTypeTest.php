@@ -21,6 +21,26 @@ use PHPUnit\Framework\TestCase;
 #[Small]
 final class TrueTypeTest extends TestCase
 {
+    public static function assignableTypes(): array
+    {
+        return [
+            [new TrueType],
+            [new SimpleType('bool', false, true)],
+        ];
+    }
+
+    public static function notAssignableTypes(): array
+    {
+        return [
+            [new SimpleType('bool', false, false)],
+            [new SimpleType('int', false)],
+            [new SimpleType('int', true)],
+            [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
+            [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
+            [new UnknownType],
+        ];
+    }
+
     public function testHasName(): void
     {
         $this->assertSame('true', (new TrueType)->name());
@@ -34,32 +54,12 @@ final class TrueTypeTest extends TestCase
         $this->assertTrue($type->isAssignable($assignableType));
     }
 
-    public function assignableTypes(): array
-    {
-        return [
-            [new TrueType],
-            [new SimpleType('bool', false, true)],
-        ];
-    }
-
     #[DataProvider('notAssignableTypes')]
     public function testIsNotAssignable(Type $assignableType): void
     {
         $type = new TrueType;
 
         $this->assertFalse($type->isAssignable($assignableType));
-    }
-
-    public function notAssignableTypes(): array
-    {
-        return [
-            [new SimpleType('bool', false, false)],
-            [new SimpleType('int', false)],
-            [new SimpleType('int', true)],
-            [new ObjectType(TypeName::fromQualifiedName(self::class), false)],
-            [new ObjectType(TypeName::fromQualifiedName(self::class), true)],
-            [new UnknownType],
-        ];
     }
 
     public function testDoesNotAllowNull(): void

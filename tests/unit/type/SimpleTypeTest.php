@@ -27,6 +27,30 @@ use stdClass;
 #[Small]
 final class SimpleTypeTest extends TestCase
 {
+    public static function assignablePairs(): array
+    {
+        return [
+            'nullable to not nullable'     => [new SimpleType('int', false), new SimpleType('int', true)],
+            'not nullable to nullable'     => [new SimpleType('int', true), new SimpleType('int', false)],
+            'nullable to nullable'         => [new SimpleType('int', true), new SimpleType('int', true)],
+            'not nullable to not nullable' => [new SimpleType('int', false), new SimpleType('int', false)],
+            'null to nullable'             => [new SimpleType('int', true), new NullType],
+            'true to bool'                 => [new SimpleType('bool', false), new TrueType],
+            'false to bool'                => [new SimpleType('bool', false), new FalseType],
+        ];
+    }
+
+    public static function notAssignablePairs(): array
+    {
+        return [
+            'null to not nullable' => [new SimpleType('int', false), new NullType],
+            'int to boolean'       => [new SimpleType('boolean', false), new SimpleType('int', false)],
+            'object'               => [new SimpleType('boolean', false), new ObjectType(TypeName::fromQualifiedName(stdClass::class), true)],
+            'unknown type'         => [new SimpleType('boolean', false), new UnknownType],
+            'void'                 => [new SimpleType('boolean', false), new VoidType],
+        ];
+    }
+
     public function testCanBeBool(): void
     {
         $type = new SimpleType('bool', false);
@@ -110,34 +134,10 @@ final class SimpleTypeTest extends TestCase
         $this->assertTrue($assignTo->isAssignable($assignedType));
     }
 
-    public function assignablePairs(): array
-    {
-        return [
-            'nullable to not nullable'     => [new SimpleType('int', false), new SimpleType('int', true)],
-            'not nullable to nullable'     => [new SimpleType('int', true), new SimpleType('int', false)],
-            'nullable to nullable'         => [new SimpleType('int', true), new SimpleType('int', true)],
-            'not nullable to not nullable' => [new SimpleType('int', false), new SimpleType('int', false)],
-            'null to nullable'             => [new SimpleType('int', true), new NullType],
-            'true to bool'                 => [new SimpleType('bool', false), new TrueType],
-            'false to bool'                => [new SimpleType('bool', false), new FalseType],
-        ];
-    }
-
     #[DataProvider('notAssignablePairs')]
     public function testIsNotAssignable(Type $assignTo, Type $assignedType): void
     {
         $this->assertFalse($assignTo->isAssignable($assignedType));
-    }
-
-    public function notAssignablePairs(): array
-    {
-        return [
-            'null to not nullable' => [new SimpleType('int', false), new NullType],
-            'int to boolean'       => [new SimpleType('boolean', false), new SimpleType('int', false)],
-            'object'               => [new SimpleType('boolean', false), new ObjectType(TypeName::fromQualifiedName(stdClass::class), true)],
-            'unknown type'         => [new SimpleType('boolean', false), new UnknownType],
-            'void'                 => [new SimpleType('boolean', false), new VoidType],
-        ];
     }
 
     public function testCanHaveValue(): void

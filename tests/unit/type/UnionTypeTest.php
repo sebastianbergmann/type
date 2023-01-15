@@ -27,13 +27,7 @@ use SebastianBergmann\Type\TestFixture\AnotherInterface;
 #[Small]
 final class UnionTypeTest extends TestCase
 {
-    #[DataProvider('stringRepresentationProvider')]
-    public function testCanBeRepresentedAsString(string $expected, Type $type): void
-    {
-        $this->assertSame($expected, $type->asString());
-    }
-
-    public function stringRepresentationProvider(): array
+    public static function stringRepresentationProvider(): array
     {
         return [
             [
@@ -54,6 +48,42 @@ final class UnionTypeTest extends TestCase
                 ),
             ],
         ];
+    }
+
+    public static function assignableProvider(): array
+    {
+        return [
+            [
+                true,
+                Type::fromName('bool', false),
+                new UnionType(
+                    Type::fromName('bool', false),
+                    Type::fromName('int', false),
+                ),
+            ],
+            [
+                true,
+                Type::fromName('int', false),
+                new UnionType(
+                    Type::fromName('bool', false),
+                    Type::fromName('int', false),
+                ),
+            ],
+            [
+                false,
+                Type::fromName('string', false),
+                new UnionType(
+                    Type::fromName('bool', false),
+                    Type::fromName('int', false),
+                ),
+            ],
+        ];
+    }
+
+    #[DataProvider('stringRepresentationProvider')]
+    public function testCanBeRepresentedAsString(string $expected, Type $type): void
+    {
+        $this->assertSame($expected, $type->asString());
     }
 
     public function testTypesCanBeQueried(): void
@@ -112,36 +142,6 @@ final class UnionTypeTest extends TestCase
     public function testAssignableTypesAreRecognized(bool $expected, Type $type, UnionType $union): void
     {
         $this->assertSame($expected, $union->isAssignable($type));
-    }
-
-    public function assignableProvider(): array
-    {
-        return [
-            [
-                true,
-                Type::fromName('bool', false),
-                new UnionType(
-                    Type::fromName('bool', false),
-                    Type::fromName('int', false),
-                ),
-            ],
-            [
-                true,
-                Type::fromName('int', false),
-                new UnionType(
-                    Type::fromName('bool', false),
-                    Type::fromName('int', false),
-                ),
-            ],
-            [
-                false,
-                Type::fromName('string', false),
-                new UnionType(
-                    Type::fromName('bool', false),
-                    Type::fromName('int', false),
-                ),
-            ],
-        ];
     }
 
     public function testCannotBeCreatedFromLessThanTwoTypes(): void
