@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="dev-master@">
+<files psalm-version="5.6.0@e784128902dfe01d489c4123d69918a9f3c1eac5">
   <file src="src/ReflectionMapper.php">
-    <DocblockTypeContradiction occurrences="2">
+    <DocblockTypeContradiction>
       <code>$_type instanceof ReflectionIntersectionType</code>
       <code>assert($_type instanceof ReflectionNamedType || $_type instanceof ReflectionIntersectionType)</code>
     </DocblockTypeContradiction>
-    <InvalidReturnType occurrences="1">
+    <InvalidReturnType>
       <code>Type</code>
     </InvalidReturnType>
-    <RedundantConditionGivenDocblockType occurrences="2">
+    <RedundantCondition>
+      <code>$name !== ''</code>
+    </RedundantCondition>
+    <RedundantConditionGivenDocblockType>
       <code>$returnType instanceof ReflectionIntersectionType</code>
       <code>assert($_type instanceof ReflectionNamedType || $_type instanceof ReflectionIntersectionType)</code>
+      <code>assert($_type instanceof ReflectionNamedType)</code>
     </RedundantConditionGivenDocblockType>
   </file>
+  <file src="src/type/IntersectionType.php">
+    <PropertyTypeCoercion>
+      <code>$types</code>
+    </PropertyTypeCoercion>
+  </file>
   <file src="src/type/ObjectType.php">
-    <ArgumentTypeCoercion occurrences="1">
+    <ArgumentTypeCoercion>
       <code>$this-&gt;className-&gt;qualifiedName()</code>
     </ArgumentTypeCoercion>
   </file>
   <file src="src/type/StaticType.php">
-    <ArgumentTypeCoercion occurrences="1">
+    <ArgumentTypeCoercion>
       <code>$this-&gt;className-&gt;qualifiedName()</code>
     </ArgumentTypeCoercion>
+  </file>
+  <file src="src/type/UnionType.php">
+    <PropertyTypeCoercion>
+      <code>$types</code>
+    </PropertyTypeCoercion>
   </file>
 </files>
