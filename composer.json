@@ -14,7 +14,6 @@
     "support": {
         "issues": "https://github.com/sebastianbergmann/type/issues"
     },
-    "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": ">=8.1"
