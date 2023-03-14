@@ -12,7 +12,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/sebastianbergmann/type/issues"
+        "issues": "https://github.com/sebastianbergmann/type/issues",
+        "security": "https://github.com/sebastianbergmann/type/security/policy"
     },
     "prefer-stable": true,
     "require": {
