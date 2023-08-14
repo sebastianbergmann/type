@@ -51,6 +51,9 @@ final class IterableType extends Type
         return false;
     }
 
+    /**
+     * @psalm-return 'iterable'
+     */
     public function name(): string
     {
         return 'iterable';

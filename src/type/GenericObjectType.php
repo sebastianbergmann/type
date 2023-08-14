@@ -31,6 +31,9 @@ final class GenericObjectType extends Type
         return true;
     }
 
+    /**
+     * @psalm-return 'object'
+     */
     public function name(): string
     {
         return 'object';

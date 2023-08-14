@@ -44,6 +44,9 @@ final class StaticType extends Type
         return false;
     }
 
+    /**
+     * @psalm-return 'static'
+     */
     public function name(): string
     {
         return 'static';

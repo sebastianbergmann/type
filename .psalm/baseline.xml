@@ -32,6 +32,11 @@
       <code><![CDATA[$this->className->qualifiedName()]]></code>
     </ArgumentTypeCoercion>
   </file>
+  <file src="src/type/Type.php">
+    <ArgumentTypeCoercion>
+      <code>$typeName</code>
+    </ArgumentTypeCoercion>
+  </file>
   <file src="src/type/UnionType.php">
     <PropertyTypeCoercion>
       <code>$types</code>

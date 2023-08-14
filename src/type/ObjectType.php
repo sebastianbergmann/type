@@ -42,6 +42,9 @@ final class ObjectType extends Type
         return false;
     }
 
+    /**
+     * @psalm-return non-empty-string
+     */
     public function name(): string
     {
         return $this->className->qualifiedName();

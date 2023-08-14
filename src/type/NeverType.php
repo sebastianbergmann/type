@@ -16,6 +16,9 @@ final class NeverType extends Type
         return $other instanceof self;
     }
 
+    /**
+     * @psalm-return 'never'
+     */
     public function name(): string
     {
         return 'never';

@@ -39,11 +39,17 @@ final class IntersectionType extends Type
         return $other->isObject();
     }
 
+    /**
+     * @psalm-return non-empty-string
+     */
     public function asString(): string
     {
         return $this->name();
     }
 
+    /**
+     * @psalm-return non-empty-string
+     */
     public function name(): string
     {
         $types = [];

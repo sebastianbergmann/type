@@ -22,6 +22,9 @@ final class TrueType extends Type
               $other->value() === true;
     }
 
+    /**
+     * @psalm-return 'true'
+     */
     public function name(): string
     {
         return 'true';

@@ -16,11 +16,17 @@ final class NullType extends Type
         return !($other instanceof VoidType);
     }
 
+    /**
+     * @psalm-return 'null'
+     */
     public function name(): string
     {
         return 'null';
     }
 
+    /**
+     * @psalm-return 'null'
+     */
     public function asString(): string
     {
         return 'null';

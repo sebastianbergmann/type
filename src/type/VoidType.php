@@ -16,6 +16,9 @@ final class VoidType extends Type
         return $other instanceof self;
     }
 
+    /**
+     * @psalm-return 'void'
+     */
     public function name(): string
     {
         return 'void';

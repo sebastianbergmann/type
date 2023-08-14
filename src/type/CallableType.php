@@ -68,6 +68,9 @@ final class CallableType extends Type
         return false;
     }
 
+    /**
+     * @psalm-return 'callable'
+     */
     public function name(): string
     {
         return 'callable';
