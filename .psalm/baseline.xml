@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.14.1@b9d355e0829c397b9b3b47d0c0ed042a8a70284d">
+<files psalm-version="5.18.0@b113f3ed0259fd6e212d87c3df80eec95a6abf19">
   <file src="src/ReflectionMapper.php">
-    <DocblockTypeContradiction>
-      <code>$_type instanceof ReflectionIntersectionType</code>
-      <code>assert($_type instanceof ReflectionNamedType || $_type instanceof ReflectionIntersectionType)</code>
-    </DocblockTypeContradiction>
     <InvalidReturnType>
       <code>Type</code>
     </InvalidReturnType>
@@ -12,8 +8,8 @@
       <code><![CDATA[$name !== '']]></code>
     </RedundantCondition>
     <RedundantConditionGivenDocblockType>
+      <code>$_type instanceof ReflectionIntersectionType</code>
       <code>$returnType instanceof ReflectionIntersectionType</code>
-      <code>assert($_type instanceof ReflectionNamedType || $_type instanceof ReflectionIntersectionType)</code>
       <code>assert($_type instanceof ReflectionNamedType)</code>
     </RedundantConditionGivenDocblockType>
   </file>
