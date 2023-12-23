@@ -16,7 +16,7 @@ use function implode;
 use function substr;
 use ReflectionClass;
 
-final class TypeName
+final readonly class TypeName
 {
     private ?string $namespaceName;
 

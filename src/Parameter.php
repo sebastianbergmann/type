@@ -9,7 +9,7 @@
  */
 namespace SebastianBergmann\Type;
 
-final class Parameter
+final readonly class Parameter
 {
     /**
      * @psalm-var non-empty-string
