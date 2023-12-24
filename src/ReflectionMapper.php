@@ -42,7 +42,7 @@ final class ReflectionMapper
             if ($type instanceof ReflectionNamedType) {
                 $parameters[] = new Parameter(
                     $name,
-                    $this->mapNamedType($type, $functionOrMethod)
+                    $this->mapNamedType($type, $functionOrMethod),
                 );
 
                 continue;
@@ -51,7 +51,7 @@ final class ReflectionMapper
             if ($type instanceof ReflectionUnionType) {
                 $parameters[] = new Parameter(
                     $name,
-                    $this->mapUnionType($type, $functionOrMethod)
+                    $this->mapUnionType($type, $functionOrMethod),
                 );
 
                 continue;
@@ -60,7 +60,7 @@ final class ReflectionMapper
             if ($type instanceof ReflectionIntersectionType) {
                 $parameters[] = new Parameter(
                     $name,
-                    $this->mapIntersectionType($type, $functionOrMethod)
+                    $this->mapIntersectionType($type, $functionOrMethod),
                 );
             }
         }
@@ -96,14 +96,14 @@ final class ReflectionMapper
         if ($functionOrMethod instanceof ReflectionMethod && $type->getName() === 'self') {
             return ObjectType::fromName(
                 $functionOrMethod->getDeclaringClass()->getName(),
-                $type->allowsNull()
+                $type->allowsNull(),
             );
         }
 
         if ($functionOrMethod instanceof ReflectionMethod && $type->getName() === 'static') {
             return new StaticType(
                 TypeName::fromReflection($functionOrMethod->getDeclaringClass()),
-                $type->allowsNull()
+                $type->allowsNull(),
             );
         }
 
@@ -114,13 +114,13 @@ final class ReflectionMapper
         if ($functionOrMethod instanceof ReflectionMethod && $type->getName() === 'parent') {
             return ObjectType::fromName(
                 $functionOrMethod->getDeclaringClass()->getParentClass()->getName(),
-                $type->allowsNull()
+                $type->allowsNull(),
             );
         }
 
         return Type::fromName(
             $type->getName(),
-            $type->allowsNull()
+            $type->allowsNull(),
         );
     }
 

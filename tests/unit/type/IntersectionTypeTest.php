@@ -36,7 +36,7 @@ final class IntersectionTypeTest extends TestCase
                 Type::fromName(ClassImplementingAnInterfaceAndAnotherInterface::class, false),
                 new IntersectionType(
                     Type::fromName(AnInterface::class, false),
-                    Type::fromName(AnotherInterface::class, false)
+                    Type::fromName(AnotherInterface::class, false),
                 ),
             ],
             [
@@ -44,7 +44,7 @@ final class IntersectionTypeTest extends TestCase
                 Type::fromValue(false, false),
                 new IntersectionType(
                     Type::fromName(AnInterface::class, false),
-                    Type::fromName(AnotherInterface::class, false)
+                    Type::fromName(AnotherInterface::class, false),
                 ),
             ],
         ];
@@ -54,7 +54,7 @@ final class IntersectionTypeTest extends TestCase
     {
         $this->type = new IntersectionType(
             Type::fromName(AnInterface::class, false),
-            Type::fromName(AnotherInterface::class, false)
+            Type::fromName(AnotherInterface::class, false),
         );
     }
 
@@ -91,7 +91,7 @@ final class IntersectionTypeTest extends TestCase
     {
         $this->assertSame(
             AnInterface::class . '&' . AnotherInterface::class,
-            $this->type->name()
+            $this->type->name(),
         );
     }
 
@@ -99,7 +99,7 @@ final class IntersectionTypeTest extends TestCase
     {
         $this->assertSame(
             AnInterface::class . '&' . AnotherInterface::class,
-            $this->type->asString()
+            $this->type->asString(),
         );
     }
 
@@ -107,7 +107,7 @@ final class IntersectionTypeTest extends TestCase
     {
         $type = new IntersectionType(
             Type::fromName(AnotherInterface::class, false),
-            Type::fromName(AnInterface::class, false)
+            Type::fromName(AnInterface::class, false),
         );
 
         $this->assertSame(AnInterface::class . '&' . AnotherInterface::class, $type->asString());
@@ -148,7 +148,7 @@ final class IntersectionTypeTest extends TestCase
         new IntersectionType(
             Type::fromName(AnInterface::class, false),
             Type::fromName(AnInterface::class, false),
-            Type::fromName(AnotherInterface::class, false)
+            Type::fromName(AnotherInterface::class, false),
         );
     }
 }

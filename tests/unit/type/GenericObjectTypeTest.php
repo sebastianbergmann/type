@@ -51,8 +51,8 @@ final class GenericObjectTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                new ObjectType(TypeName::fromQualifiedName(stdClass::class), false)
-            )
+                new ObjectType(TypeName::fromQualifiedName(stdClass::class), false),
+            ),
         );
     }
 
@@ -62,8 +62,8 @@ final class GenericObjectTypeTest extends TestCase
 
         $this->assertTrue(
             $type->isAssignable(
-                new NullType
-            )
+                new NullType,
+            ),
         );
     }
 
@@ -71,8 +71,8 @@ final class GenericObjectTypeTest extends TestCase
     {
         $this->assertFalse(
             $this->type->isAssignable(
-                new SimpleType('bool', false)
-            )
+                new SimpleType('bool', false),
+            ),
         );
     }
 

@@ -58,7 +58,7 @@ final class StaticTypeTest extends TestCase
     {
         $type = new StaticType(
             TypeName::fromQualifiedName(ParentClassWithMethodThatHasStaticReturnType::class),
-            true
+            true,
         );
 
         $this->assertTrue($type->isAssignable(Type::fromValue(null, true)));
@@ -68,7 +68,7 @@ final class StaticTypeTest extends TestCase
     {
         $type = new StaticType(
             TypeName::fromQualifiedName(ParentClassWithMethodThatHasStaticReturnType::class),
-            false
+            false,
         );
 
         $this->assertFalse($type->isAssignable(Type::fromValue(null, true)));
@@ -78,18 +78,18 @@ final class StaticTypeTest extends TestCase
     {
         $type = new StaticType(
             TypeName::fromQualifiedName(ParentClassWithMethodThatHasStaticReturnType::class),
-            true
+            true,
         );
 
         $this->assertTrue(
             $type->isAssignable(
                 new ObjectType(
                     TypeName::fromQualifiedName(
-                        ParentClassWithMethodThatHasStaticReturnType::class
+                        ParentClassWithMethodThatHasStaticReturnType::class,
                     ),
-                    false
-                )
-            )
+                    false,
+                ),
+            ),
         );
     }
 
@@ -97,18 +97,18 @@ final class StaticTypeTest extends TestCase
     {
         $type = new StaticType(
             TypeName::fromQualifiedName(ParentClassWithMethodThatHasStaticReturnType::class),
-            true
+            true,
         );
 
         $this->assertTrue(
             $type->isAssignable(
                 new ObjectType(
                     TypeName::fromQualifiedName(
-                        ChildClassThatExtendsClassWithMethodThatHasStaticReturnType::class
+                        ChildClassThatExtendsClassWithMethodThatHasStaticReturnType::class,
                     ),
-                    false
-                )
-            )
+                    false,
+                ),
+            ),
         );
     }
 
@@ -116,18 +116,18 @@ final class StaticTypeTest extends TestCase
     {
         $type = new StaticType(
             TypeName::fromQualifiedName(ParentClassWithMethodThatHasStaticReturnType::class),
-            true
+            true,
         );
 
         $this->assertFalse(
             $type->isAssignable(
                 new ObjectType(
                     TypeName::fromQualifiedName(
-                        stdClass::class
+                        stdClass::class,
                     ),
-                    false
-                )
-            )
+                    false,
+                ),
+            ),
         );
     }
 

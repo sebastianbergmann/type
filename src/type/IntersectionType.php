@@ -91,7 +91,7 @@ final class IntersectionType extends Type
     {
         if (count($types) < 2) {
             throw new RuntimeException(
-                'An intersection type must be composed of at least two types'
+                'An intersection type must be composed of at least two types',
             );
         }
     }
@@ -104,7 +104,7 @@ final class IntersectionType extends Type
         foreach ($types as $type) {
             if (!$type->isObject()) {
                 throw new RuntimeException(
-                    'An intersection type can only be composed of interfaces and classes'
+                    'An intersection type can only be composed of interfaces and classes',
                 );
             }
         }
