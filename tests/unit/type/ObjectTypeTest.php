@@ -31,12 +31,12 @@ final class ObjectTypeTest extends TestCase
     {
         $this->childClass = new ObjectType(
             TypeName::fromQualifiedName(ChildClass::class),
-            false
+            false,
         );
 
         $this->parentClass = new ObjectType(
             TypeName::fromQualifiedName(ParentClass::class),
-            false
+            false,
         );
     }
 
@@ -69,12 +69,12 @@ final class ObjectTypeTest extends TestCase
     {
         $classFromNamespaceA = new ObjectType(
             TypeName::fromQualifiedName(\someNamespaceA\NamespacedClass::class),
-            false
+            false,
         );
 
         $classFromNamespaceB = new ObjectType(
             TypeName::fromQualifiedName(\someNamespaceB\NamespacedClass::class),
-            false
+            false,
         );
         $this->assertFalse($classFromNamespaceA->isAssignable($classFromNamespaceB));
     }
@@ -83,7 +83,7 @@ final class ObjectTypeTest extends TestCase
     {
         $classLowercased = new ObjectType(
             TypeName::fromQualifiedName(strtolower(ParentClass::class)),
-            false
+            false,
         );
 
         $this->assertTrue($this->parentClass->isAssignable($classLowercased));
@@ -93,7 +93,7 @@ final class ObjectTypeTest extends TestCase
     {
         $someClass = new ObjectType(
             TypeName::fromQualifiedName(ParentClass::class),
-            true
+            true,
         );
         $this->assertTrue($someClass->isAssignable(Type::fromValue(null, true)));
     }
@@ -102,7 +102,7 @@ final class ObjectTypeTest extends TestCase
     {
         $someClass = new ObjectType(
             TypeName::fromQualifiedName(ParentClass::class),
-            false
+            false,
         );
 
         $this->assertFalse($someClass->isAssignable(Type::fromValue(null, true)));
@@ -112,7 +112,7 @@ final class ObjectTypeTest extends TestCase
     {
         $someClass = new ObjectType(
             TypeName::fromQualifiedName(ParentClass::class),
-            false
+            false,
         );
 
         $this->assertFalse($someClass->allowsNull());
@@ -122,7 +122,7 @@ final class ObjectTypeTest extends TestCase
     {
         $someClass = new ObjectType(
             TypeName::fromQualifiedName(ParentClass::class),
-            true
+            true,
         );
 
         $this->assertTrue($someClass->allowsNull());

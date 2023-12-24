@@ -67,9 +67,9 @@ final class CallableTypeTest extends TestCase
             $this->type->isAssignable(
                 new ObjectType(
                     TypeName::fromQualifiedName(Closure::class),
-                    false
-                )
-            )
+                    false,
+                ),
+            ),
         );
     }
 
@@ -79,9 +79,9 @@ final class CallableTypeTest extends TestCase
             $this->type->isAssignable(
                 new ObjectType(
                     TypeName::fromQualifiedName(ClassWithInvokeMethod::class),
-                    false
-                )
-            )
+                    false,
+                ),
+            ),
         );
     }
 
@@ -89,8 +89,8 @@ final class CallableTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                Type::fromValue('SebastianBergmann\Type\TestFixture\callback_function', false)
-            )
+                Type::fromValue('SebastianBergmann\Type\TestFixture\callback_function', false),
+            ),
         );
     }
 
@@ -98,8 +98,8 @@ final class CallableTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                Type::fromValue(ClassWithCallbackMethods::class . '::staticCallback', false)
-            )
+                Type::fromValue(ClassWithCallbackMethods::class . '::staticCallback', false),
+            ),
         );
     }
 
@@ -107,8 +107,8 @@ final class CallableTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                Type::fromValue([ClassWithCallbackMethods::class, 'staticCallback'], false)
-            )
+                Type::fromValue([ClassWithCallbackMethods::class, 'staticCallback'], false),
+            ),
         );
     }
 
@@ -116,8 +116,8 @@ final class CallableTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                Type::fromValue([new ClassWithCallbackMethods, 'nonStaticCallback'], false)
-            )
+                Type::fromValue([new ClassWithCallbackMethods, 'nonStaticCallback'], false),
+            ),
         );
     }
 
@@ -125,8 +125,8 @@ final class CallableTypeTest extends TestCase
     {
         $this->assertFalse(
             $this->type->isAssignable(
-                Type::fromValue(null, false)
-            )
+                Type::fromValue(null, false),
+            ),
         );
     }
 
@@ -138,9 +138,9 @@ final class CallableTypeTest extends TestCase
                     new class
                     {
                     },
-                    false
-                )
-            )
+                    false,
+                ),
+            ),
         );
     }
 

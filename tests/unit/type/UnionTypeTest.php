@@ -34,7 +34,7 @@ final class UnionTypeTest extends TestCase
                 'bool|int',
                 new UnionType(
                     Type::fromName('bool', false),
-                    Type::fromName('int', false)
+                    Type::fromName('int', false),
                 ),
             ],
             [
@@ -42,9 +42,9 @@ final class UnionTypeTest extends TestCase
                 new UnionType(
                     new IntersectionType(
                         Type::fromName(AnInterface::class, false),
-                        Type::fromName(AnotherInterface::class, false)
+                        Type::fromName(AnotherInterface::class, false),
                     ),
-                    Type::fromName('bool', false)
+                    Type::fromName('bool', false),
                 ),
             ],
         ];
@@ -99,7 +99,7 @@ final class UnionTypeTest extends TestCase
     {
         $type = new UnionType(
             Type::fromName('bool', false),
-            Type::fromName('null', true)
+            Type::fromName('null', true),
         );
 
         $this->assertTrue($type->allowsNull());
@@ -109,7 +109,7 @@ final class UnionTypeTest extends TestCase
     {
         $type = new UnionType(
             Type::fromName('bool', false),
-            Type::fromName('int', false)
+            Type::fromName('int', false),
         );
 
         $this->assertFalse($type->allowsNull());
@@ -121,7 +121,7 @@ final class UnionTypeTest extends TestCase
             Type::fromName('bool', false),
             new IntersectionType(
                 Type::fromName(AnInterface::class, false),
-                Type::fromName(AnotherInterface::class, false)
+                Type::fromName(AnotherInterface::class, false),
             ),
         );
 
@@ -132,7 +132,7 @@ final class UnionTypeTest extends TestCase
     {
         $type = new UnionType(
             Type::fromName('bool', false),
-            Type::fromName('int', false)
+            Type::fromName('int', false),
         );
 
         $this->assertFalse($type->containsIntersectionTypes());
@@ -157,7 +157,7 @@ final class UnionTypeTest extends TestCase
 
         new UnionType(
             Type::fromName('int', false),
-            Type::fromName('unknown type', false)
+            Type::fromName('unknown type', false),
         );
     }
 
@@ -167,7 +167,7 @@ final class UnionTypeTest extends TestCase
 
         new UnionType(
             Type::fromName('int', false),
-            Type::fromName('void', false)
+            Type::fromName('void', false),
         );
     }
 
@@ -175,7 +175,7 @@ final class UnionTypeTest extends TestCase
     {
         $type = new UnionType(
             new SimpleType('bool', false),
-            new SimpleType('string', false)
+            new SimpleType('string', false),
         );
 
         $this->assertFalse($type->isCallable());

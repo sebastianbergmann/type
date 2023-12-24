@@ -48,7 +48,7 @@ final class TypeName
     {
         return new self(
             $type->getNamespaceName(),
-            $type->getShortName()
+            $type->getShortName(),
         );
     }
 

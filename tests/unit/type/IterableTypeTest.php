@@ -63,8 +63,8 @@ final class IterableTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                Type::fromValue([], false)
-            )
+                Type::fromValue([], false),
+            ),
         );
     }
 
@@ -72,8 +72,8 @@ final class IterableTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                Type::fromValue(new Iterator, false)
-            )
+                Type::fromValue(new Iterator, false),
+            ),
         );
     }
 
@@ -81,8 +81,8 @@ final class IterableTypeTest extends TestCase
     {
         $this->assertFalse(
             $this->type->isAssignable(
-                Type::fromValue(null, false)
-            )
+                Type::fromValue(null, false),
+            ),
         );
     }
 
