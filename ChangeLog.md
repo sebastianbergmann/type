@@ -159,7 +159,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
-[5.0.0]: https://github.com/sebastianbergmann/type/compare/4.0...main
+[5.0.0]: https://github.com/sebastianbergmann/type/compare/4.0...5.0.0
 [4.0.0]: https://github.com/sebastianbergmann/type/compare/3.2.1...4.0.0
 [3.2.1]: https://github.com/sebastianbergmann/type/compare/3.2.0...3.2.1
 [3.2.0]: https://github.com/sebastianbergmann/type/compare/3.1.0...3.2.0
