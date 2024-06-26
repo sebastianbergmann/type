@@ -29,9 +29,6 @@ final class VoidType extends Type
         return false;
     }
 
-    /**
-     * @phpstan-assert-if-true VoidType $this
-     */
     public function isVoid(): bool
     {
         return true;

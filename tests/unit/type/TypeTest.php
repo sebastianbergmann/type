@@ -27,6 +27,9 @@ use stdClass;
 #[Small]
 final class TypeTest extends TestCase
 {
+    /**
+     * @return non-empty-array<string, array{0: mixed, 1: bool, 2: Type}>
+     */
     public static function valuesToNullableType(): array
     {
         return [
@@ -43,6 +46,9 @@ final class TypeTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-array<string, array{0: Type, 1: non-empty-string, 2: bool}>
+     */
     public static function namesToTypes(): array
     {
         return [
@@ -78,7 +84,7 @@ final class TypeTest extends TestCase
     }
 
     #[DataProvider('valuesToNullableType')]
-    public function testTypeMappingFromValue($value, bool $allowsNull, Type $expectedType): void
+    public function testTypeMappingFromValue(mixed $value, bool $allowsNull, Type $expectedType): void
     {
         $this->assertEquals($expectedType, Type::fromValue($value, $allowsNull));
     }

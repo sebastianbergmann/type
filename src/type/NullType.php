@@ -37,9 +37,6 @@ final class NullType extends Type
         return true;
     }
 
-    /**
-     * @phpstan-assert-if-true NullType $this
-     */
     public function isNull(): bool
     {
         return true;

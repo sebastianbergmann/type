@@ -21,6 +21,9 @@ use PHPUnit\Framework\TestCase;
 #[Small]
 final class TrueTypeTest extends TestCase
 {
+    /**
+     * @return non-empty-list<array{0: Type}>
+     */
     public static function assignableTypes(): array
     {
         return [
@@ -29,6 +32,9 @@ final class TrueTypeTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-list<array{0: Type}>
+     */
     public static function notAssignableTypes(): array
     {
         return [
@@ -73,20 +79,48 @@ final class TrueTypeTest extends TestCase
     {
         $type = new TrueType;
 
-        $this->assertFalse($type->isCallable());
-        $this->assertFalse($type->isFalse());
-        $this->assertFalse($type->isGenericObject());
-        $this->assertFalse($type->isIntersection());
-        $this->assertFalse($type->isIterable());
-        $this->assertFalse($type->isMixed());
-        $this->assertFalse($type->isNever());
-        $this->assertFalse($type->isNull());
-        $this->assertFalse($type->isObject());
-        $this->assertFalse($type->isSimple());
-        $this->assertFalse($type->isStatic());
         $this->assertTrue($type->isTrue());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isCallable());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isFalse());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isGenericObject());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isIntersection());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isIterable());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isMixed());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isNever());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isNull());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isObject());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isSimple());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isStatic());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isUnion());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isUnknown());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isVoid());
     }
 }

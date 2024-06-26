@@ -35,9 +35,6 @@ final class TrueType extends Type
         return false;
     }
 
-    /**
-     * @phpstan-assert-if-true TrueType $this
-     */
     public function isTrue(): bool
     {
         return true;

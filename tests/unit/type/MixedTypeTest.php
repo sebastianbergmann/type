@@ -24,6 +24,9 @@ use PHPUnit\Framework\TestCase;
 #[Small]
 final class MixedTypeTest extends TestCase
 {
+    /**
+     * @return non-empty-list<array{0: non-empty-string}>
+     */
     public static function assignableTypes(): array
     {
         return [
@@ -73,20 +76,48 @@ final class MixedTypeTest extends TestCase
     {
         $type = new MixedType;
 
-        $this->assertFalse($type->isCallable());
-        $this->assertFalse($type->isFalse());
-        $this->assertFalse($type->isGenericObject());
-        $this->assertFalse($type->isIntersection());
-        $this->assertFalse($type->isIterable());
         $this->assertTrue($type->isMixed());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isCallable());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isFalse());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isGenericObject());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isIntersection());
+
+        /** @phpstan-ignore method.impossibleType */
+        $this->assertFalse($type->isIterable());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isNever());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isNull());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isObject());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isSimple());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isStatic());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isTrue());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isUnion());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isUnknown());
+
+        /** @phpstan-ignore method.impossibleType */
         $this->assertFalse($type->isVoid());
     }
 }

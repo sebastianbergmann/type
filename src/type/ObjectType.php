@@ -60,9 +60,6 @@ final class ObjectType extends Type
         return $this->className;
     }
 
-    /**
-     * @phpstan-assert-if-true ObjectType $this
-     */
     public function isObject(): bool
     {
         return true;

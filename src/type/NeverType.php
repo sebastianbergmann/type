@@ -29,9 +29,6 @@ final class NeverType extends Type
         return false;
     }
 
-    /**
-     * @phpstan-assert-if-true NeverType $this
-     */
     public function isNever(): bool
     {
         return true;

@@ -129,8 +129,6 @@ final class ReflectionMapper
         $types = [];
 
         foreach ($type->getTypes() as $_type) {
-            assert($_type instanceof ReflectionNamedType || $_type instanceof ReflectionIntersectionType);
-
             if ($_type instanceof ReflectionNamedType) {
                 $types[] = $this->mapNamedType($_type, $functionOrMethod);
 

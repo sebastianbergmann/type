@@ -55,6 +55,9 @@ use SebastianBergmann\Type\TestFixture\ParentClass;
 #[Small]
 final class ReflectionMapperTest extends TestCase
 {
+    /**
+     * @return non-empty-list<array{0: non-empty-string, 1: ReflectionFunction|ReflectionMethod}>
+     */
     public static function typeProvider(): array
     {
         return [

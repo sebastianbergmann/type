@@ -21,6 +21,9 @@ final class UnknownTypeTest extends TestCase
 {
     private UnknownType $type;
 
+    /**
+     * @return non-empty-list<array{0: Type}>
+     */
     public static function assignableTypes(): array
     {
         return [
@@ -61,6 +64,7 @@ final class UnknownTypeTest extends TestCase
 
     public function testCanBeQueriedForType(): void
     {
+        $this->assertTrue($this->type->isUnknown());
         $this->assertFalse($this->type->isCallable());
         $this->assertFalse($this->type->isFalse());
         $this->assertFalse($this->type->isGenericObject());
@@ -74,7 +78,6 @@ final class UnknownTypeTest extends TestCase
         $this->assertFalse($this->type->isStatic());
         $this->assertFalse($this->type->isTrue());
         $this->assertFalse($this->type->isUnion());
-        $this->assertTrue($this->type->isUnknown());
         $this->assertFalse($this->type->isVoid());
     }
 }

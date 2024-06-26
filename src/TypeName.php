@@ -44,6 +44,9 @@ final readonly class TypeName
         return new self($namespaceName, $simpleName);
     }
 
+    /**
+     * @phpstan-ignore missingType.generics
+     */
     public static function fromReflection(ReflectionClass $type): self
     {
         return new self(

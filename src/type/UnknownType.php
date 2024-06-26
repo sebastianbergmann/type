@@ -37,9 +37,6 @@ final class UnknownType extends Type
         return true;
     }
 
-    /**
-     * @phpstan-assert-if-true UnknownType $this
-     */
     public function isUnknown(): bool
     {
         return true;

@@ -44,9 +44,6 @@ final class GenericObjectType extends Type
         return $this->allowsNull;
     }
 
-    /**
-     * @phpstan-assert-if-true GenericObjectType $this
-     */
     public function isGenericObject(): bool
     {
         return true;

@@ -68,11 +68,13 @@ final class ObjectTypeTest extends TestCase
     public function testClassFromOneNamespaceIsNotAssignableToClassInOtherNamespace(): void
     {
         $classFromNamespaceA = new ObjectType(
+            /** @phpstan-ignore class.notFound */
             TypeName::fromQualifiedName(\someNamespaceA\NamespacedClass::class),
             false,
         );
 
         $classFromNamespaceB = new ObjectType(
+            /** @phpstan-ignore class.notFound */
             TypeName::fromQualifiedName(\someNamespaceB\NamespacedClass::class),
             false,
         );
@@ -135,6 +137,7 @@ final class ObjectTypeTest extends TestCase
 
     public function testCanBeQueriedForType(): void
     {
+        $this->assertTrue($this->childClass->isObject());
         $this->assertFalse($this->childClass->isCallable());
         $this->assertFalse($this->childClass->isFalse());
         $this->assertFalse($this->childClass->isGenericObject());
@@ -143,7 +146,6 @@ final class ObjectTypeTest extends TestCase
         $this->assertFalse($this->childClass->isMixed());
         $this->assertFalse($this->childClass->isNever());
         $this->assertFalse($this->childClass->isNull());
-        $this->assertTrue($this->childClass->isObject());
         $this->assertFalse($this->childClass->isSimple());
         $this->assertFalse($this->childClass->isStatic());
         $this->assertFalse($this->childClass->isTrue());

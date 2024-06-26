@@ -69,9 +69,6 @@ final class SimpleType extends Type
         return $this->value;
     }
 
-    /**
-     * @phpstan-assert-if-true SimpleType $this
-     */
     public function isSimple(): bool
     {
         return true;

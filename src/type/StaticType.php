@@ -57,9 +57,6 @@ final class StaticType extends Type
         return $this->allowsNull;
     }
 
-    /**
-     * @phpstan-assert-if-true StaticType $this
-     */
     public function isStatic(): bool
     {
         return true;

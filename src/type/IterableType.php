@@ -64,9 +64,6 @@ final class IterableType extends Type
         return $this->allowsNull;
     }
 
-    /**
-     * @phpstan-assert-if-true IterableType $this
-     */
     public function isIterable(): bool
     {
         return true;

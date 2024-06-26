@@ -28,6 +28,9 @@ final class IntersectionTypeTest extends TestCase
 {
     private IntersectionType $type;
 
+    /**
+     * @return non-empty-list<array{0: bool, 1: Type, 2: IntersectionType}>
+     */
     public static function assignableTypes(): array
     {
         return [
@@ -70,10 +73,10 @@ final class IntersectionTypeTest extends TestCase
 
     public function testCanBeQueriedForType(): void
     {
+        $this->assertTrue($this->type->isIntersection());
         $this->assertFalse($this->type->isCallable());
         $this->assertFalse($this->type->isFalse());
         $this->assertFalse($this->type->isGenericObject());
-        $this->assertTrue($this->type->isIntersection());
         $this->assertFalse($this->type->isIterable());
         $this->assertFalse($this->type->isMixed());
         $this->assertFalse($this->type->isNever());

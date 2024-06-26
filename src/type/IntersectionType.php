@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Type;
 
+use function array_is_list;
 use function assert;
 use function count;
 use function implode;
@@ -30,6 +31,8 @@ final class IntersectionType extends Type
         $this->ensureMinimumOfTwoTypes(...$types);
         $this->ensureOnlyValidTypes(...$types);
         $this->ensureNoDuplicateTypes(...$types);
+
+        assert(array_is_list($types) && !empty($types));
 
         $this->types = $types;
     }
@@ -68,9 +71,6 @@ final class IntersectionType extends Type
         return false;
     }
 
-    /**
-     * @phpstan-assert-if-true IntersectionType $this
-     */
     public function isIntersection(): bool
     {
         return true;

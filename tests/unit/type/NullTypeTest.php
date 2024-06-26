@@ -21,6 +21,9 @@ final class NullTypeTest extends TestCase
 {
     private NullType $type;
 
+    /**
+     * @return non-empty-list<array{0: Type}>
+     */
     public static function assignableTypes(): array
     {
         return [
@@ -32,6 +35,9 @@ final class NullTypeTest extends TestCase
         ];
     }
 
+    /**
+     * @return non-empty-array<non-empty-string, array{0: Type}>
+     */
     public static function notAssignableTypes(): array
     {
         return [
@@ -73,6 +79,7 @@ final class NullTypeTest extends TestCase
 
     public function testCanBeQueriedForType(): void
     {
+        $this->assertTrue($this->type->isNull());
         $this->assertFalse($this->type->isCallable());
         $this->assertFalse($this->type->isFalse());
         $this->assertFalse($this->type->isGenericObject());
@@ -80,7 +87,6 @@ final class NullTypeTest extends TestCase
         $this->assertFalse($this->type->isIterable());
         $this->assertFalse($this->type->isMixed());
         $this->assertFalse($this->type->isNever());
-        $this->assertTrue($this->type->isNull());
         $this->assertFalse($this->type->isObject());
         $this->assertFalse($this->type->isSimple());
         $this->assertFalse($this->type->isStatic());

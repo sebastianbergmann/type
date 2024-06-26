@@ -35,9 +35,6 @@ final class FalseType extends Type
         return false;
     }
 
-    /**
-     * @phpstan-assert-if-true FalseType $this
-     */
     public function isFalse(): bool
     {
         return true;
