@@ -17,7 +17,7 @@ use function sort;
 final class UnionType extends Type
 {
     /**
-     * @psalm-var non-empty-list<Type>
+     * @var non-empty-list<Type>
      */
     private array $types;
 
@@ -44,7 +44,7 @@ final class UnionType extends Type
     }
 
     /**
-     * @psalm-return non-empty-string
+     * @return non-empty-string
      */
     public function asString(): string
     {
@@ -52,7 +52,7 @@ final class UnionType extends Type
     }
 
     /**
-     * @psalm-return non-empty-string
+     * @return non-empty-string
      */
     public function name(): string
     {
@@ -89,7 +89,7 @@ final class UnionType extends Type
     }
 
     /**
-     * @psalm-assert-if-true UnionType $this
+     * @phpstan-assert-if-true UnionType $this
      */
     public function isUnion(): bool
     {
@@ -108,7 +108,7 @@ final class UnionType extends Type
     }
 
     /**
-     * @psalm-return non-empty-list<Type>
+     * @return non-empty-list<Type>
      */
     public function types(): array
     {

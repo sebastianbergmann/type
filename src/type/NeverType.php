@@ -17,7 +17,7 @@ final class NeverType extends Type
     }
 
     /**
-     * @psalm-return 'never'
+     * @return 'never'
      */
     public function name(): string
     {
@@ -30,7 +30,7 @@ final class NeverType extends Type
     }
 
     /**
-     * @psalm-assert-if-true NeverType $this
+     * @phpstan-assert-if-true NeverType $this
      */
     public function isNever(): bool
     {

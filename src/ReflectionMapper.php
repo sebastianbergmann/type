@@ -20,7 +20,7 @@ use ReflectionUnionType;
 final class ReflectionMapper
 {
     /**
-     * @psalm-return list<Parameter>
+     * @return list<Parameter>
      */
     public function fromParameterTypes(ReflectionFunction|ReflectionMethod $functionOrMethod): array
     {

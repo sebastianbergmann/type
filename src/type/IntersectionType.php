@@ -18,7 +18,7 @@ use function sort;
 final class IntersectionType extends Type
 {
     /**
-     * @psalm-var non-empty-list<Type>
+     * @var non-empty-list<Type>
      */
     private array $types;
 
@@ -40,7 +40,7 @@ final class IntersectionType extends Type
     }
 
     /**
-     * @psalm-return non-empty-string
+     * @return non-empty-string
      */
     public function asString(): string
     {
@@ -48,7 +48,7 @@ final class IntersectionType extends Type
     }
 
     /**
-     * @psalm-return non-empty-string
+     * @return non-empty-string
      */
     public function name(): string
     {
@@ -69,7 +69,7 @@ final class IntersectionType extends Type
     }
 
     /**
-     * @psalm-assert-if-true IntersectionType $this
+     * @phpstan-assert-if-true IntersectionType $this
      */
     public function isIntersection(): bool
     {
@@ -77,7 +77,7 @@ final class IntersectionType extends Type
     }
 
     /**
-     * @psalm-return non-empty-list<Type>
+     * @return non-empty-list<Type>
      */
     public function types(): array
     {

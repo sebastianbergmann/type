@@ -23,7 +23,7 @@ final class FalseType extends Type
     }
 
     /**
-     * @psalm-return 'false'
+     * @return 'false'
      */
     public function name(): string
     {
@@ -36,7 +36,7 @@ final class FalseType extends Type
     }
 
     /**
-     * @psalm-assert-if-true FalseType $this
+     * @phpstan-assert-if-true FalseType $this
      */
     public function isFalse(): bool
     {

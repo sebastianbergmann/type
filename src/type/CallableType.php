@@ -69,7 +69,7 @@ final class CallableType extends Type
     }
 
     /**
-     * @psalm-return 'callable'
+     * @return 'callable'
      */
     public function name(): string
     {
@@ -82,7 +82,7 @@ final class CallableType extends Type
     }
 
     /**
-     * @psalm-assert-if-true CallableType $this
+     * @phpstan-assert-if-true CallableType $this
      */
     public function isCallable(): bool
     {

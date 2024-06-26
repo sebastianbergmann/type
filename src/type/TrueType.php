@@ -23,7 +23,7 @@ final class TrueType extends Type
     }
 
     /**
-     * @psalm-return 'true'
+     * @return 'true'
      */
     public function name(): string
     {
@@ -36,7 +36,7 @@ final class TrueType extends Type
     }
 
     /**
-     * @psalm-assert-if-true TrueType $this
+     * @phpstan-assert-if-true TrueType $this
      */
     public function isTrue(): bool
     {

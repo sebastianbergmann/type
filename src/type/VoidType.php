@@ -17,7 +17,7 @@ final class VoidType extends Type
     }
 
     /**
-     * @psalm-return 'void'
+     * @return 'void'
      */
     public function name(): string
     {
@@ -30,7 +30,7 @@ final class VoidType extends Type
     }
 
     /**
-     * @psalm-assert-if-true VoidType $this
+     * @phpstan-assert-if-true VoidType $this
      */
     public function isVoid(): bool
     {

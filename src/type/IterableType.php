@@ -52,7 +52,7 @@ final class IterableType extends Type
     }
 
     /**
-     * @psalm-return 'iterable'
+     * @return 'iterable'
      */
     public function name(): string
     {
@@ -65,7 +65,7 @@ final class IterableType extends Type
     }
 
     /**
-     * @psalm-assert-if-true IterableType $this
+     * @phpstan-assert-if-true IterableType $this
      */
     public function isIterable(): bool
     {

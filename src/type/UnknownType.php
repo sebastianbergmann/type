@@ -17,7 +17,7 @@ final class UnknownType extends Type
     }
 
     /**
-     * @psalm-return 'unknown type'
+     * @return 'unknown type'
      */
     public function name(): string
     {
@@ -25,7 +25,7 @@ final class UnknownType extends Type
     }
 
     /**
-     * @psalm-return ''
+     * @return ''
      */
     public function asString(): string
     {
@@ -38,7 +38,7 @@ final class UnknownType extends Type
     }
 
     /**
-     * @psalm-assert-if-true UnknownType $this
+     * @phpstan-assert-if-true UnknownType $this
      */
     public function isUnknown(): bool
     {
