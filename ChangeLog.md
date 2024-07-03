@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [5.0.1] - 2024-07-03
+
+### Changed
+
+* This project now uses PHPStan instead of Psalm for static analysis
+
 ## [5.0.0] - 2024-02-02
 
 ### Removed
@@ -159,6 +165,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[5.0.1]: https://github.com/sebastianbergmann/type/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/sebastianbergmann/type/compare/4.0...5.0.0
 [4.0.0]: https://github.com/sebastianbergmann/type/compare/3.2.1...4.0.0
 [3.2.1]: https://github.com/sebastianbergmann/type/compare/3.2.0...3.2.1
