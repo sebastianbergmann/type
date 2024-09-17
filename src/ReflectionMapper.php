@@ -14,6 +14,7 @@ use ReflectionFunction;
 use ReflectionIntersectionType;
 use ReflectionMethod;
 use ReflectionNamedType;
+use ReflectionProperty;
 use ReflectionType;
 use ReflectionUnionType;
 
@@ -94,7 +95,30 @@ final class ReflectionMapper
         }
     }
 
-    private function mapNamedType(ReflectionNamedType $type, ReflectionFunction|ReflectionMethod $reflector): Type
+    public function fromPropertyType(ReflectionProperty $reflector): Type
+    {
+        if (!$reflector->hasType()) {
+            return new UnknownType;
+        }
+
+        $propertyType = $reflector->getType();
+
+        assert($propertyType instanceof ReflectionNamedType || $propertyType instanceof ReflectionUnionType || $propertyType instanceof ReflectionIntersectionType);
+
+        if ($propertyType instanceof ReflectionNamedType) {
+            return $this->mapNamedType($propertyType, $reflector);
+        }
+
+        if ($propertyType instanceof ReflectionUnionType) {
+            return $this->mapUnionType($propertyType, $reflector);
+        }
+
+        if ($propertyType instanceof ReflectionIntersectionType) {
+            return $this->mapIntersectionType($propertyType, $reflector);
+        }
+    }
+
+    private function mapNamedType(ReflectionNamedType $type, ReflectionFunction|ReflectionMethod|ReflectionProperty $reflector): Type
     {
         $classScope = !$reflector instanceof ReflectionFunction;
 
@@ -129,7 +153,7 @@ final class ReflectionMapper
         );
     }
 
-    private function mapUnionType(ReflectionUnionType $type, ReflectionFunction|ReflectionMethod $reflector): Type
+    private function mapUnionType(ReflectionUnionType $type, ReflectionFunction|ReflectionMethod|ReflectionProperty $reflector): Type
     {
         $types = [];
 
@@ -146,7 +170,7 @@ final class ReflectionMapper
         return new UnionType(...$types);
     }
 
-    private function mapIntersectionType(ReflectionIntersectionType $type, ReflectionFunction|ReflectionMethod $reflector): Type
+    private function mapIntersectionType(ReflectionIntersectionType $type, ReflectionFunction|ReflectionMethod|ReflectionProperty $reflector): Type
     {
         $types = [];
 

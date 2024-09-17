@@ -17,6 +17,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionFunction;
 use ReflectionMethod;
+use ReflectionProperty;
 use SebastianBergmann\Type\TestFixture\AnInterface;
 use SebastianBergmann\Type\TestFixture\AnotherInterface;
 use SebastianBergmann\Type\TestFixture\ChildClass;
@@ -33,6 +34,7 @@ use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresIntersectionRe
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresNeverReturnType;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresNullReturnType;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodThatDeclaresTrueReturnType;
+use SebastianBergmann\Type\TestFixture\ClassWithProperties;
 use SebastianBergmann\Type\TestFixture\ParentClass;
 
 #[CoversClass(ReflectionMapper::class)]
@@ -122,6 +124,22 @@ final class ReflectionMapperTest extends TestCase
             [
                 'string', new ReflectionFunction('SebastianBergmann\Type\TestFixture\stringReturnType'),
             ],
+        ];
+    }
+
+    /**
+     * @return non-empty-list<array{0: class-string, 1: string, 2: non-empty-string}>
+     */
+    public static function propertiesProvider(): array
+    {
+        return [
+            [UnknownType::class, '', 'untyped'],
+            [SimpleType::class, 'string', 'string'],
+            [SimpleType::class, '?string', 'nullableString'],
+            [ObjectType::class, 'SebastianBergmann\Type\TestFixture\AnInterface', 'interface'],
+            [ObjectType::class, '?SebastianBergmann\Type\TestFixture\AnInterface', 'nullableInterface'],
+            [UnionType::class, 'SebastianBergmann\Type\TestFixture\AnInterface|SebastianBergmann\Type\TestFixture\AnotherInterface', 'union'],
+            [IntersectionType::class, 'SebastianBergmann\Type\TestFixture\AnInterface&SebastianBergmann\Type\TestFixture\AnotherInterface', 'intersection'],
         ];
     }
 
@@ -308,5 +326,15 @@ final class ReflectionMapperTest extends TestCase
         $this->assertCount(1, $types);
         $this->assertSame('x', $types[0]->name());
         $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B&SebastianBergmann\Type\TestFixture\D)|int|null', $types[0]->type()->asString());
+    }
+
+    #[DataProvider('propertiesProvider')]
+    public function testMapsFromPropertyType(string $expectedTypeClass, string $expectedString, string $propertyName): void
+    {
+        $property = new ReflectionProperty(ClassWithProperties::class, $propertyName);
+        $type     = (new ReflectionMapper)->fromPropertyType($property);
+
+        $this->assertInstanceOf($expectedTypeClass, $type);
+        $this->assertSame($expectedString, $type->asString());
     }
 }

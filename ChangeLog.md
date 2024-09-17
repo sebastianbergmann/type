@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [5.1.0] - 2024-MM-DD
+
+### Added
+
+* Added `ReflectionMapper::fromPropertyType()` for mapping `\ReflectionProperty` to a `Type` object
+
 ## [5.0.1] - 2024-07-03
 
 ### Changed
@@ -165,6 +171,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[5.1.0]: https://github.com/sebastianbergmann/type/compare/5.0.1...main
 [5.0.1]: https://github.com/sebastianbergmann/type/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/sebastianbergmann/type/compare/4.0...5.0.0
 [4.0.0]: https://github.com/sebastianbergmann/type/compare/3.2.1...4.0.0
