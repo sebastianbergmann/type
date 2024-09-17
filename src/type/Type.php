@@ -12,6 +12,9 @@ namespace SebastianBergmann\Type;
 use function gettype;
 use function strtolower;
 
+/**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for this library
+ */
 abstract class Type
 {
     public static function fromValue(mixed $value, bool $allowsNull): self

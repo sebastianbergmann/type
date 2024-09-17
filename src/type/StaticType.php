@@ -12,6 +12,9 @@ namespace SebastianBergmann\Type;
 use function is_subclass_of;
 use function strcasecmp;
 
+/**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for this library
+ */
 final class StaticType extends Type
 {
     private TypeName $className;

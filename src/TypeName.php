@@ -16,6 +16,9 @@ use function implode;
 use function substr;
 use ReflectionClass;
 
+/**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for this library
+ */
 final readonly class TypeName
 {
     private ?string $namespaceName;

@@ -15,6 +15,9 @@ use function count;
 use function implode;
 use function sort;
 
+/**
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for this library
+ */
 final class UnionType extends Type
 {
     /**
