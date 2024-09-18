@@ -62,6 +62,7 @@ abstract class Type
             'void'         => new VoidType,
             'array', 'bool', 'boolean', 'double', 'float', 'int', 'integer', 'real', 'resource', 'resource (closed)', 'string' => new SimpleType($typeName, $allowsNull),
             'mixed' => new MixedType,
+            /** @phpstan-ignore argument.type */
             default => new ObjectType(TypeName::fromQualifiedName($typeName), $allowsNull),
         };
     }
