@@ -328,6 +328,10 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('(SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B&SebastianBergmann\Type\TestFixture\D)|int|null', $types[0]->type()->asString());
     }
 
+    /**
+     * @param class-string     $expectedTypeClass
+     * @param non-empty-string $propertyName
+     */
     #[DataProvider('propertiesProvider')]
     public function testMapsFromPropertyType(string $expectedTypeClass, string $expectedString, string $propertyName): void
     {

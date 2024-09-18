@@ -121,34 +121,41 @@ final class ReflectionMapper
     private function mapNamedType(ReflectionNamedType $type, ReflectionFunction|ReflectionMethod|ReflectionProperty $reflector): Type
     {
         $classScope = !$reflector instanceof ReflectionFunction;
+        $typeName   = $type->getName();
 
-        if ($classScope && $type->getName() === 'self') {
+        assert($typeName !== '');
+
+        if ($classScope && $typeName === 'self') {
             return ObjectType::fromName(
                 $reflector->getDeclaringClass()->getName(),
                 $type->allowsNull(),
             );
         }
 
-        if ($classScope && $type->getName() === 'static') {
+        if ($classScope && $typeName === 'static') {
             return new StaticType(
                 TypeName::fromReflection($reflector->getDeclaringClass()),
                 $type->allowsNull(),
             );
         }
 
-        if ($type->getName() === 'mixed') {
+        if ($typeName === 'mixed') {
             return new MixedType;
         }
 
-        if ($classScope && $type->getName() === 'parent') {
+        if ($classScope && $typeName === 'parent') {
+            $parentClass = $reflector->getDeclaringClass()->getParentClass();
+
+            assert($parentClass !== false);
+
             return ObjectType::fromName(
-                $reflector->getDeclaringClass()->getParentClass()->getName(),
+                $parentClass->getName(),
                 $type->allowsNull(),
             );
         }
 
         return Type::fromName(
-            $type->getName(),
+            $typeName,
             $type->allowsNull(),
         );
     }

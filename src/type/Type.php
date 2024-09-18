@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use function gettype;
+use function is_object;
 use function strtolower;
 
 /**
@@ -31,7 +32,7 @@ abstract class Type
 
         $typeName = gettype($value);
 
-        if ($typeName === 'object') {
+        if (is_object($value)) {
             return new ObjectType(TypeName::fromQualifiedName($value::class), $allowsNull);
         }
 

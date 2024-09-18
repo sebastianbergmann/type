@@ -89,6 +89,9 @@ final class TypeTest extends TestCase
         $this->assertEquals($expectedType, Type::fromValue($value, $allowsNull));
     }
 
+    /**
+     * @param non-empty-string $typeName
+     */
     #[DataProvider('namesToTypes')]
     public function testTypeMappingFromName(Type $expectedType, string $typeName, bool $allowsNull): void
     {

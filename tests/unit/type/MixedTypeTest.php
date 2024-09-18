@@ -63,6 +63,9 @@ final class MixedTypeTest extends TestCase
         $this->assertTrue($type->allowsNull());
     }
 
+    /**
+     * @param non-empty-string $otherType
+     */
     #[DataProvider('assignableTypes')]
     #[TestDox('$otherType can be assigned to mixed')]
     public function testOtherTypeCanBeAssigned(string $otherType): void
