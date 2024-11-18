@@ -78,7 +78,9 @@ final class GenericObjectTypeTest extends TestCase
 
     public function testCanBeQueriedForType(): void
     {
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($this->type->isGenericObject());
+
         $this->assertFalse($this->type->isCallable());
         $this->assertFalse($this->type->isFalse());
         $this->assertFalse($this->type->isIntersection());

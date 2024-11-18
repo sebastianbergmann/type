@@ -88,7 +88,9 @@ final class IterableTypeTest extends TestCase
 
     public function testCanBeQueriedForType(): void
     {
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($this->type->isIterable());
+
         $this->assertFalse($this->type->isCallable());
         $this->assertFalse($this->type->isFalse());
         $this->assertFalse($this->type->isGenericObject());

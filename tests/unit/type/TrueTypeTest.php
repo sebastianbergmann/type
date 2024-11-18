@@ -79,6 +79,7 @@ final class TrueTypeTest extends TestCase
     {
         $type = new TrueType;
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($type->isTrue());
 
         /** @phpstan-ignore method.impossibleType */

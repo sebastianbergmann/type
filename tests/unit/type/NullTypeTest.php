@@ -79,7 +79,9 @@ final class NullTypeTest extends TestCase
 
     public function testCanBeQueriedForType(): void
     {
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($this->type->isNull());
+
         $this->assertFalse($this->type->isCallable());
         $this->assertFalse($this->type->isFalse());
         $this->assertFalse($this->type->isGenericObject());

@@ -79,6 +79,7 @@ final class FalseTypeTest extends TestCase
     {
         $type = new FalseType;
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($type->isFalse());
 
         /** @phpstan-ignore method.impossibleType */

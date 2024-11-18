@@ -73,7 +73,9 @@ final class IntersectionTypeTest extends TestCase
 
     public function testCanBeQueriedForType(): void
     {
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($this->type->isIntersection());
+
         $this->assertFalse($this->type->isCallable());
         $this->assertFalse($this->type->isFalse());
         $this->assertFalse($this->type->isGenericObject());

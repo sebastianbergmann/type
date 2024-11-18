@@ -75,6 +75,7 @@ final class VoidTypeTest extends TestCase
     {
         $type = new VoidType;
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($type->isVoid());
 
         /** @phpstan-ignore method.impossibleType */

@@ -33,8 +33,6 @@ final class ReflectionMapper
         foreach ($reflector->getParameters() as $parameter) {
             $name = $parameter->getName();
 
-            assert($name !== '');
-
             if (!$parameter->hasType()) {
                 $parameters[] = new Parameter($name, new UnknownType);
 
@@ -90,9 +88,7 @@ final class ReflectionMapper
             return $this->mapUnionType($returnType, $reflector);
         }
 
-        if ($returnType instanceof ReflectionIntersectionType) {
-            return $this->mapIntersectionType($returnType, $reflector);
-        }
+        return $this->mapIntersectionType($returnType, $reflector);
     }
 
     public function fromPropertyType(ReflectionProperty $reflector): Type
@@ -113,9 +109,7 @@ final class ReflectionMapper
             return $this->mapUnionType($propertyType, $reflector);
         }
 
-        if ($propertyType instanceof ReflectionIntersectionType) {
-            return $this->mapIntersectionType($propertyType, $reflector);
-        }
+        return $this->mapIntersectionType($propertyType, $reflector);
     }
 
     private function mapNamedType(ReflectionNamedType $type, ReflectionFunction|ReflectionMethod|ReflectionProperty $reflector): Type

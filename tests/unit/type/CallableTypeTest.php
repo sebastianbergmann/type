@@ -146,7 +146,9 @@ final class CallableTypeTest extends TestCase
 
     public function testCanBeQueriedForType(): void
     {
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($this->type->isCallable());
+
         $this->assertFalse($this->type->isFalse());
         $this->assertFalse($this->type->isGenericObject());
         $this->assertFalse($this->type->isIntersection());

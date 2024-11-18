@@ -184,6 +184,7 @@ final class UnionTypeTest extends TestCase
             new SimpleType('string', false),
         );
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($type->isUnion());
 
         /** @phpstan-ignore method.impossibleType */

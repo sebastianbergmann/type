@@ -135,6 +135,7 @@ final class StaticTypeTest extends TestCase
     {
         $type = new StaticType(TypeName::fromQualifiedName(stdClass::class), false);
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($type->isStatic());
 
         /** @phpstan-ignore method.impossibleType */

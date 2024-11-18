@@ -75,6 +75,7 @@ final class NeverTypeTest extends TestCase
     {
         $type = new NeverType;
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($type->isNever());
 
         /** @phpstan-ignore method.impossibleType */

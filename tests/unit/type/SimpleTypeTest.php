@@ -158,6 +158,7 @@ final class SimpleTypeTest extends TestCase
     {
         $type = new SimpleType('bool', false);
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($type->isSimple());
 
         /** @phpstan-ignore method.impossibleType */

@@ -138,7 +138,9 @@ final class ObjectTypeTest extends TestCase
 
     public function testCanBeQueriedForType(): void
     {
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($this->childClass->isObject());
+
         $this->assertFalse($this->childClass->isCallable());
         $this->assertFalse($this->childClass->isFalse());
         $this->assertFalse($this->childClass->isGenericObject());

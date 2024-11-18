@@ -79,6 +79,7 @@ final class MixedTypeTest extends TestCase
     {
         $type = new MixedType;
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertTrue($type->isMixed());
 
         /** @phpstan-ignore method.impossibleType */
