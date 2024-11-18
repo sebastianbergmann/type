@@ -16,6 +16,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ChildClass;
 use SebastianBergmann\Type\TestFixture\ParentClass;
+use someNamespaceA\NamespacedClass;
 
 #[CoversClass(ObjectType::class)]
 #[CoversClass(Type::class)]
@@ -69,7 +70,7 @@ final class ObjectTypeTest extends TestCase
     {
         $classFromNamespaceA = new ObjectType(
             /** @phpstan-ignore class.notFound */
-            TypeName::fromQualifiedName(\someNamespaceA\NamespacedClass::class),
+            TypeName::fromQualifiedName(NamespacedClass::class),
             false,
         );
 
