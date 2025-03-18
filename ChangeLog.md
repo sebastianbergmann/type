@@ -14,7 +14,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * This component is no longer supported on PHP 8.2
 
-## [5.1.1] - 2025-MM-DD
+## [5.1.1] - 2025-03-18
 
 ### Fixed
 
@@ -191,7 +191,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 [6.0.1]: https://github.com/sebastianbergmann/type/compare/6.0.0...main
 [6.0.0]: https://github.com/sebastianbergmann/type/compare/5.1...6.0.0
-[5.1.1]: https://github.com/sebastianbergmann/type/compare/5.1.0...5.1
+[5.1.1]: https://github.com/sebastianbergmann/type/compare/5.1.0...5.1.1
 [5.1.0]: https://github.com/sebastianbergmann/type/compare/5.0.1...5.1.0
 [5.0.1]: https://github.com/sebastianbergmann/type/compare/5.0.0...5.0.1
 [5.0.0]: https://github.com/sebastianbergmann/type/compare/4.0...5.0.0
