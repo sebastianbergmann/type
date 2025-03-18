@@ -9,8 +9,8 @@
  */
 namespace SebastianBergmann\Type;
 
+use function array_filter;
 use function assert;
-use function count;
 use ReflectionFunction;
 use ReflectionIntersectionType;
 use ReflectionMethod;
@@ -166,7 +166,7 @@ final class ReflectionMapper
                 $namedType = $this->mapNamedType($_type, $reflector);
 
                 if ($namedType instanceof GenericObjectType) {
-                    $genericObjectType = count($types);
+                    $genericObjectType = true;
                 } elseif ($namedType instanceof ObjectType) {
                     $objectType = true;
                 }
@@ -179,8 +179,18 @@ final class ReflectionMapper
             $types[] = $this->mapIntersectionType($_type, $reflector);
         }
 
-        if ($objectType && $genericObjectType !== false) {
-            unset($types[$genericObjectType]);
+        if ($objectType && $genericObjectType) {
+            $types = array_filter(
+                $types,
+                static function (Type $type): bool
+                {
+                    if ($type instanceof ObjectType) {
+                        return false;
+                    }
+
+                    return true;
+                },
+            );
         }
 
         return new UnionType(...$types);
