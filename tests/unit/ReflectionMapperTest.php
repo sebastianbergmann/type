@@ -345,7 +345,7 @@ final class ReflectionMapperTest extends TestCase
     }
 
     #[Ticket('https://github.com/sebastianbergmann/type/issues/33')]
-    public function testGenericObjectTypeIsRemovedFromUnionWhenUnionContainsClassType(): void
+    public function testClassTypesAreRemovedFromUnionThatAlsoContainsGenericObjectType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(
             new ReflectionMethod(
@@ -355,7 +355,7 @@ final class ReflectionMapperTest extends TestCase
         );
 
         $this->assertTrue($type->isUnion());
-        $this->assertSame('Traversable|array', $type->name());
-        $this->assertSame('Traversable|array', $type->asString());
+        $this->assertSame('array|object', $type->name());
+        $this->assertSame('array|object', $type->asString());
     }
 }
