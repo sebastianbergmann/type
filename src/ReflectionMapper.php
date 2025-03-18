@@ -10,6 +10,7 @@
 namespace SebastianBergmann\Type;
 
 use function assert;
+use function count;
 use ReflectionFunction;
 use ReflectionIntersectionType;
 use ReflectionMethod;
@@ -156,16 +157,30 @@ final class ReflectionMapper
 
     private function mapUnionType(ReflectionUnionType $type, ReflectionFunction|ReflectionMethod|ReflectionProperty $reflector): Type
     {
-        $types = [];
+        $types             = [];
+        $objectType        = false;
+        $genericObjectType = false;
 
         foreach ($type->getTypes() as $_type) {
             if ($_type instanceof ReflectionNamedType) {
-                $types[] = $this->mapNamedType($_type, $reflector);
+                $namedType = $this->mapNamedType($_type, $reflector);
+
+                if ($namedType instanceof GenericObjectType) {
+                    $genericObjectType = count($types);
+                } elseif ($namedType instanceof ObjectType) {
+                    $objectType = true;
+                }
+
+                $types[] = $namedType;
 
                 continue;
             }
 
             $types[] = $this->mapIntersectionType($_type, $reflector);
+        }
+
+        if ($objectType && $genericObjectType !== false) {
+            unset($types[$genericObjectType]);
         }
 
         return new UnionType(...$types);
