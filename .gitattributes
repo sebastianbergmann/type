@@ -5,6 +5,7 @@
 /build                  export-ignore
 /.php-cs-fixer.dist.php export-ignore
 /build.xml              export-ignore
+/infection.json         export-ignore
 /phpstan.neon           export-ignore
 /phpunit.xml            export-ignore
 /tests                  export-ignore
