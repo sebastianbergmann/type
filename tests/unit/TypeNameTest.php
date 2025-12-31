@@ -21,7 +21,9 @@ final class TypeNameTest extends TestCase
 {
     public function testFromReflection(): void
     {
-        $class    = new ReflectionClass(TypeName::class);
+        $class = new ReflectionClass(TypeName::class);
+
+        /** @phpstan-ignore argument.type */
         $typeName = TypeName::fromReflection($class);
 
         $this->assertTrue($typeName->isNamespaced());
