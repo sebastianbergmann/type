@@ -107,7 +107,7 @@ final class CallableTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                Type::fromValue([ClassWithCallbackMethods::class, 'staticCallback'], false),
+                Type::fromValue(ClassWithCallbackMethods::staticCallback(...), false),
             ),
         );
     }

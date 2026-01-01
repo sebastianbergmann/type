@@ -48,7 +48,7 @@ final class IterableType extends Type
 
             assert(class_exists($className));
 
-            return (new ReflectionClass($className))->isIterable();
+            return new ReflectionClass($className)->isIterable();
         }
 
         return false;

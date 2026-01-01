@@ -100,7 +100,7 @@ final class CallableType extends Type
 
         assert(class_exists($className));
 
-        return (new ReflectionClass($className))->hasMethod('__invoke');
+        return new ReflectionClass($className)->hasMethod('__invoke');
     }
 
     private function isFunction(SimpleType $type): bool
@@ -132,7 +132,7 @@ final class CallableType extends Type
 
         [$object, $methodName] = $type->value();
 
-        return (new ReflectionObject($object))->hasMethod($methodName);
+        return new ReflectionObject($object)->hasMethod($methodName);
     }
 
     private function isClassCallback(SimpleType $type): bool

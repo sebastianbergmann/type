@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Type;
 
+use function array_any;
 use function assert;
 use function count;
 use function implode;
@@ -39,13 +40,7 @@ final class UnionType extends Type
 
     public function isAssignable(Type $other): bool
     {
-        foreach ($this->types as $type) {
-            if ($type->isAssignable($other)) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_any($this->types, static fn (Type $type) => $type->isAssignable($other));
     }
 
     /**
@@ -80,13 +75,7 @@ final class UnionType extends Type
 
     public function allowsNull(): bool
     {
-        foreach ($this->types as $type) {
-            if ($type instanceof NullType) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_any($this->types, static fn (Type $type) => $type instanceof NullType);
     }
 
     public function isUnion(): bool
@@ -96,13 +85,7 @@ final class UnionType extends Type
 
     public function containsIntersectionTypes(): bool
     {
-        foreach ($this->types as $type) {
-            if ($type->isIntersection()) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_any($this->types, static fn (Type $type) => $type->isIntersection());
     }
 
     /**
