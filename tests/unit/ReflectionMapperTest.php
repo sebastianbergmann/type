@@ -11,7 +11,6 @@ namespace SebastianBergmann\Type;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\Ticket;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -225,7 +224,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('never', $type->name());
     }
 
-    #[RequiresPhp('>= 8.2')]
     public function testMapsFromTrueReturnType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresTrueReturnType::class, 'trueReturnType'));
@@ -234,7 +232,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('true', $type->name());
     }
 
-    #[RequiresPhp('>= 8.2')]
     public function testMapsFromFalseReturnType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresFalseReturnType::class, 'falseReturnType'));
@@ -243,7 +240,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('false', $type->name());
     }
 
-    #[RequiresPhp('>= 8.2')]
     public function testMapsFromNullReturnType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodThatDeclaresNullReturnType::class, 'nullReturnType'));
@@ -252,7 +248,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('null', $type->name());
     }
 
-    #[RequiresPhp('>= 8.2')]
     public function testMapsFromDisjunctiveNormalFormReturnType(): void
     {
         $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes::class, 'one'));
@@ -305,7 +300,6 @@ final class ReflectionMapperTest extends TestCase
         $this->assertSame('SebastianBergmann\Type\TestFixture\A&SebastianBergmann\Type\TestFixture\B', $types[0]->type()->asString());
     }
 
-    #[RequiresPhp('>= 8.2')]
     public function testMapsFromDisjunctiveNormalFormParameters(): void
     {
         $method = new ReflectionMethod(ClassWithMethodsThatDeclareDisjunctiveNormalFormParameterTypes::class, 'dnfOne');
