@@ -2,6 +2,12 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [7.0.1] - 2026-05-20
+
+### Fixed
+
+* [#18](https://github.com/sebastianbergmann/type/issues/18): Class aliases are not resolved when checking type assignability
+
 ## [7.0.0] - 2026-02-06
 
 ### Removed
@@ -225,6 +231,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[7.0.1]: https://github.com/sebastianbergmann/type/compare/7.0.0...7.0.1
 [7.0.0]: https://github.com/sebastianbergmann/type/compare/6.0...7.0.0
 [6.0.4]: https://github.com/sebastianbergmann/type/compare/6.0.3...6.0.4
 [6.0.3]: https://github.com/sebastianbergmann/type/compare/6.0.2...6.0.3
