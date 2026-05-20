@@ -15,6 +15,8 @@ use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\Type\TestFixture\ChildClass;
+use SebastianBergmann\Type\TestFixture\ChildOfClassThatHasAlias;
+use SebastianBergmann\Type\TestFixture\ClassThatHasAlias;
 use SebastianBergmann\Type\TestFixture\ParentClass;
 use someNamespaceA\NamespacedClass;
 
@@ -90,6 +92,52 @@ final class ObjectTypeTest extends TestCase
         );
 
         $this->assertTrue($this->parentClass->isAssignable($classLowercased));
+    }
+
+    public function testClassIsAssignableToAliasOfItself(): void
+    {
+        $classByCanonicalName = new ObjectType(
+            TypeName::fromQualifiedName(ClassThatHasAlias::class),
+            false,
+        );
+
+        $classByAlias = new ObjectType(
+            TypeName::fromQualifiedName('SebastianBergmann\Type\TestFixture\AliasOfClassThatHasAlias'),
+            false,
+        );
+
+        $this->assertTrue($classByCanonicalName->isAssignable($classByAlias));
+        $this->assertTrue($classByAlias->isAssignable($classByCanonicalName));
+    }
+
+    public function testChildClassIsAssignableToAliasOfParentClass(): void
+    {
+        $parentByAlias = new ObjectType(
+            TypeName::fromQualifiedName('SebastianBergmann\Type\TestFixture\AliasOfClassThatHasAlias'),
+            false,
+        );
+
+        $childByCanonicalName = new ObjectType(
+            TypeName::fromQualifiedName(ChildOfClassThatHasAlias::class),
+            false,
+        );
+
+        $this->assertTrue($parentByAlias->isAssignable($childByCanonicalName));
+    }
+
+    public function testAliasOfChildClassIsAssignableToParentClass(): void
+    {
+        $parentByCanonicalName = new ObjectType(
+            TypeName::fromQualifiedName(ClassThatHasAlias::class),
+            false,
+        );
+
+        $childByAlias = new ObjectType(
+            TypeName::fromQualifiedName('SebastianBergmann\Type\TestFixture\AliasOfChildOfClassThatHasAlias'),
+            false,
+        );
+
+        $this->assertTrue($parentByCanonicalName->isAssignable($childByAlias));
     }
 
     public function testNullIsAssignableToNullableType(): void
