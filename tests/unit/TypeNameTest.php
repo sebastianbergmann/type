@@ -13,6 +13,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Small;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
+use ReflectionObject;
 use stdClass;
 
 #[CoversClass(TypeName::class)]
@@ -23,13 +24,22 @@ final class TypeNameTest extends TestCase
     {
         $class = new ReflectionClass(TypeName::class);
 
-        /** @phpstan-ignore argument.type */
         $typeName = TypeName::fromReflection($class);
 
         $this->assertTrue($typeName->isNamespaced());
         $this->assertSame('SebastianBergmann\\Type', $typeName->namespaceName());
         $this->assertSame(TypeName::class, $typeName->qualifiedName());
         $this->assertSame('TypeName', $typeName->simpleName());
+    }
+
+    public function testFromReflectionWithoutNamespace(): void
+    {
+        $typeName = TypeName::fromReflection(new ReflectionObject(new stdClass));
+
+        $this->assertFalse($typeName->isNamespaced());
+        $this->assertNull($typeName->namespaceName());
+        $this->assertSame(stdClass::class, $typeName->qualifiedName());
+        $this->assertSame(stdClass::class, $typeName->simpleName());
     }
 
     public function testFromQualifiedName(): void

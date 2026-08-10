@@ -56,7 +56,7 @@ final readonly class TypeName
     }
 
     /**
-     * @param ReflectionClass<object> $type
+     * @param ReflectionClass<*> $type
      */
     public static function fromReflection(ReflectionClass $type): self
     {
