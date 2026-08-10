@@ -2,6 +2,17 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [7.0.2] - 2026-MM-DD
+
+### Changed
+
+* Improved the performance of `Type::fromValue()` as well as `isAssignable()` for object, callable, and iterable types
+
+### Fixed
+
+* `CallableType::isAssignable()` and `IterableType::isAssignable()` raise an error when the other type is an `ObjectType` for a class that does not exist
+* * `TypeName::fromReflection()` cannot be called with a `ReflectionClass` object for a concrete class without an error being reported by PHPStan
+
 ## [7.0.1] - 2026-05-20
 
 ### Fixed
@@ -231,6 +242,7 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release based on [code contributed by Michel Hartmann to PHPUnit](https://github.com/sebastianbergmann/phpunit/pull/3673)
 
+[7.0.2]: https://github.com/sebastianbergmann/type/compare/7.0.1...main
 [7.0.1]: https://github.com/sebastianbergmann/type/compare/7.0.0...7.0.1
 [7.0.0]: https://github.com/sebastianbergmann/type/compare/6.0...7.0.0
 [6.0.4]: https://github.com/sebastianbergmann/type/compare/6.0.3...6.0.4
