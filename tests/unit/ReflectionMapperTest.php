@@ -9,6 +9,7 @@
  */
 namespace SebastianBergmann\Type;
 
+use Countable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Small;
@@ -21,6 +22,7 @@ use ReflectionProperty;
 use SebastianBergmann\Type\TestFixture\AnInterface;
 use SebastianBergmann\Type\TestFixture\AnotherInterface;
 use SebastianBergmann\Type\TestFixture\ChildClass;
+use SebastianBergmann\Type\TestFixture\ClassThatUsesTraitWithMethodsThatDeclareSelfAndParentReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareDisjunctiveNormalFormParameterTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareDisjunctiveNormalFormReturnTypes;
 use SebastianBergmann\Type\TestFixture\ClassWithMethodsThatDeclareIntersectionParameterTypes;
@@ -180,6 +182,36 @@ final class ReflectionMapperTest extends TestCase
 
         $this->assertInstanceOf(MixedType::class, $type);
         $this->assertSame('mixed', $type->name());
+    }
+
+    public function testMapsFromSelfReturnTypeOfMethodThatIsDeclaredInTrait(): void
+    {
+        $type = (new ReflectionMapper)->fromReturnType(
+            new ReflectionMethod(ClassThatUsesTraitWithMethodsThatDeclareSelfAndParentReturnTypes::class, 'selfReturnType'),
+        );
+
+        $this->assertInstanceOf(ObjectType::class, $type);
+        $this->assertSame(ClassThatUsesTraitWithMethodsThatDeclareSelfAndParentReturnTypes::class, $type->name());
+        $this->assertFalse($type->allowsNull());
+    }
+
+    public function testMapsFromParentReturnTypeOfMethodThatIsDeclaredInTrait(): void
+    {
+        $type = (new ReflectionMapper)->fromReturnType(
+            new ReflectionMethod(ClassThatUsesTraitWithMethodsThatDeclareSelfAndParentReturnTypes::class, 'parentReturnType'),
+        );
+
+        $this->assertInstanceOf(ObjectType::class, $type);
+        $this->assertSame(ParentClass::class, $type->name());
+        $this->assertFalse($type->allowsNull());
+    }
+
+    public function testMapsFromTentativeReturnType(): void
+    {
+        $type = (new ReflectionMapper)->fromReturnType(new ReflectionMethod(Countable::class, 'count'));
+
+        $this->assertInstanceOf(SimpleType::class, $type);
+        $this->assertSame('int', $type->name());
     }
 
     public function testMapsFromStaticReturnType(): void

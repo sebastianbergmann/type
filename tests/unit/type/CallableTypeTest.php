@@ -107,7 +107,7 @@ final class CallableTypeTest extends TestCase
     {
         $this->assertTrue(
             $this->type->isAssignable(
-                Type::fromValue(ClassWithCallbackMethods::staticCallback(...), false),
+                Type::fromValue([ClassWithCallbackMethods::class, 'staticCallback'], false),
             ),
         );
     }
@@ -117,6 +117,87 @@ final class CallableTypeTest extends TestCase
         $this->assertTrue(
             $this->type->isAssignable(
                 Type::fromValue([new ClassWithCallbackMethods, 'nonStaticCallback'], false),
+            ),
+        );
+    }
+
+    public function testStringWithNameOfClassThatDoesNotExistAndMethodNameCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue('SebastianBergmann\Type\TestFixture\ClassThatDoesNotExist::staticCallback', false),
+            ),
+        );
+    }
+
+    public function testStringWithClassNameAndNameOfMethodThatDoesNotExistCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue(ClassWithCallbackMethods::class . '::methodThatDoesNotExist', false),
+            ),
+        );
+    }
+
+    public function testStringWithClassNameAndNonStaticMethodNameCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue(ClassWithCallbackMethods::class . '::nonStaticCallback', false),
+            ),
+        );
+    }
+
+    public function testStringThatIsNeitherFunctionNameNorMethodNameCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue('this is not the name of a function', false),
+            ),
+        );
+    }
+
+    public function testArrayWithObjectAndNameOfMethodThatDoesNotExistCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue([new ClassWithCallbackMethods, 'methodThatDoesNotExist'], false),
+            ),
+        );
+    }
+
+    public function testArrayWithMoreThanTwoElementsCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue([ClassWithCallbackMethods::class, 'staticCallback', 'surplus'], false),
+            ),
+        );
+    }
+
+    public function testArrayWithoutElementsAtIndexZeroAndOneCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue(['class' => ClassWithCallbackMethods::class, 'method' => 'staticCallback'], false),
+            ),
+        );
+    }
+
+    public function testArrayWithNeitherClassNameNorObjectAtIndexZeroCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue([1, 'staticCallback'], false),
+            ),
+        );
+    }
+
+    public function testValueThatIsNeitherStringNorArrayCannotBeAssignedToCallable(): void
+    {
+        $this->assertFalse(
+            $this->type->isAssignable(
+                Type::fromValue(1, false),
             ),
         );
     }
