@@ -9,10 +9,8 @@
  */
 namespace SebastianBergmann\Type;
 
-use function array_pop;
 use function assert;
-use function explode;
-use function implode;
+use function strrpos;
 use function substr;
 use ReflectionClass;
 
@@ -29,6 +27,11 @@ final readonly class TypeName
     private string $simpleName;
 
     /**
+     * @var non-empty-string
+     */
+    private string $qualifiedName;
+
+    /**
      * @param class-string $fullClassName
      */
     public static function fromQualifiedName(string $fullClassName): self
@@ -37,14 +40,19 @@ final readonly class TypeName
             $fullClassName = substr($fullClassName, 1);
         }
 
-        $classNameParts = explode('\\', $fullClassName);
+        $position = strrpos($fullClassName, '\\');
 
-        $simpleName    = array_pop($classNameParts);
-        $namespaceName = implode('\\', $classNameParts);
+        if ($position === false) {
+            assert($fullClassName !== '');
+
+            return new self(null, $fullClassName);
+        }
+
+        $simpleName = substr($fullClassName, $position + 1);
 
         assert($simpleName !== '');
 
-        return new self($namespaceName, $simpleName);
+        return new self(substr($fullClassName, 0, $position), $simpleName);
     }
 
     /**
@@ -73,6 +81,7 @@ final readonly class TypeName
 
         $this->namespaceName = $namespaceName;
         $this->simpleName    = $simpleName;
+        $this->qualifiedName = $namespaceName === null ? $simpleName : $namespaceName . '\\' . $simpleName;
     }
 
     public function namespaceName(): ?string
@@ -93,9 +102,7 @@ final readonly class TypeName
      */
     public function qualifiedName(): string
     {
-        return $this->namespaceName === null
-             ? $this->simpleName
-             : $this->namespaceName . '\\' . $this->simpleName;
+        return $this->qualifiedName;
     }
 
     public function isNamespaced(): bool
