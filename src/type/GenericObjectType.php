@@ -27,11 +27,7 @@ final class GenericObjectType extends Type
             return true;
         }
 
-        if (!$other instanceof ObjectType) {
-            return false;
-        }
-
-        return true;
+        return $other instanceof ObjectType;
     }
 
     /**
