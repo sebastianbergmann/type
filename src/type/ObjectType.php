@@ -35,20 +35,29 @@ final class ObjectType extends Type
             return true;
         }
 
-        if ($other instanceof self) {
-            $thisName  = $this->canonicalClassName($this->className->qualifiedName());
-            $otherName = $this->canonicalClassName($other->className->qualifiedName());
-
-            if (strcasecmp($thisName, $otherName) === 0) {
-                return true;
-            }
-
-            if (is_subclass_of($otherName, $thisName, true)) {
-                return true;
-            }
+        if (!$other instanceof self) {
+            return false;
         }
 
-        return false;
+        $thisName  = $this->className->qualifiedName();
+        $otherName = $other->className->qualifiedName();
+
+        if (strcasecmp($thisName, $otherName) === 0) {
+            return true;
+        }
+
+        if (is_subclass_of($otherName, $thisName, true)) {
+            return true;
+        }
+
+        /*
+         * The names may still refer to the same class through a class alias;
+         * resolving them is only worth its cost once the cheap checks failed.
+         */
+        return strcasecmp(
+            $this->canonicalClassName($thisName),
+            $this->canonicalClassName($otherName),
+        ) === 0;
     }
 
     /**
